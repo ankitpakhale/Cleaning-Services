@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User To Admin & User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{data.as_p}}
+        <input type="submit" value="Submit">    
+    </form>
+    
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Sr no</th>
+            <th scope="col">Name</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Registration Date</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in all %}
+          <tr>
+
+            <td>{{i.id}}</td>
+            
+            <td>{{i.CategoryName}}</td>
+         
+            <td>{{i.ownerName}}</td>
+
+            <td>{{i.descriptionOfCategory}}</td>
+        
+            <td>{{i.priceOfProduct}}</td>
+
+            <td>{{i.registration_date}}</td>
+
+            <td>{{i.rating}}</td>
+          
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>  
+</body>
+</html>

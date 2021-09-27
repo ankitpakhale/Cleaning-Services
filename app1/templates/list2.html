@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User to Admin</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="CategoryName">Category Name</label>
+            <input type="text" placeholder="Category Name" name="category">
+        </div>
+        
+        <div>
+            <label for="ownerName">Owner Name</label>
+            <input type="text" placeholder="Owner Name" name="owner">
+        </div>
+
+        <div>
+            <label for="descriptionOfCategory">Description Of Category</label>
+            <input type="text" placeholder="Description Of Category" name="description">
+        </div>
+
+        <div>
+            <label for="priceOfProduct">Price of Product</label>
+            <input type="text" placeholder="Price of Product" name="price">
+        </div>
+
+        <div>
+            <label for="rating">Registration Date</label>
+            <input type="text" placeholder="Registration Date" name="registration">
+        </div>
+
+        <div>
+            <label for="rating">Rating</label>
+            <input type="text" placeholder="Rating" name="rating">
+        </div>
+        <input type="submit" value="Send Now">
+    </form>
+</body>
+</html>
