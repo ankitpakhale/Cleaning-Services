@@ -122,7 +122,7 @@
         <div class="home-slider">
             <!-- partial:index.partial.html -->
             <div class="hero-slider" data-carousel>
-                <div class="carousel-cell" style="background-image:url('images/commons/slider4.jpg');">
+                <div class="carousel-cell" style="background-image:url({% static 'images/commons/slider4.jpg' %});">
                     <div class="overlay"></div>
                     <div class="container slider-caption">
                         <h5 class="subtitle">Affordable prices to anyone</h5>
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-cell" style="background-image:url(images/commons/slider6.jpg);">
+                <div class="carousel-cell" style="background-image:url({% static 'images/commons/slider6.jpg' %});">
                     <div class="overlay"></div>
                     <div class="container slider-caption">
                         <h5 class="subtitle">We clean. A lot.</h5>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-cell" style="background-image:url(images/commons/slider7.jpg);">
+                <div class="carousel-cell" style="background-image:url({% static 'images/commons/slider7.jpg' %});">
                     <div class="overlay"></div>
                     <div class="container slider-caption">
                         <h5 class="subtitle">Renew your look</h5>
@@ -320,8 +320,10 @@
                     </div>
                 </div>
             </div>
+            
             <div class="team-carousel">
                 <div class="owl-carousel owl-theme">
+
                     <div class="item">
                         <div class="team-card">
                             <figure class="tc-portrait">
@@ -339,6 +341,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="item">
                         <div class="team-card">
                             <figure class="tc-portrait">
@@ -356,6 +359,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="item">
                         <div class="team-card">
                             <figure class="tc-portrait">
@@ -373,6 +377,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="item">
                         <div class="team-card">
                             <figure class="tc-portrait">
@@ -390,6 +395,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="item">
                         <div class="team-card">
                             <figure class="tc-portrait">
@@ -407,6 +413,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="owl-theme">
                     <div class="owl-controls">
@@ -426,15 +433,15 @@
                             <div class="owl-carousel owl-theme">
                                 <div class="item">
                                     <div class="gallery-slider-bg"
-                                        style="background-image:url(images/commons/washla-6.jpg);"></div>
+                                        style="background-image:url({% static 'images/commons/washla-6.jpg' %});"></div>
                                 </div>
                                 <div class="item">
                                     <div class="gallery-slider-bg"
-                                        style="background-image:url(images/commons/blog-thumb-11.jpg);"></div>
+                                        style="background-image:url({% static 'images/commons/blog-thumb-11.jpg' %});"></div>
                                 </div>
                                 <div class="item">
                                     <div class="gallery-slider-bg"
-                                        style="background-image:url(images/commons/washla-about.jpg);"></div>
+                                        style="background-image:url({% static 'images/commons/washla-about.jpg' %});"></div>
                                 </div>
                             </div>
                             <div class="owl-theme">
