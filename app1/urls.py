@@ -1,5 +1,6 @@
 from django.urls import path
-from app1.views import error, home, about, services, contact, index, list, datasubmit, login, faq, error, team, pricing, testimonials, gallery, blog, login1
+from app1.views import error, home, about, services, contact, index, list, datasubmit, faq, error, team, pricing, testimonials, gallery, blog
+from signup.views import userLogin, userSignUp
 
 urlpatterns = [
     path('', home, name='HOME'),
@@ -14,8 +15,9 @@ urlpatterns = [
     path('gallery/', gallery, name='GALLERY'),
     path('blog/', blog, name='BLOG'),
 
-    path('login/', login, name='LOGIN'),
-    path('login1/', login1, name='LOGIN1'),
+    path('login/', userLogin, name='LOGIN'),
+    path('signup/', userSignUp, name='SIGNUP'),
+    # path('login1/', login1, name='LOGIN1'),
 
 
     path('index/', index),

@@ -45,7 +45,7 @@ def gallery(request):
 def blog(request):
     return render(request,'blog-grid.html')
 
-def login1(request):
+# def login1(request):
     if request.POST:
         Name = request.POST['name']
         print(Name)
@@ -59,12 +59,10 @@ def login1(request):
         log.email = Email
         log.number = Number
         log.save()
-        # messages.success(request, 'Done')
-        # return HttpResponseRedirect('http://127.0.0.1:8000/app1/login/')
         return redirect('HOME')
     return render(request, 'LOGIN1')
 
-def login(request):
+# def login(request):
     if request.POST:
         Name = request.POST['name']
         print(Name)
@@ -78,8 +76,6 @@ def login(request):
         log.email = Email
         log.number = Number
         log.save()
-        # messages.success(request, 'Done')
-        # return HttpResponseRedirect('http://127.0.0.1:8000/app1/login/')
         return redirect('HOME')
     return render(request, 'LOGIN')
 
