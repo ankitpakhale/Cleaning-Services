@@ -523,8 +523,8 @@ h5.subtitle{
 
 .cd-top {
   display: inline-block;
-  height: 40px;
-  width: 40px;
+  height: 45px;
+  width: 45px;
   position: fixed;
   bottom: 40px;
   right: 10px;
@@ -564,8 +564,8 @@ h5.subtitle{
 
 @media only screen and (min-width: 1024px) {
   .cd-top {
-    height: 60px;
-    width: 60px;
+    height: 45px;
+    width: 45px;
     right: 30px;
     bottom: 30px;
   }

@@ -353,6 +353,29 @@ $('.team-carousel .owl-carousel').owlCarousel({
         }
     }
 });
+/* ===============================================
+    12. Product CAROUSEL
+=============================================== */
+$('.team-carousel1 .owl-carousel').owlCarousel({
+    autoplay: false,
+    autoplayTimeout: 2500,
+    autoplayHoverPause: false,
+    loop: true,
+    dots: true,
+    margin: 0,
+    nav: true,
+    center: true,
+    navText: [
+        '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+        '<i class="fa fa-angle-right" aria-hidden="true"></i>'
+    ],
+    navContainer: '.team-carousel1 .custom-nav',
+    responsive: {
+        0: {
+            items: 1
+        }
+    }
+});
 
 /* ===============================================
     13. BLOG NEWS CAROUSEL

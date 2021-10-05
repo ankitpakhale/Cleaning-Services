@@ -3265,7 +3265,188 @@ p.replay-all::after {
 }
   
 /* =====================================
-    19. BLOG NEWS CAROUSEL.
+    19. PRODUCT CAROUSEL.
+======================================== */
+
+.team-carousel1 {
+    position: relative;
+}
+
+.team-carousel1 .owl-theme1 .custom-nav {
+    position: absolute;
+    display: none;
+}
+
+.team-carousel1 .owl-carousel1 .item1 .team-card1 {
+    margin: 15px;
+}
+
+.team-carousel1 .owl-dots {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.team-carousel1 .owl-dots button.owl-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #e0e6eb;
+    margin: 0 3px;
+    box-shadow: none;
+    border: none;
+}
+
+.team-carousel1 .owl-dots button.owl-dot.active {
+    background-color: var(--primary-color);
+    width: 12px;
+    border-radius: 25px;
+}
+
+.team-carousel1 .owl-dots button.owl-dot:focus {
+    outline: none;
+}
+
+.tc-portrait1 {
+    position: relative;
+}
+
+.tc-social {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    opacity: 0;
+}
+
+.tc-social {
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.tc-social li {
+    background-color: var(--primary-color);
+    padding: 5px 10px;
+    margin: 2px;
+    text-align: center;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.tc-social li:hover {
+    background-color: var(--secundary-color);
+    padding: 5px 10px;
+    margin: 2px;
+    text-align: center;
+}
+
+.tc-social li a {
+    color: #FFF;
+}
+
+.team-card1:hover .tc-social {
+    opacity: 1;
+    left: 10px;
+}
+
+.tc-caption {
+    background-color: #FFF;
+    -webkit-box-shadow: 0 0 11px 0 rgba(6, 22, 58, .14);
+    -moz-box-shadow: 0 0 11px 0 rgba(6, 22, 58, .14);
+    box-shadow: 0 0 11px 0 rgba(6, 22, 58, .14);
+    padding: 25px;
+    text-align: center;
+    margin: -25px 25px 0px 25px;
+    z-index: 1;
+    position: relative;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.team-card:hover .tc-caption {
+    margin-top: -35px;
+}
+
+.tc-caption h4 {
+    margin-bottom: 0px;
+}
+
+.tc-caption p {
+    margin-bottom: 0px;
+}
+
+.image-hover figure {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.image-hover figure:hover+span {
+    bottom: -36px;
+    opacity: 1;
+}
+
+/* Zoom In #1 */
+.zoom-in img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+}
+
+.zoom-in:hover img {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.team-banner-wrapper {
+    background-color: var(--primary-color);
+    padding: 0px;
+    position: relative;
+    height: 350px;
+}
+
+.team-banner-wrapper .section-heading {
+    padding-top: 50px;
+}
+
+.team-banner-wrapper .section-heading h2 {
+    color: #FFF;
+}
+
+.team-banner-wrapper .section-heading p {
+    color: #FFF;
+    margin-bottom: 0px;
+}
+
+.team-layer-up {
+    margin-top: -220px;
+}
+
+.tc-page .team-card {
+    margin: 45px 0px;
+}
+
+/* -------------------------------------- */
+
+
+
+
+/* -------------------------------------- */
+
+
+/* =====================================
+    20. BLOG NEWS CAROUSEL.
 ======================================== */
 .blog-news-carousel {
     position: relative;

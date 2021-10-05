@@ -1,4 +1,4 @@
-from app1.models import Product, xyz
+from app1.models import Product, item, xyz
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -12,8 +12,16 @@ def home1(request):
 # def home1(request):
 #     return render(request,'home1.html')
 
+# def home(request):
+#     return render(request,'home.html')
+
 def home(request):
-    return render(request,'home.html')
+    obj1 = item.objects.all()
+    a = ProForm(request.POST)
+    if a.is_valid():
+        a.save()
+        messages.success(request, 'Done')
+    return render(request, 'home.html', {'data':a, 'all': obj1})
 
 def about(request):
     return render(request,'about.html')
@@ -78,7 +86,6 @@ def blog(request):
         log.save()
         return redirect('HOME')
     return render(request, 'LOGIN')
-
 
 def index(request):
     return render(request,'index.html')
