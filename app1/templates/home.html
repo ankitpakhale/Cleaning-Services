@@ -330,7 +330,10 @@
                 <div class="col-lg-4">
                     <div class="faq-box" style="display: flex; flex-direction: column; padding: 13px;">
                         <div class="fb-circle">
-                            <div class="fb-icon"><img src="{% static 'images/icons/life-saver.png' %}" alt=""></div>
+                            <!-- <div class="fb-icon"><img src="{% static 'images/icons/life-saver.png' %}" alt=""></div> -->
+                            <div class="fb-icon">
+                                <img src="{{i.images.url}}" alt="">
+                            </div>
                         </div>
 
                         <h5 class="card-title">{{i.title}}</h5>

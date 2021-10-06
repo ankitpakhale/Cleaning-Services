@@ -25,6 +25,7 @@ class xyz(models.Model):
         return self.name
 
 class item(models.Model):
+    images = models.ImageField(upload_to='pro_img',blank=True)
     title = models.CharField(default='', max_length=20)
     price = models.PositiveIntegerField(default='')
     description = models.CharField(default='', max_length=90)

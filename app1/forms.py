@@ -9,4 +9,4 @@ class ProForm(forms.ModelForm):
 
     class Meta1:
         model = item
-        fields = ['title' ,'price', 'description']
+        fields = ['images' ,'title' ,'price', 'description']

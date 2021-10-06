@@ -1,3 +1,4 @@
+from os import readlink
 from app1.models import Product, item, xyz
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -17,11 +18,14 @@ def home1(request):
 
 def home(request):
     obj1 = item.objects.all()
+
     a = ProForm(request.POST)
     if a.is_valid():
         a.save()
         messages.success(request, 'Done')
     return render(request, 'home.html', {'data':a, 'all': obj1})
+
+    
 
 def about(request):
     return render(request,'about.html')
