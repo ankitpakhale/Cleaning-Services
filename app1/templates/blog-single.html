@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--SLIDER START-->
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                <h1>Blog Single</h1>
+                <p>A new generation of cleaning and restoration concepts.</p>
+            </div>
+        </div>  
+    </div>
+    <!--SLIDER END-->
+</header>
+
+    <!-- CONTENT START -->
+    <section>
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <!-- BLOG CONTENT START -->
+                <div class="col-lg-9">
+                    <div class="blog-content">
+                        <figure class="post-image">
+                            <img src="{% static 'images/commons/blog-single.jpg' %}" alt="">
+                            <div class="post-date">
+                                <h3>10</h3>
+                                <p>Nov</p>
+                            </div>
+                        </figure>
+                        <div class="post-content">
+                            <h2 class="post-title">The Best Cleaning Company of 2020</h2>
+                            <p>The ground-breaking research took 11 years to complete and is the longest study
+                                announcement comes at a time where half of British adults have tooth decay while one in
+                                four children will start school with decay in their baby teeth.
+                            </p>
+                            <p>Despite many positive changes to the landscape of oral health, there is still more work
+                                to be done. Twice-daily brushing, an excess of sugar in our food and drink and access to
+                                basic dental services, all remain difficult challenges.
+                            </p>
+                            <p>Manufacturing industry became a key sector of production and labour in European and North
+                                American countries during the Industrial Revolution, upsetting previous mercantile and
+                                feudal economies. The Industrial Revolution, which took place from the 18th to 19th
+                                centuries.
+                            </p>
+                            <blockquote class="ludwig">
+                                I don't know why we are here, but I'm pretty sure that it is not in order to enjoy
+                                ourselves.
+                            </blockquote>
+                            <p>vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                                voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
+                                occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+                                mollitia animi, id est laborum et dolorum fuga.</p>
+                        </div>
+                        <div class="blog-comments">
+                            <h4>4 Replies to “National Association Of Wheat Growers”</h4>
+                            <div class="comment-box">
+                                <div class="media">
+                                    <img src="{% static 'images/commons/avatar7.jpg' %}" class="mr-3" alt="...">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">Sara Jones</h5>
+                                        <p>
+                                            <strong>
+                                                September 19, 2020
+                                            </strong>
+                                        </p>
+                                        <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+                                            quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+                                            quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+                                            dolores.</p>
+                                            <p class="replay"><a href="#">Replay</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-box">
+                                <div class="media">
+                                    <img src="{% static 'images/commons/avatar9.jpg' %}" class="mr-3" alt="...">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">Richard Smith</h5>
+                                        <p>
+                                            <strong>
+                                                September 18, 2020
+                                            </strong>
+                                        </p>
+                                        <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+                                            quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+                                            quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+                                            dolores.</p>
+                                            <p class="replay"><a href="#">Replay</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-box replay-comment">
+                                <div class="media">
+                                    <img src="{% static 'images/commons/avatar8.jpg' %}" class="mr-3" alt="...">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">Laura Johnson</h5>
+                                        <p>
+                                            <strong>
+                                                September 17, 2020
+                                            </strong>
+                                        </p>
+                                        <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+                                            quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+                                            quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+                                            dolores.</p>
+                                            <p class="replay-all"><a href="#">Replay</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-box">
+                                <div class="media">
+                                    <img src="{% static 'images/commons/avatar10.jpg' %}" class="mr-3" alt="...">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">Raul Madson</h5>
+                                        <p>
+                                            <strong>
+                                                September 17, 2020
+                                            </strong>
+                                        </p>
+                                        <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+                                            quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+                                            quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+                                            dolores.</p>
+                                            <p class="replay"><a href="#">Replay</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="warning-message">You need be <a href="{% url 'LOGIN' %}">logged</a>  in to post a comment.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- BLOG CONTENT END -->
+                
+                <!-- ASIDE BAR START -->
+                <div class="col-lg-3 spacing-md">
+                    <aside>
+                        <div class="aside-block">
+                            <div class="form-group blog-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <h4 class="aside-title">Recent Posts</h4>
+                            <ul class="list-unstyled">
+                              <li class="media">
+                                <a href="{% url 'BLOGSINGLE' %}"><img src="{% static 'images/commons/post-thumb-1.jpg' %}" class="mr-3" alt="..."></a>
+                                <div class="media-body">
+                                  <p>June 18, 2020</p>
+                                  <h5 class="mt-0 mb-1"><a href="{% url 'BLOGSINGLE' %}">Ship Orders Crash as Takes</a></h5>
+                                </div>
+                              </li>
+                              <li class="media my-3">
+                                <a href="{% url 'BLOGSINGLE' %}"><img src="{% static 'images/commons/post-thumb-2.jpg' %}" class="mr-3" alt="..."></a>
+                                <div class="media-body">
+                                  <p>June 17, 2020</p>
+                                  <h5 class="mt-0 mb-1"><a href="{% url 'BLOGSINGLE' %}">Oil Traders Are Scrambling</a></h5>
+                                </div>
+                              </li>
+                              <li class="media">
+                                <a href="{% url 'BLOGSINGLE' %}"><img src="{% static 'images/commons/post-thumb-3.jpg' %}" class="mr-3" alt="..."></a>
+                                <div class="media-body">
+                                  <p>June 15, 2020</p>
+                                  <h5 class="mt-0 mb-1"><a href="{% url 'BLOGSINGLE' %}">Weighs on Trade on the Largest</a></h5>
+                                </div>
+                              </li>
+                            </ul>
+                        </div>
+                        <div class="aside-block">
+                            <div class="headline-banner">
+                                <h4>Feature posts</h4>
+                            </div>
+                            <div class="recent-post-thumb">
+                                <figure class="rp-feature">
+                                    <a href="{% url 'BLOGSINGLE' %}"><img src="{% static 'images/commons/blog-thumb-11.jpg' %}" alt=""></a>
+                                </figure>
+                                <div class="rpt-caption">
+                                    <h5><a href="{% url 'BLOGSINGLE' %}">The Cleaning Benefits</a></h5>
+                                    <p>Sept 15, 2020</p>
+                                </div>
+                            </div>
+                            <div class="recent-post-thumb">
+                                <figure class="rp-feature">
+                                    <a href="{% url 'BLOGSINGLE' %}"><img src="{% static 'images/commons/blog-thumb-10.jpg' %}" alt=""></a>
+                                </figure>
+                                <div class="rpt-caption">
+                                    <h5><a href="{% url 'BLOGSINGLE' %}">The Best Cleaning Tips</a></h5>
+                                    <p>Setp 14, 2020</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aside-block">
+                            <div class="headline-banner">
+                                <h4>Popular tags</h4>
+                            </div>
+                            <ul class="tags">
+                                <li>
+                                    <button class="btn-tags">cleaning</button>
+                                    <button class="btn-tags">carpet</button>
+                                    <button class="btn-tags">office</button>
+                                    <button class="btn-tags">buiding</button>
+                                    <button class="btn-tags">services</button>
+                                    <button class="btn-tags">mordern</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+                <!-- ASIDE BAR END -->
+            </div>
+        </div>
+    </section>
+    <!-- CONTENT END -->
+
+{% endblock %}

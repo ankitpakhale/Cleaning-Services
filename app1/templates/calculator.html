@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--SLIDER START-->
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                <h1>Calculator</h1>
+                <p>A new generation Calculator.</p>
+            </div>
+        </div>  
+    </div>
+    <!--SLIDER END-->
+</header>
+
+    <!-- CONTENT START -->
+    <section>
+
+        <!-- CONTACT FORM START -->
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="contact-title">
+                        <h3>Calculate With Us</h3>
+                        <p>World’s leading non-asset- based supply chain management companies, we design and implement industry-leading. We specialise in intelligent & effective search and believes business.</p>
+                    </div>
+                    <br/>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="messages"></div>
+                        <div class="controls">
+                            <div class="row">
+                               
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input id="email" type="text" name="email" class="form-control custom-form" placeholder="value 1" required="required" data-error="Valid email is required.">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <input id="email" type="text" name="email" class="form-control custom-form" placeholder="Operation" required="required" data-error="Valid email is required.">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input id="email" type="text" name="email" class="form-control custom-form" placeholder="value 2" required="required" data-error="Valid email is required.">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                               
+
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input class="btn btn-washla" type="submit" value="Calculate">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4>
+                                        This is the output section
+                                    </h4>
+                                    <h2>    
+                                        {{ output }}
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- CONTACT FORM END -->
+
+    </section>
+    <!-- CONTENT END -->
+
+{% endblock %}

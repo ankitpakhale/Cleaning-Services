@@ -57,6 +57,14 @@ def gallery(request):
 def blog(request):
     return render(request,'blog-grid.html')
 
+def blogSingle(request):
+    return render(request,'blog-single.html')
+
+def calculator(request):
+    return render(request,'calculator.html')
+
+
+
 # def login1(request):
     if request.POST:
         Name = request.POST['name']
