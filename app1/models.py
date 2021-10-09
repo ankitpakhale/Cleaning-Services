@@ -31,3 +31,17 @@ class item(models.Model):
     description = models.CharField(default='', max_length=90)
     def __str__(self):
         return self.title
+
+class inputmodel(models.Model):
+    inputA=models.IntegerField(default="")
+    inputB=models.IntegerField(default="")
+    def __str__(self):
+        return self.inputA
+
+class contactForm(models.Model):
+    name = models.CharField(default="", max_length=30)
+    email = models.EmailField(default="")
+    phone = models.PositiveIntegerField(default="")
+    message = models.TextField(default="")
+    def __str__(self):
+        return self.name

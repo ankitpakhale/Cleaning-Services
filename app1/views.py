@@ -1,9 +1,10 @@
 from os import readlink
-from app1.models import Product, item, xyz
+
+from app1.models import *
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from app1.forms import ProForm
+from app1.forms import ProForm, inputForm
 
 # Create your views here.
 
@@ -25,7 +26,6 @@ def home(request):
         messages.success(request, 'Done')
     return render(request, 'home.html', {'data':a, 'all': obj1})
 
-    
 
 def about(request):
     return render(request,'about.html')
@@ -34,8 +34,31 @@ def services(request):
     return render(request,'services.html')
 
 def contact(request):
-    return render(request,'contact.html')
+    value = "Your response has been saved"
+    if request.POST:
+        Name = request.POST['name']
+        print(Name)
+        Email = request.POST['email']
+        print(Email)
+        Phone = request.POST['phone']
+        print(Phone)
+        Message = request.POST['message']
+        print(Message)
 
+        con = contactForm()
+        
+        con.name = Name
+        con.email = Email
+        con.phone = Phone
+        con.message = Message
+        con.save()
+        # return HttpResponseRedirect('http://127.0.0.1:8000/app1/contact/')
+
+        value = "Your response has been saved"
+        return render(request, 'contact.html', {'value' : value})        
+    return redirect('CONTACT')
+
+    
 def faq(request):
     return render(request,'faq.html')
 
@@ -61,7 +84,22 @@ def blogSingle(request):
     return render(request,'blog-single.html')
 
 def calculator(request):
-    return render(request,'calculator.html')
+    form = inputForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        input1 = cd['inputA']
+        input2 = cd['inputB']
+        output1 = input1 + input2
+        output2 = input1 - input2        
+        output3 = input1 * input2
+        output4 = input1 / input2
+        return HttpResponseRedirect(f"/app1/{output1}")
+    else:
+        form = inputForm()
+    return render(request, 'calculator.html', {'form' : form})
+
+def show(request,id1):
+    return HttpResponse(f"The calculations are : {id1}")
 
 
 

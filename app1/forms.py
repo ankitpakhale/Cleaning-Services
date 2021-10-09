@@ -1,6 +1,5 @@
 from django import forms
-from django.db.models import fields
-from .models import Product, item
+from .models import Product, item, inputmodel
 
 class ProForm(forms.ModelForm):
     class Meta:
@@ -10,3 +9,9 @@ class ProForm(forms.ModelForm):
     class Meta1:
         model = item
         fields = ['images' ,'title' ,'price', 'description']
+
+class inputForm(forms.ModelForm):
+
+    class Meta:
+        model = inputmodel
+        fields = '__all__'

@@ -11,6 +11,8 @@ admin.site.register(xyz)
 
 admin.site.register(item)
 
+admin.site.register(contactForm)
+
 # class categoryAdmin(admin.ModelAdmin):
 #     list_display = ['CategoryName', 'priceOfProduct', 'rating']
 #     list_filter = ['CategoryName', 'priceOfProduct', 'rating']

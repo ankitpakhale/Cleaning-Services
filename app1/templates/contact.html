@@ -53,9 +53,7 @@
         <!-- CONTACT BOX END -->
         
         <!-- CONTACT FORM START -->
-        
         <div class="container mt-5 mb-5">
-
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <div class="contact-title">
@@ -63,7 +61,8 @@
                         <p>World’s leading non-asset- based supply chain management companies, we design and implement industry-leading. We specialise in intelligent & effective search and believes business.</p>
                     </div>
                     <br/>
-                    <form id="contact-form" method="post" action="http://quickdevs.com/templates/washla/contact.php">
+                    <form method="POST">
+                        {% csrf_token %}
                         <div class="messages"></div>
                         <div class="controls">
                             <div class="row">
@@ -103,6 +102,13 @@
                                     <p><input type="submit" class="btn btn-washla" value="Send message"></p>
                                 </div>
                             </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h2 style="color: #01B3E4;">{{value}}</h2>
+                                </div>
+                            </div>
+                            
                         </div>
                     </form>
                 </div>

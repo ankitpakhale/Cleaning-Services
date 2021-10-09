@@ -1,5 +1,5 @@
 from django.urls import path
-from app1.views import *
+from .views import *
 from signup.views import userLogin, userSignUp
 
 urlpatterns = [
@@ -17,6 +17,7 @@ urlpatterns = [
     path('blogsingle/', blogSingle, name='BLOGSINGLE'),
 
     path('calculator/', calculator, name='CALCULATOR'),
+    path('<int:id1>/', show, name='SHOW'),
 
     path('login/', userLogin, name='LOGIN'),
     path('signup/', userSignUp, name='SIGNUP'),
