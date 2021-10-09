@@ -34,7 +34,6 @@ def services(request):
     return render(request,'services.html')
 
 def contact(request):
-    value = "Your response has been saved"
     if request.POST:
         Name = request.POST['name']
         print(Name)
@@ -52,11 +51,13 @@ def contact(request):
         con.phone = Phone
         con.message = Message
         con.save()
+
         # return HttpResponseRedirect('http://127.0.0.1:8000/app1/contact/')
 
         value = "Your response has been saved"
-        return render(request, 'contact.html', {'value' : value})        
-    return redirect('CONTACT')
+        return render(request, 'contact.html', {'value' : value})
+    return render(request, 'contact.html')        
+
 
     
 def faq(request):

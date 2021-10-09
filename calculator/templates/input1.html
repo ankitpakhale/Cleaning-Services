@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--SLIDER START-->
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                <h3>Calculator</h3>
+                <p>A new generation Calculator.</p>
+            </div>
+        </div>  
+    </div>
+    <!--SLIDER END-->
+</header>
+
+    <!-- CONTENT START -->
+    <section>
+
+        <!-- CONTACT FORM START -->
+        <!-- <div class="container mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="contact-title">
+                        <h3>Calculate With Us</h3>
+                        <p>World’s leading non-asset- based supply chain management companies, we design and implement industry-leading. We specialise in intelligent & effective search and believes business.</p>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <h3>Subtraction</h3>
+                        <form action="sub" method="POST">
+                            {% csrf_token %}
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="number" name="num1" class="form-control custom-form" placeholder="Enter First Number: ">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="number" name="num2" class="form-control custom-form" placeholder="Enter Second Number: ">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input class="btn btn-washla" type="submit" value="Calculate">  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h3>Addition</h3>
+                    <form action="add" method="POST">
+                        {% csrf_token %}
+                        Enter first number: <input type="text" name="num1"><br><br>
+                        Enter second number: <input type="text" name="num2"><br><br>
+                        <input type="submit">
+                    </form>
+
+                    <h3>Subtraction</h3>
+                    <form action="sub" method="POST">
+                        {% csrf_token %}
+                        <input type="number" name="num1" class="form-control custom-form" placeholder="Enter First Number: ">
+
+                        <input type="number" name="num2" class="form-control custom-form" placeholder="Enter Second Number: ">
+                        
+                        <input class="btn btn-washla" type="submit" value="Calculate">      
+                    </form>
+
+                    <h3>Multiplication</h3>
+                    <form action="mul" method="POST">
+                        {% csrf_token %}
+                        <input type="number" name="num1" class="form-control custom-form" placeholder="Enter First Number: ">
+
+                        <input type="number" name="num2" class="form-control custom-form" placeholder="Enter Second Number: ">
+                        
+                        <input class="btn btn-washla" type="submit" value="Calculate">      
+                    </form>
+
+                    <h3>Division</h3>
+                    <form action="div" method="POST">
+                        {% csrf_token %}
+                        <input type="number" name="num1" class="form-control custom-form" placeholder="Enter First Number: ">
+
+                        <input type="number" name="num2" class="form-control custom-form" placeholder="Enter Second Number: ">
+                        
+                        <input class="btn btn-washla" type="submit" value="Calculate">      
+                    </form>
+
+                </div>
+            </div>
+        </div> -->
+        <!-- CONTACT FORM END -->
+
+        <!-- <h3>Addition</h3>
+        <form action="{% url 'ADD' %}" method="POST">
+            {% csrf_token %}
+        
+            Enter first number: <input type="text" name="num1"><br><br>
+            Enter second number: <input type="text" name="num2"><br><br>
+            <input type="submit">
+        </form>
+
+        <h3>Subtraction</h3>
+        <form action="{% url 'SUB' %}" method="POST">
+            {% csrf_token %}
+        
+            Enter first number: <input type="text" name="num1"><br><br>
+            Enter second number: <input type="text" name="num2"><br><br>
+            <input type="submit">
+        </form>
+
+        <h3>Multiplication</h3>
+        <form action="{% url 'MUL' %}" method="POST">
+            {% csrf_token %}
+        
+            Enter first number: <input type="text" name="num1"><br><br>
+            Enter second number: <input type="text" name="num2"><br><br>
+            <input type="submit">
+        </form>
+
+        <h3>Division</h3>
+        <form action="{% url 'DIV' %}" method="POST">
+            {% csrf_token %}
+        
+            Enter first number: <input type="text" name="num1"><br><br>
+            Enter second number: <input type="text" name="num2"><br><br>
+            <input type="submit">
+        </form> -->
+
+        <form method="POST" action="{% url INDEX %}">
+            {% csrf_token %}
+            Enter first number: <input type="text" name="num1"><br><br>
+            Enter second number: <input type="text" name="num2"><br><br>
+
+            <input type="submit" value="+" name="operation">
+            <!-- <input type="submit" value="-" name="operation">
+            <input type="submit" value="*" name="operation">
+            <input type="submit" value="/" name="operation"> -->
+        </form> 
+
+    </section>
+    <!-- CONTENT END -->
+
+    <section>
+
+        <!-- CONTACT FORM START -->
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <h2> Result = {{result}} </h2>
+            </div>
+        </div>
+        <!-- CONTACT FORM END -->
+
+    </section>
+{% endblock %}
