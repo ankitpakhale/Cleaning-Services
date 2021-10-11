@@ -6,12 +6,13 @@ class ProForm(forms.ModelForm):
         model = Product
         fields = ['CategoryName', 'ownerName', 'descriptionOfCategory', 'priceOfProduct', 'registration_date', 'rating']
 
-    class Meta1:
+
+class ProForm1(forms.ModelForm):
+    class Meta:
         model = item
         fields = ['images' ,'title' ,'price', 'description']
 
 class inputForm(forms.ModelForm):
-
     class Meta:
         model = inputmodel
         fields = '__all__'

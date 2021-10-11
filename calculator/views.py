@@ -60,45 +60,51 @@ def index(request):
 #         res = "Only digits are allowed for Division operation"
 #     return render(request, "input.html", {"result" : res})
 
-
 def common(request):
-    a = float(request.POST['num1'])
-    print(f"Value 1 is {a}")
-    b = float(request.POST['num2'])
-    print(f"Value 2 is {b}")
+    if request.GET:
+        a = float(request.GET["num1"])
+        print(f"Value 1 is {a}")
 
-    if '+' == request.POST.get('operation'):
-        try:
-            ans = a + b
-            print(f"Addition is {ans}")
-        except (ValueError):
-            ans = "Only digits are allowed for Addition operation"
-        return render(request, "input.html", {"ans":ans})
+        b = float(request.GET["num2"])
+        print(f"Value 2 is {b}")
+
+        if '+' == request.POST.get('operation'):
+            try:
+                ans1 = a + b
+                ans = f"{a} + {b} = {ans1}"
+                print(f"Addition is {ans}")
+            except(ValueError):
+                ans = "Only digits are allowed for Addition operation"
+            return render(request, "input.html", {"ans":ans})
+
+        elif '-' == request.POST.get('operation'):
+            try:
+                ans1 = a - b
+                ans = f"{a} - {b} = {ans1}"
+                print(f"Subtraction is {ans}")
+            except (ValueError):
+                ans = "Only digits are allowed for Subtraction operation"
+            return render(request, "input.html", {"ans":ans})
+
+        elif '*' == request.POST.get('operation'):
+            try:
+                ans1 = a * b
+                ans = f"{a} x {b} = {ans1}"
+                print(f"Multiplication is {ans}")
+            except (ValueError):
+                ans = "Only digits are allowed for Multiplication operation"
+            return render(request, "input.html", {"ans":ans})
+    
+        elif '/' == request.POST.get('operation'):
+            try:
+                ans1 = a / b
+                ans = f"{a} / {b} = {ans1}"
+                print(f"Division is {ans}")
+            except (ValueError):
+                ans = "Only digits are allowed for Division operation"
+            except (ZeroDivisionError):
+                ans = "Denominator should not be 0"
+            return render(request, "input.html", {"ans":ans})
     return render(request, "input.html")
 
-    # elif '-' == request.POST.get('operation'):
-    #     try:
-    #         ans = a + b
-    #         print(f"Addition is {ans}")
-    #     except (ValueError):
-    #         ans = "Only digits are allowed for Addition operation"
-    #     return render(request, "input.html", {"ans":ans})
-    # return render(request, "input.html")
 
-    # elif '*' == request.POST.get('operation'):
-    #     try:
-    #         ans = a + b
-    #         print(f"Addition is {ans}")
-    #     except (ValueError):
-    #         ans = "Only digits are allowed for Addition operation"
-    #     return render(request, "input.html", {"ans":ans})
-    # return render(request, "input.html")
-
-    # elif '/' == request.POST.get('operation'):
-    #     try:
-    #         ans = a + b
-    #         print(f"Addition is {ans}")
-    #     except (ValueError):
-    #         ans = "Only digits are allowed for Addition operation"
-    #     return render(request, "input.html", {"ans":ans})
-    # return render(request, "input.html")

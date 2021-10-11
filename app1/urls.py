@@ -16,6 +16,11 @@ urlpatterns = [
     path('blog/', blog, name='BLOG'),
     path('blogsingle/', blogSingle, name='BLOGSINGLE'),
 
+    path('product/', product, name='PRODUCT'),
+    path('productView/<int:pk>', productList, name='PRODUCTLIST'),
+    path('productUpdate/<int:pk>', productUpdate, name='PRODUCTUPDATE'),
+    path('productDelete/<int:pk>', productDelete, name='PRODUCTDELETE'),
+
     path('calculator/', calculator, name='CALCULATOR'),
     path('<int:id1>/', show, name='SHOW'),
 

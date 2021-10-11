@@ -1,10 +1,8 @@
-from os import readlink
-
 from app1.models import *
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from app1.forms import ProForm, inputForm
+from app1.forms import ProForm, inputForm, ProForm1
 
 # Create your views here.
 
@@ -19,7 +17,6 @@ def home1(request):
 
 def home(request):
     obj1 = item.objects.all()
-
     a = ProForm(request.POST)
     if a.is_valid():
         a.save()
@@ -58,8 +55,6 @@ def contact(request):
         return render(request, 'contact.html', {'value' : value})
     return render(request, 'contact.html')        
 
-
-    
 def faq(request):
     return render(request,'faq.html')
 
@@ -84,6 +79,34 @@ def blog(request):
 def blogSingle(request):
     return render(request,'blog-single.html')
 
+def product(request):
+    obj1 = item.objects.all()
+    a = ProForm(request.POST)
+    if a.is_valid():
+        a.save()
+        messages.success(request, 'Done')
+    return render(request, 'product.html', {'allProduct': obj1})
+
+def productList(request, pk):
+    prod= get_object_or_404(item, pk=pk)
+    return render(request, 'subProduct.html', {'object':prod})
+
+def productUpdate(request, pk):
+    prod= get_object_or_404(item, pk=pk)
+    form = ProForm1(request.POST or None, instance=prod)
+    if form.is_valid():
+        form.save()
+        return redirect('PRODUCT')
+    return render(request, 'editProduct.html', {'form':form})
+
+def productDelete(request, pk):
+    prod= get_object_or_404(item, pk=pk)   
+    prod.delete() 
+    # if request.method=='POST':
+    #     book.delete()
+    return redirect('PRODUCT')
+   # return render(request, 'book_confirm_delete.html', {'object':book})
+
 def calculator(request):
     form = inputForm(request.POST)
     if form.is_valid():
@@ -91,9 +114,9 @@ def calculator(request):
         input1 = cd['inputA']
         input2 = cd['inputB']
         output1 = input1 + input2
-        output2 = input1 - input2        
-        output3 = input1 * input2
-        output4 = input1 / input2
+        # output2 = input1 - input2        
+        # output3 = input1 * input2
+        # output4 = input1 / input2
         return HttpResponseRedirect(f"/app1/{output1}")
     else:
         form = inputForm()
@@ -101,7 +124,6 @@ def calculator(request):
 
 def show(request,id1):
     return HttpResponse(f"The calculations are : {id1}")
-
 
 
 # def login1(request):

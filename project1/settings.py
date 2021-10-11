@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app1',
     'signup',
-    'calculator'
+    'calculator',
+    'FBV'
 ]
 
 MIDDLEWARE = [

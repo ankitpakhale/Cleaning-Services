@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--SLIDER START-->
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                <h1>Sub Product</h1>
+                <p>A new generation of cleaning and restoration concepts.</p>
+            </div>
+        </div>  
+    </div>
+    <!--SLIDER END-->
+</header>
+
+    <!-- CONTENT START -->
+    <section>
+        <div class="container mt-5 mb-5">
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="blog-content">
+                        <figure class="post-image">
+                            <img style="height: 300px; width: 300px; " src="{{object.images.url}}" alt="">
+                        </figure>
+
+                        <div class="post-content">
+                            <!-- <blockquote class="ludwig">Rs {{object.title}}/-</blockquote> -->
+                            <h2 class="post-title">{{object.title}}</h2>
+                            <p>{{object.description}}</p>
+                            <h3 class="post-title">Rs {{object.price}}/-</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="row">
+                {{value}}
+            </div> -->
+
+        </div>
+    </section>
+    <!-- CONTENT END -->
+{% endblock %}
