@@ -1,11 +1,51 @@
-<html>
-    <body>
-        <h1>Book Edit</h1>
-<form method="post">
-    {% csrf_token %}
-    
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--SLIDER START-->
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                <h1>Edit Product</h1>
+                <p>A new generation of cleaning and restoration concepts.</p>
+            </div>
+        </div>  
+    </div>
+    <!--SLIDER END-->
+</header>
+    <!-- CONTENT START -->
+    <section>            
+        <!-- PRODUCT START -->
+        <div class="container mt-5 mb-5"> 
+            <div class="section-heading">                
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="contact-title">
+                            <h2>Book Edit</h2>
+                            <p>World’s leading non-asset- based supply chain management companies, we design and implement industry-leading. We specialise in intelligent & effective search and believes business.</p>
+                        </div>
+                    </div>
+                </div> 
+                    
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+
+                            <form method="post">
+                                {% csrf_token %}
+                                
+                                {{ form.as_p }}
+                                <input class="btn btn-washla" type="submit" value="Submit" name="operation">
+                                        
+                            </form>
+
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div> 
+<!-- PRODUCT END -->
+</section>
+<!-- CONTENT END -->
+
+{% endblock %}

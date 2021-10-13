@@ -2,7 +2,7 @@ from app1.models import *
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from app1.forms import ProForm, inputForm, ProForm1
+from app1.forms import ProForm, inputForm, ProForm1, ProductForm
 
 # Create your views here.
 
@@ -79,13 +79,33 @@ def blog(request):
 def blogSingle(request):
     return render(request,'blog-single.html')
 
-def product(request):
-    obj1 = item.objects.all()
-    a = ProForm(request.POST)
+def mainProduct(request):
+    obj1 = mainItem.objects.all()
+    a = ProductForm(request.POST)
     if a.is_valid():
         a.save()
         messages.success(request, 'Done')
-    return render(request, 'product.html', {'allProduct': obj1})
+    return render(request, 'mainProduct.html', {'mainProd': obj1})
+
+# def product(request):
+#     obj1 = item.objects.all()
+#     a = ProForm1(request.POST)
+#     if a.is_valid():
+#         a.save()
+#         messages.success(request, 'Done')
+#     return render(request, 'product.html', {'allProduct': obj1})
+
+def product(request):
+    prod= get_object_or_404(item, pk=2)
+    # a = ProForm1(request.POST)
+    # if a.is_valid():
+    #     a.save()
+    #     messages.success(request, 'Done')
+    return render(request, 'product.html', {'allProduct': prod})
+
+# def product(request, pk):
+#     prod= get_object_or_404(item, pk=pk)
+#     return render(request, 'product.html', {'allProduct': prod})
 
 def productList(request, pk):
     prod= get_object_or_404(item, pk=pk)

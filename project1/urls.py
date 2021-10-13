@@ -24,5 +24,6 @@ urlpatterns = [
     path('signup/', include("signup.urls")),
     path('calculator/', include("calculator.urls")),
     path('fbv/', include("FBV.urls")),
+    path('categories/', include("categories.urls")),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

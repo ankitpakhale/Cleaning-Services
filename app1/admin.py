@@ -9,6 +9,8 @@ admin.site.register(Product)
 
 admin.site.register(xyz)
 
+admin.site.register(mainItem)
+
 admin.site.register(item)
 
 admin.site.register(contactForm)

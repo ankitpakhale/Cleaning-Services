@@ -1,5 +1,10 @@
 from django import forms
-from .models import Product, item, inputmodel
+from .models import *
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = mainItem
+        fields = ['images', 'title', 'description']
 
 class ProForm(forms.ModelForm):
     class Meta:

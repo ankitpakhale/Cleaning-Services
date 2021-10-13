@@ -24,7 +24,16 @@ class xyz(models.Model):
     def __str__(self):
         return self.name
 
+        
+class mainItem(models.Model):
+    images = models.ImageField(upload_to='pro_img',blank=True)
+    title = models.CharField(default='', max_length=20)
+    description = models.CharField(default='', max_length=90)
+    def __str__(self):
+        return self.title
+
 class item(models.Model):
+    categoryName = models.ForeignKey(mainItem, on_delete=models.CASCADE, default='')
     images = models.ImageField(upload_to='pro_img',blank=True)
     title = models.CharField(default='', max_length=20)
     price = models.PositiveIntegerField(default='')

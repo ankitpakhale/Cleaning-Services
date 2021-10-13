@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'app1',
     'signup',
     'calculator',
-    'FBV'
+    'FBV',
+    'categories'
 ]
 
 MIDDLEWARE = [
