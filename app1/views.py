@@ -1,3 +1,4 @@
+from django.db.models.query_utils import Q
 from app1.models import *
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -15,13 +16,9 @@ def home1(request):
 # def home(request):
 #     return render(request,'home.html')
 
+
 def home(request):
-    obj1 = item.objects.all()
-    a = ProForm(request.POST)
-    if a.is_valid():
-        a.save()
-        messages.success(request, 'Done')
-    return render(request, 'home.html', {'data':a, 'all': obj1})
+    return render(request, 'home.html')
 
 
 def about(request):
@@ -81,11 +78,21 @@ def blogSingle(request):
 
 def mainProduct(request):
     obj1 = mainItem.objects.all()
+    
+    # search module
+    s = request.GET.get('search')
+    if s:
+        q = mainItem.objects.filter(Q(title__icontains = s) | Q(description__icontains = s))
+    else:
+        q = mainItem.objects.all()
+        # q = f"{s} is not found"
+
     a = ProductForm(request.POST)
     if a.is_valid():
         a.save()
         messages.success(request, 'Done')
-    return render(request, 'mainProduct.html', {'mainProd': obj1})
+    return render(request, 'mainProduct.html', {'mainProd': obj1, 's': q})
+
 
 # def product(request):
 #     obj1 = item.objects.all()
@@ -95,12 +102,12 @@ def mainProduct(request):
 #         messages.success(request, 'Done')
 #     return render(request, 'product.html', {'allProduct': obj1})
 
-def product(request):
-    prod= get_object_or_404(item, pk=2)
-    # a = ProForm1(request.POST)
-    # if a.is_valid():
-    #     a.save()
-    #     messages.success(request, 'Done')
+def product(request, pk):
+    prod= get_object_or_404(item, pk=pk)
+    a = ProForm1(request.POST)
+    if a.is_valid():
+        a.save()
+        messages.success(request, 'Done')
     return render(request, 'product.html', {'allProduct': prod})
 
 # def product(request, pk):

@@ -18,8 +18,7 @@ urlpatterns = [
 
     path('mainproduct/', mainProduct, name='MAINPRODUCT'),
 
-    path('product/', product, name='PRODUCT'),
-    
+    path('product/<int:pk>', product, name='PRODUCT'),
     path('productView/<int:pk>', productList, name='PRODUCTLIST'),
     path('productUpdate/<int:pk>', productUpdate, name='PRODUCTUPDATE'),
     path('productDelete/<int:pk>', productDelete, name='PRODUCTDELETE'),

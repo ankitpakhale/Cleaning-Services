@@ -1,50 +1,71 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-    <!--SLIDER START-->
-    <div class="pages-hero">
-        <div class="container">
-            <div class="pages-title">
-                <h1>Main Product</h1>
-                <p>A new generation of cleaning and restoration concepts.</p>
+<!--SLIDER START-->
+<div class="pages-hero">
+    <div class="container">
+        <div class="pages-title">
+            <h1>Main Product</h1>
+            <p>A new generation of cleaning and restoration concepts.</p>
+
+            <div class="newsletter mt-2">
+                <form action="{% url 'MAINPRODUCT' %}" method="GET" name="search-bar">
+                    <input type="text" class="input" name="search" placeholder="Search Anything">
+                    <input type="submit" class="button" value="Search">
+                </form>
             </div>
-        </div>  
+
+            <!-- SEARCH START -->
+            <div class="container mt-5 mb-5">
+                <div class="section-heading">
+                    <div class="row">
+                        {% for search in s %}
+                        <h3>
+                            {{search.title}} : {{search.description}}
+                        </h3>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- SEARCH END -->
+
+        </div>
+
     </div>
-    <!--SLIDER END-->
+</div>
+<!--SLIDER END-->
 </header>
-    <!-- CONTENT START -->
-    <section>            
-        <!-- PRODUCT START -->
-        <div class="container mt-5 mb-5"> 
-            <div class="section-heading">                
-                <div class="row">
-                    {% for i in mainProd %}
-                    <div class="col-lg-4">
-                        <div class="faq-box" style="display: flex; flex-direction: column; padding: 13px;">
-                            
-                            <img style="float: left; margin-left: 62px; margin-top: 20px; width: 200px; height: 200px; border-radius: 100%; overflow: hidden;" 
-                            src="{{i.images.url}}" alt="{{i.title}}">
-                            
-                            <h5 class="card-title">{{i.title}}</h5>
+<!-- CONTENT START -->
+<section>
 
-                            <p class="card-text">{{i.description}}</p>
+    <!-- PRODUCT START -->
+    <div class="container mt-5 mb-5">
+        <div class="section-heading">
+            <div class="row">
+                {% for i in mainProd %}
+                <div class="col-lg-4">
+                    <div class="faq-box" style="display: flex; flex-direction: column; padding: 13px;">
 
-                            <!-- <a class="btn btn-washla" style="padding: 4px; margin: 8px; color: #fff;" >Rs {{i.price}}/-</a> -->
-                            <a href="{% url 'PRODUCT' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >VIEW</a>
-                            
-                            <!-- <a href="{% url 'PRODUCTUPDATE' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >UPDATE</a>
+                        <img style="float: left; margin-left: 62px; margin-top: 20px; width: 200px; height: 200px; border-radius: 100%; overflow: hidden;" src="{{i.images.url}}" alt="{{i.title}}">
+
+                        <h5 class="card-title">{{i.title}}</h5>
+
+                        <p class="card-text">{{i.description}}</p>
+
+                        <!-- <a class="btn btn-washla" style="padding: 4px; margin: 8px; color: #fff;" >Rs {{i.price}}/-</a> -->
+                        <a href="{% url 'PRODUCT' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;">VIEW</a>
+
+                        <!-- <a href="{% url 'PRODUCTUPDATE' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >UPDATE</a>
                             
                             <a href="{% url 'PRODUCTDELETE' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >DELETE</a> -->
 
-                        </div> 
-                    </div> 
-                    {% endfor %}
-                </div> 
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-        </div> 
-        <!-- PRODUCT END -->
-    </section>
-    <!-- CONTENT END -->
+        </div>
+    </div>
+    <!-- PRODUCT END -->
+</section>
+<!-- CONTENT END -->
 
 {% endblock %}

@@ -6,7 +6,7 @@
     <div class="pages-hero">
         <div class="container">
             <div class="pages-title">
-                <h1>Product</h1>
+                <h1>Main Product</h1>
                 <p>A new generation of cleaning and restoration concepts.</p>
             </div>
         </div>  
@@ -19,7 +19,7 @@
         <div class="container mt-5 mb-5"> 
             <div class="section-heading">                
                 <div class="row">
-                    {% for i in allProduct %}
+                    {% for i in mainProd %}
                     <div class="col-lg-4">
                         <div class="faq-box" style="display: flex; flex-direction: column; padding: 13px;">
                             
@@ -30,12 +30,12 @@
 
                             <p class="card-text">{{i.description}}</p>
 
-                            <a class="btn btn-washla" style="padding: 4px; margin: 8px; color: #fff;" >Rs {{i.price}}/-</a>
-                            <a href="{% url 'PRODUCTLIST' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >VIEW</a>
+                            <!-- <a class="btn btn-washla" style="padding: 4px; margin: 8px; color: #fff;" >Rs {{i.price}}/-</a> -->
+                            <a href="{% url 'PRODUCT' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >VIEW</a>
                             
-                            <a href="{% url 'PRODUCTUPDATE' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >UPDATE</a>
+                            <!-- <a href="{% url 'PRODUCTUPDATE' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >UPDATE</a>
                             
-                            <a href="{% url 'PRODUCTDELETE' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >DELETE</a>
+                            <a href="{% url 'PRODUCTDELETE' i.id %}" class="btn btn-washla" style="padding: 4px; margin: 8px;" >DELETE</a> -->
 
                         </div> 
                     </div> 
