@@ -160,7 +160,6 @@
   font-size: 14px;
 }
 
-/* this creates border around the logo washla */
 /* .navbar.fixed-top.navbar-dark .navbar-brand {
     margin-top: -5px;
   }
@@ -197,11 +196,11 @@
 
 @media screen and (max-width: 991px) {
 
-  
+  /*
     .navbar-brand {
       margin-left: 20px;
     }
- 
+  */
   .navbar-nav {
     padding: 20px;
     background-color: #FFF;

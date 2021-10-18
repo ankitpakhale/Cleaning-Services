@@ -1,5 +1,8 @@
 from django.db.models.query_utils import Q
 from app1.models import *
+
+from signup.models import signUp
+
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -76,6 +79,11 @@ def blog(request):
 def blogSingle(request):
     return render(request,'blog-single.html')
 
+def base(request):
+    obj1 = signUp.objects.all()
+    t = f"Welcome {obj1}"
+    return render(request,'base.html', {'key' : t})
+
 def mainProduct(request):
     obj1 = mainItem.objects.all()
     
@@ -92,7 +100,6 @@ def mainProduct(request):
         a.save()
         messages.success(request, 'Done')
     return render(request, 'mainProduct.html', {'mainProd': obj1, 's': q})
-
 
 # def product(request):
 #     obj1 = item.objects.all()

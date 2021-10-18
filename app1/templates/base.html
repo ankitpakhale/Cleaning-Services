@@ -56,6 +56,24 @@
 
     <header>
 
+        <!-- TOP HEADER START -->
+        <div class="top-header-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="top-contact text-left">
+                            <li>
+                                <a>{{key.name}}</a>
+                                <a>{{key.email}}</a>
+                                <h6>Welcome ank</h6>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TOP HEADER END -->
+
         <!-- NAV START -->
         <nav class="navbar navbar-expand-lg navbar-dark">
 
@@ -148,11 +166,18 @@
                     </form>
                 </div>
 
+                <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+                    <span class="menu-icon-bar"></span>
+                    <span class="menu-icon-bar"></span>
+                    <span class="menu-icon-bar"></span>
+                </button>
+
+
+
             </div>
 
         </nav>
         <!-- NAV END -->
-
 
         {% block content %} {% endblock%}
 
@@ -185,28 +210,28 @@
                             <li style="white-space:nowrap">
                                 <a href="{% url 'SERVICES' %}" class="nav-item nav-link">
                                     <i class="fab fa-servicestack" style="font-size:14px; float: left; display:inline; padding: 7px 5px;">
-                                </i> Services
+                                    </i> Services
                                 </a>
                             </li>
 
                             <li style="white-space:nowrap">
                                 <a href="{% url 'TEAM' %}" class="nav-item nav-link">
                                     <i class="fas fa-users" style="font-size:14px; float: left; display:inline; padding: 7px 5px;">
-                                </i> Team
+                                    </i> Team
                                 </a>
                             </li>
 
                             <li style="white-space:nowrap">
                                 <a href="{% url 'TESTIMONIALS' %}" class="nav-item nav-link">
                                     <i class="fas fa-american-sign-language-interpreting" style="font-size:14px; float: left; display:inline; padding: 7px 5px;">
-                                </i> Testimonials
+                                    </i> Testimonials
                                 </a>
                             </li>
 
                             <li style="white-space:nowrap">
                                 <a href="{% url 'PRICING' %}" class="nav-item nav-link">
                                     <i class="fas fa-tags" style="font-size:14px; float: left; display:inline; padding: 7px 5px;">
-                                </i> Pricing
+                                    </i> Pricing
                                 </a>
                             </li>
 
