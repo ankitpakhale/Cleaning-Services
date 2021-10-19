@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import signUp
 from django.contrib import messages
@@ -112,11 +113,25 @@ def userSignUp(request):
             return render(request, 'login.html', {'msg' : msg})
     return render(request, 'login.html')
 
+
+def index(request):
+    if request.session.has_key('email'):
+        return redirect('HOME')
+    return render(request, 'home.html')
+
+
 def userLogin(request): 
     if request.POST:
         em = request.POST.get('email')
         pass1 = request.POST.get('password')
         try:
+            # obj = signUp.objects.get(email = request.POST['email'])
+            # if obj.password == request.POST['password']:
+            #     request.session['email'] = obj.email
+            #     return HttpResponseRedirect('/HOME/')
+            # else:
+            #     return HttpResponse('<a href = ''> Password is incorrect!!! </a>') 
+
             check = signUp.objects.get(email=em)
             if check.password == pass1:
                 return redirect('HOME')
@@ -132,6 +147,6 @@ def userLogin(request):
         except:
             msg = 'Invalid Email ID'
             return render(request,'wrongPassword.html', {'msg':msg})
-    return render(request,'login.html')
 
+    return render(request,'login.html')
 
