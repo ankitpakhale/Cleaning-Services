@@ -1,4 +1,4 @@
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from .models import signUp
 from django.contrib import messages
@@ -113,28 +113,19 @@ def userSignUp(request):
             return render(request, 'login.html', {'msg' : msg})
     return render(request, 'login.html')
 
-
-def index(request):
-    if request.session.has_key('email'):
-        return redirect('HOME')
-    return render(request, 'home.html')
-
-
-def userLogin(request): 
+def userLogin(request):
     if request.POST:
         em = request.POST.get('email')
         pass1 = request.POST.get('password')
         try:
-            # obj = signUp.objects.get(email = request.POST['email'])
-            # if obj.password == request.POST['password']:
-            #     request.session['email'] = obj.email
-            #     return HttpResponseRedirect('/HOME/')
-            # else:
-            #     return HttpResponse('<a href = ''> Password is incorrect!!! </a>') 
-
             check = signUp.objects.get(email=em)
             if check.password == pass1:
-                return redirect('HOME')
+                
+                nameMsg = signUp.objects.all()
+
+                name = f"Welcome {nameMsg}"
+                # return redirect('HOME')
+                return render(request,'home.html', {'key':name})
             else:
                 msg = 'Invalid Password'
                 return render(request , 'wrongPassword.html',{'msg':msg}) 
@@ -150,3 +141,35 @@ def userLogin(request):
 
     return render(request,'login.html')
 
+def confirm(request):
+    if request.POST:
+        data = request.POST['conf']
+        try:
+            valid = signUp.objects.get(email=data)
+            if valid:
+                request.session['email'] = valid.email
+                return redirect('FORGOT')
+            else:
+                return HttpResponse('Wrong Answer')    
+        except:
+            return HttpResponse('Wrong Answer')
+    return render(request,'confirm.html')
+
+def forgot(request):
+    if 'email' in request.session:
+        if request.POST:
+            pass1 = request.POST['pass1']
+            pass2 = request.POST['pass2']
+            
+            if pass1 == pass2:
+                obj = signUp.objects.get(email=request.session['email'])
+                obj.password = pass1
+                obj.confirmPassword = pass2
+                obj.save()
+                del request.session['email']
+                return redirect('LOGIN')
+            else:
+                messages.add_message(request, messages.ERROR, 'Enter Same Password')
+            
+        return render(request,'forgot.html')
+    return redirect('LOGIN')

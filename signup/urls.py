@@ -6,4 +6,8 @@ urlpatterns = [
     
     path('login/', userLogin, name='LOGIN'),
 
+    path('forgot/', forgot, name='FORGOT'),
+
+    path('conf/',confirm,name='CONF'),
+
 ]

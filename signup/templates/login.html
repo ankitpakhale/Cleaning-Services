@@ -1,81 +1,80 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-    <!--SLIDER START-->
-    <div class="pages-hero">
-        <div class="container">
-            <div class="pages-title">
-                <h1>Login</h1>
-            </div>
-        </div>  
+<!--SLIDER START-->
+<div class="pages-hero">
+    <div class="container">
+        <div class="pages-title">
+            <h1>Login</h1>
+        </div>
     </div>
-    <!--SLIDER END-->
+</div>
+<!--SLIDER END-->
 </header>
 
-        <!-- CONTACT FORM START -->
-        <div class="container mt-5 mb-5">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <br/>
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="messages"></div>
-                        <div class="controls">
-                            <div class="row">
+<!-- LOGIN FORM START -->
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <br/>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="messages"></div>
+                <div class="controls">
+                    <div class="row">
 
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <input id="email" type="text" name="email" class="form-control custom-form" placeholder="*Email" required="required" data-error="Valid email is required.">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <input id="password" type="password" name="password" class="form-control custom-form" placeholder="*password" required="required">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                              
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input id="email" type="text" name="email" class="form-control custom-form" placeholder="*Email" required="required" data-error="Valid email is required.">
+                                <div class="help-block with-errors"></div>
                             </div>
-                            
-                            <div class="row">
-
-                                <div class="col-sm-12">
-                                    <p class="required">
-                                        * These fields are required.
-                                    </p>
-                                    
-                                    <div class="form-group">
-                                        <input class="btn btn-washla" type="submit" value="Login">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <a>Not a User ?<br></a>
-                                        <h5>
-                                            <a href="{% url 'SIGNUP' %}"  style="font-size: 19px; color: #01B3E4;" 
-                                            onMouseOver="this.style.color='#033B4A'"
-                                            onMouseOut="this.style.color='#01B3E4'"
-                                            >Go for SignUp</a>
-                                        </h5>
-                                    </div>
-                                    <!-- This is for Error Message -->
-                                    <!-- <h3 style="color: #ff0000;" >{{msg}}</h3> -->
-                                    
-                                    
-                                </div>
-
-                            </div>
-
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
 
-        <!-- CONTACT FORM END -->
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input id="password" type="password" name="password" class="form-control custom-form" placeholder="*password" required="required">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <p class="required">
+                                * These fields are required.
+                            </p>
+
+                            <div class="form-group">
+                                <input class="btn btn-washla" type="submit" value="Login">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <h5>
+                                    <a href="{% url 'CONF' %}" style="font-size: 19px; color: #FF0000;" onMouseOver="this.style.color='#033B4A'" onMouseOut="this.style.color='#FF0000'">Forgot Password</a>
+                                </h5>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <a>Not a User ?<br></a>
+                                <h5>
+                                    <a href="{% url 'SIGNUP' %}" style="font-size: 19px; color: #01B3E4;" onMouseOver="this.style.color='#033B4A'" onMouseOut="this.style.color='#01B3E4'">Go for SignUp</a>
+                                </h5>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- LOGIN FORM END -->
 
 {% endblock %}
