@@ -1,82 +1,71 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-    <!--SLIDER START-->
-    <div class="pages-hero">
-        <div class="container">
-            <div class="pages-title">
-                <h1>Calculator</h1>
-                <p>A new generation Calculator.</p>
-            </div>
-        </div>  
+<!--SLIDER START-->
+<div class="pages-hero">
+    <div class="container">
+        <div class="pages-title">
+            <h1>Calculator</h1>
+            <p>A new generation Calculator.</p>
+        </div>
     </div>
-    <!--SLIDER END-->
+</div>
+<!--SLIDER END-->
 </header>
 
-    <!-- CONTENT START -->
-    <section>
+<!-- CONTENT START -->
+<section>
 
-        <!-- CONTACT FORM START -->
-        <div class="container mt-5 mb-5">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <div class="contact-title">
-                        <h3>Calculate With Us</h3>
-                        <p>World’s leading non-asset- based supply chain management companies, we design and implement industry-leading. We specialise in intelligent & effective search and believes business.</p>
-                    </div>
-                    <br/>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
 
-                    <form>
-                        <div class="messages"></div>
-                        <div class="controls">
-                            <div class="row">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="controls">
+                        <div class="row">
 
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <input type="number" name="num1" class="form-control custom-form"  placeholder="Enter First Number: ">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <input type="number" name="num2" class="form-control custom-form" placeholder="Enter Second Number: ">
-                                    </div>
-                                </div>
-                               
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <input class="btn btn-washla" type="submit" value="+" name="operation">
-                                        <input class="btn btn-washla" type="submit" value="-" name="operation">
-                                    
-                                        <input class="btn btn-washla" type="submit" value="*" name="operation">
-                                        <input class="btn btn-washla" type="submit" value="/" name="operation">
-                                    </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="number" name="num1" value="{{ num1 }}" class="form-control custom-form" placeholder="Enter First Number: ">
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4>
-                                        This is the output section
-                                    </h4>
-                                    <h2 style="color: #01B3E4;">    
-                                        {{ans}}
-                                    </h2>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="number" name="num2" value="{{ num2 }}" class="form-control custom-form" placeholder="Enter Second Number: ">
                                 </div>
                             </div>
 
                         </div>
-                    </form>
 
-                </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input class="btn btn-washla" type="submit" value="add" name="operation">
+                                    <input class="btn btn-washla" type="submit" value="sub" name="operation">
+
+                                    <input class="btn btn-washla" type="submit" value="mul" name="operation">
+                                    <input class="btn btn-washla" type="submit" value="div" name="operation">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2 style="color: #01B3E4;">
+                                    Answer : {{ans}}
+                                </h2>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
             </div>
         </div>
-        <!-- CONTACT FORM END -->
+    </div>
 
-    </section>
-    <!-- CONTENT END -->
+</section>
+<!-- CONTENT END -->
 
 {% endblock %}

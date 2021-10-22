@@ -21,14 +21,19 @@ def home1(request):
 
 
 def home(request):
-    return render(request, 'home.html')
-
+    if 'email' in request.session:
+        return render(request, 'home.html')
+    return redirect('LOGIN')
 
 def about(request):
-    return render(request,'about.html')
+    if 'email' in request.session:
+        return render(request,'about.html')
+    return redirect('LOGIN')
 
 def services(request):
-    return render(request,'services.html')
+    if 'email' in request.session:
+        return render(request,'services.html')
+    return redirect('LOGIN')
 
 def contact(request):
     if request.POST:
@@ -56,51 +61,65 @@ def contact(request):
     return render(request, 'contact.html')        
 
 def faq(request):
-    return render(request,'faq.html')
+    if 'email' in request.session:
+        return render(request,'faq.html')
+    return redirect('LOGIN')
 
 def error(request):
     return render(request,'404-error-page.html')
 
 def team(request):
-    return render(request,'our-team.html')
+    if 'email' in request.session:
+        return render(request,'our-team.html')
+    return redirect('LOGIN')
 
 def pricing(request):
-    return render(request,'pricing.html')
+    if 'email' in request.session:
+        return render(request,'pricing.html')
+    return redirect('LOGIN')
 
 def testimonials(request):
-    return render(request,'testimonials.html')
+    if 'email' in request.session:
+        return render(request,'testimonials.html')
+    return redirect('LOGIN')
 
 def gallery(request):
-    return render(request,'masonry-gallery.html')
+    if 'email' in request.session:
+        return render(request,'masonry-gallery.html')
+    return redirect('LOGIN')
 
 def blog(request):
-    return render(request,'blog-grid.html')
+    if 'email' in request.session:
+        return render(request,'blog-grid.html')
+    return redirect('LOGIN')
 
 def blogSingle(request):
-    return render(request,'blog-single.html')
+    if 'email' in request.session:
+        return render(request,'blog-single.html')
+    return redirect('LOGIN')
+    
 
 def base(request):
-    obj1 = signUp.objects.all()
-    t = f"Welcome {obj1}"
-    return render(request,'base.html', {'key' : t})
+    return render(request,'base.html')
 
 def mainProduct(request):
-    obj1 = mainItem.objects.all()
+    if 'email' in request.session:
+        obj1 = mainItem.objects.all()
+        # search module
+        s = request.GET.get('search')
+        if s:
+            q = mainItem.objects.filter(Q(title__icontains = s) | Q(description__icontains = s))
+        else:
+            q = mainItem.objects.all()
+            # q = f"{s} is not found"
+
+        a = ProductForm(request.POST)
+        if a.is_valid():
+            a.save()
+            messages.success(request, 'Done')
+        return render(request, 'mainProduct.html', {'mainProd': obj1, 's': q})
+    return redirect('LOGIN')
     
-    # search module
-    s = request.GET.get('search')
-    if s:
-        q = mainItem.objects.filter(Q(title__icontains = s) | Q(description__icontains = s))
-    else:
-        q = mainItem.objects.all()
-        # q = f"{s} is not found"
-
-    a = ProductForm(request.POST)
-    if a.is_valid():
-        a.save()
-        messages.success(request, 'Done')
-    return render(request, 'mainProduct.html', {'mainProd': obj1, 's': q})
-
 # def product(request):
 #     obj1 = item.objects.all()
 #     a = ProForm1(request.POST)

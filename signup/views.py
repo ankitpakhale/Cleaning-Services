@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from .models import signUp
 from django.contrib import messages
+import random
 
 # Create your views here.
 
@@ -118,14 +119,15 @@ def userLogin(request):
         em = request.POST.get('email')
         pass1 = request.POST.get('password')
         try:
-            check = signUp.objects.get(email=em)
+            check = signUp.objects.get(email = em)
+            print(check)
             if check.password == pass1:
+
+                request.session['email'] = check.email
                 
                 nameMsg = signUp.objects.all()
-
-                name = f"Welcome {nameMsg}"
                 # return redirect('HOME')
-                return render(request,'home.html', {'key':name})
+                return render(request,'home.html', {'key':nameMsg})
             else:
                 msg = 'Invalid Password'
                 return render(request , 'wrongPassword.html',{'msg':msg}) 
@@ -138,38 +140,78 @@ def userLogin(request):
         except:
             msg = 'Invalid Email ID'
             return render(request,'wrongPassword.html', {'msg':msg})
-
     return render(request,'login.html')
 
-def confirm(request):
+def forgot(request):
     if request.POST:
-        data = request.POST['conf']
+        data = request.POST['email']
+        print(data)
+
         try:
             valid = signUp.objects.get(email=data)
-            if valid:
-                request.session['email'] = valid.email
-                return redirect('FORGOT')
-            else:
-                return HttpResponse('Wrong Answer')    
-        except:
-            return HttpResponse('Wrong Answer')
-    return render(request,'confirm.html')
+            print(valid)
 
-def forgot(request):
+            otp = ''
+            rand = random.choice('0123456789')
+            rand1 = random.choice('0123456789')
+            rand2 = random.choice('0123456789')
+            rand3 = random.choice('0123456789')
+            otp = rand + rand1 + rand2 + rand3
+            print(f"Your OTP is {otp}")
+            
+            request.session['otp'] = otp
+
+            return redirect('OTPCHECK')
+
+        except:
+            return HttpResponse('<a href=""> You Have Entered Wrong Email Id... </a>')
+    return render(request,'forgot.html')
+
+def otpCheck(request):
+    if 'otp' in request.session.keys():
+        if request.POST:
+            otp1 = request.POST['otpuser']
+            print("OTP1 is "+otp1)
+            otp = request.session['otp']
+            print("OTP is "+otp)
+            if otp1 == otp:
+                del request.session['otp']
+                print("You Are Ready to Create New Password...")
+
+                # user = register.objects.get(email = request.POST['email'])
+                # request.session['email'] = user.email
+    
+                return redirect('NEWPASS')
+            else:
+                del request.session['otp']
+                return redirect('FORGOT')
+        return render(request,'otpCheck.html')
+    else:
+        return redirect('LOGIN')
+
+def newPassword(request):
+    print("Inside New Pass FUNCTION")
     if 'email' in request.session:
+        print("Inside New Pass if CONDITION")
         if request.POST:
             pass1 = request.POST['pass1']
             pass2 = request.POST['pass2']
             
+            print(pass1+" : "+pass2)
+
             if pass1 == pass2:
+                print("Both password is correct")
                 obj = signUp.objects.get(email=request.session['email'])
                 obj.password = pass1
                 obj.confirmPassword = pass2
                 obj.save()
-                del request.session['email']
-                return redirect('LOGIN')
+                # del request.session['email']
+                return redirect('HOME')
             else:
-                messages.add_message(request, messages.ERROR, 'Enter Same Password')
-            
-        return render(request,'forgot.html')
+                return HttpResponse("<h1>Password must be same</h1>")
+        return render(request,'newPass.html')
+    return redirect('LOGIN')
+
+def userLogOut(request):
+    del request.session['email']
     return redirect('LOGIN')

@@ -1,4 +1,3 @@
-from re import A
 from django.shortcuts import render
 # Create your views here.
 
@@ -61,6 +60,33 @@ def index(request):
 #     return render(request, "input.html", {"result" : res})
 
 def common(request):
+    if request.POST:
+        n1 = request.POST['num1']
+        n2 = request.POST['num2']
+        
+        print(n1,n2)
+
+        if 'add' in request.POST:
+            ans = int(n1)+int(n2)
+            print(ans)
+
+        elif 'sub' in request.POST:
+            ans = int(n1)-int(n2)
+            print(ans)
+        
+        elif 'mul' in request.POST:
+            ans = int(n1)*int(n2)
+            print(ans)
+        
+        else:
+            ans = int(n1)/int(n2)
+            print(ans)
+
+        return render(request,"input.html",{'ans':ans})
+    return render(request,"input.html")
+
+
+def faltu(request):
     if request.GET:
         a = float(request.GET["num1"])
         print(f"Value 1 is {a}")
