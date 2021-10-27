@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--SLIDER START-->
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                <h1>Edit Product</h1>
+                <p>A new generation of cleaning and restoration concepts.</p>
+            </div>
+        </div>  
+    </div>
+    <!--SLIDER END-->
+</header>
+    <!-- CONTENT START -->
+    <section>            
+        <!-- PRODUCT START -->
+        <div class="container mt-5 mb-5"> 
+            <div class="section-heading">                
+                    
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+
+                            <form method="post">
+                                {% csrf_token %}
+                                
+                                {{ form.as_p }}
+                                <input class="btn btn-washla" type="submit" value="Submit" name="operation">  
+                            </form>
+
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div> 
+<!-- PRODUCT END -->
+</section>
+<!-- CONTENT END -->
+
+{% endblock %}

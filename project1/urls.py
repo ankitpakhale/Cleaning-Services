@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('report_builder/', include("report_builder.urls")),
+    
     path('admin/', admin.site.urls),
     path('app1/', include("app1.urls")),
     path('signup/', include("signup.urls")),

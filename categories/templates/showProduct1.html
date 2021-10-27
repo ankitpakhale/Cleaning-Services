@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--SLIDER START-->
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                <h1>Sub Product</h1>
+                <p>A new generation of cleaning and restoration concepts.</p>
+            </div>
+        </div>  
+    </div>
+    <!--SLIDER END-->
+</header>
+
+    <!-- CONTENT START -->
+    <section>
+        <div class="container mt-5 mb-5">
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="blog-content">
+                        <figure class="post-image">
+                            <img style="height: 446px; width: 804px; " src="{{object.images.url}}" alt="">
+                        </figure>
+
+                        <div class="post-content">
+                            <!-- <blockquote class="ludwig">Rs {{object.title}}/-</blockquote> -->
+                            <h3 class="post-title">{{object.title}}</h3>
+                            <p>{{object.description}}</p>
+                            
+                            <a class="btn btn-washla" style="padding: 4px; margin: 8px; color: #fff;" >Rs {{object.price}}/-</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="row">
+                {{value}}
+            </div> -->
+
+        </div>
+    </section>
+    <!-- CONTENT END -->
+{% endblock %}

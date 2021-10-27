@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <head>
+            <link rel="stylesheet" href="{% static 'books/mystyle.css' %}">
+        </head>
+
+        <!-- //navbar ends here -->
+        <!-- banner -->
+        <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    <h2 class="title-inner">
+                        world of reading
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>
+        <!-- //banner -->
+        <!-- breadcrumbs -->
+        <div class="crumbs text-center">
+            <div class="container">
+                <div class="row">
+                    <ul class="btn-group btn-breadcrumb bc-list">
+                        <li class="btn btn1">
+                            <a href="index.html">
+                                <i class="glyphicon glyphicon-home"></i>
+                            </a>
+                        </li>
+                        <li class="btn btn2">
+                            <a href="shop.html">Product Catalogue</a>
+                        </li>
+                        <li class="btn btn3 btn3a">
+                            <a href="single_product.html">Single product</a>
+                        </li>
+                        <li class="btn btn4">
+                            <a href="checkout.html">Checkout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- //breadcrumbs ends here -->
+
+        <!--checkout-->
+        <div class="innerf-pages section">
+            <div class="container">
+                <div class="privacy about">
+                    <h4 class="rad-txt">
+                        <span class="abtxt1">review</span>
+                        <span class="abtext">your order</span>
+                    </h4>
+                    {%if item%}
+                    <div class="checkout-right">
+                        <h4>Your shopping cart contains:
+                            <span>{{num}} Products</span>
+                        </h4>
+                        <div class="container">
+                            <div class="row">
+                              <div class="col-12">
+                                  <table class="table table-image">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">SrNo</th>
+                                        <th scope="col">Book</th>
+                                        <th scope="col">Book Name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Added on</th>
+                                        <!-- <th scope="col">Buy</th> -->
+                                        <th scope="col">Remove</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    {% for q in item %}
+                                        
+                                      <tr>
+                                        <th scope="row">{{forloop.counter}}</th>
+                                        <td class="w-25">
+                                            <img src="{{ q.book.cover.url }}" class="img-fluid img-thumbnail" alt="Sheep">
+                                        </td>
+                                        <td>{{q.book.title}}</td>
+                                        <td>Rs.{{q.book.price}}</td>
+                                        <td>{{q.added_on}}</td>
+                                        <!-- <td><a class="btn btn-primary btn-xs" data-title="Edit" data-target="#edit"
+                                            href=""><i class="fa fa-pencil" aria-hidden="true"></i>Buy</a></td> -->
+                                        <td><a class="btn btn-danger btn-xs" data-title="Delete" data-target="#delete"
+                                            href="{%url 'books:delete' q.id %}"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</a></td>
+                                      </tr>
+
+                                    {% endfor %}
+                            
+                                    </tbody>
+                                  </table>  
+                                  {% else %}
+                                  <p>No item in cart</p> 
+                    {% endif %}
+                              </div>
+                            </div>
+                          </div>
+                                <!-- <tr class="rem1">
+                                    <td class="invert">1</td>
+                                    <td class="invert-image">
+                                        <a href="single_product.html">
+                                            <img src="images/lib8.jpg" alt=" " class="img-responsive">
+                                        </a>
+                                    </td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+                                                <div class="entry value-minus">&nbsp;</div>
+                                                <div class="entry value">
+                                                    <span>1</span>
+                                                </div>
+                                                <div class="entry value-plus active">&nbsp;</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="invert">ok</td>
+
+                                    <td class="invert">$100.00</td>
+                                    <td class="invert">
+                                        <div class="rem">
+                                            <div class="close1"> </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr class="rem2">
+                                    <td class="invert">2</td>
+                                    <td class="invert-image">
+                                        <a href="single_product.html">
+                                            <img src="images/lib3.jpg" alt=" " class="img-responsive">
+                                        </a>
+                                    </td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+                                                <div class="entry value-minus">&nbsp;</div>
+                                                <div class="entry value">
+                                                    <span>1</span>
+                                                </div>
+                                                <div class="entry value-plus active">&nbsp;</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="invert">Work From Home</td>
+
+                                    <td class="invert">$80.00</td>
+                                    <td class="invert">
+                                        <div class="rem">
+                                            <div class="close2"> </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr class="rem3">
+                                    <td class="invert">3</td>
+                                    <td class="invert-image">
+                                        <a href="single_product.html">
+                                            <img src="images/lib6.jpg" alt=" " class="img-responsive">
+                                        </a>
+                                    </td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+                                                <div class="entry value-minus">&nbsp;</div>
+                                                <div class="entry value">
+                                                    <span>1</span>
+                                                </div>
+                                                <div class="entry value-plus active">&nbsp;</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="invert">E-Commerce</td>
+
+                                    <td class="invert">$120.00</td>
+                                    <td class="invert">
+                                        <div class="rem">
+                                            <div class="close3"> </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div> -->
+                    <div class="checkout-left">
+                        <div class="col-md-4 checkout-left-basket">
+                            <h4>Total amount</h4>
+
+                            <table class="table">
+                                <thead>
+                                    <th>bookname</th>
+                                    <th>amount</th>
+                                </thead>
+                                {% for q in item %}
+                                <tr>
+                                    
+                                    <td>{{q.book.title}}</td>
+                                    <td>{{q.book.price}}</td>
+                                    
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                   <td> <strong>Total amount:</strong></td>
+                                    <td><strong>{{total}}</strong></td>
+                                </tr>
+
+                            </table>
+                            <!-- <ul>
+                                <li>Be Creative
+                                    <i>-</i>
+                                    <span>$100.00 </span>
+                                </li>
+                                <li>Work From Home
+                                    <i>-</i>
+                                    <span>$80.00 </span>
+                                </li>
+                                <li>E-Commerce
+                                    <i>-</i>
+                                    <span>$120.00 </span>
+                                </li>
+                                <li>Total Service Charges
+                                    <i>-</i>
+                                    <span>$55.00</span>
+                                </li>
+                                <li>Total
+                                    <i>-</i>
+                                    <span>$355.00</span>
+                                </li>
+                            </ul> -->
+                        </div>
+                        <div class="col-md-8 address_form">
+                            <h4>Billing Address</h4>
+                            <form action="{%url 'books:place_order' %}" method="POST" class="creditly-card-form shopf-sear-headinfo_form">
+                                {% csrf_token %}
+                                <div class="creditly-wrapper wrapper">
+                                    <div class="information-wrapper">
+                                        <div class="first-row form-group">
+                                            <div class="controls">
+                                                <label class="control-label">Full name: </label>
+                                                <input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
+                                            </div>
+                                            <div class="card_number_grids">
+                                                <div class="card_number_grid_left">
+                                                    <div class="controls">
+                                                        <label class="control-label">Email:</label>
+                                                        <input class="form-control" type="email" name="email" placeholder="Mobile number">
+                                                    </div>
+                                                </div>
+                                                <div class="card_number_grid_right">
+                                                    <div class="controls">
+                                                        <label class="control-label">Landmark: </label>
+                                                        <input class="form-control" type="text" name="landmark" placeholder="Landmark">
+                                                    </div>
+                                                </div>
+                                                <div class="clear"> </div>
+                                            </div>
+                                            <div class="controls">
+                                                <label class="control-label">Town/City: </label>
+                                                <input class="form-control" type="text" name="city" placeholder="Town/City">
+                                            </div>
+                                            <div class="controls">
+                                                <label class="control-label">Address type: </label>
+                                                <select class="form-control option-fieldf">
+                                                    <option value="office" name="atype" >Office</option>
+                                                    <option value="Home" name="atype">Home</option>
+                                                    <option value="Commercial" name="atype">Commercial</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary"><a href="#">place order</a></button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <div class="clearfix"> </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--//checkout-->
+        <!-- footer -->
+       {% endblock %}

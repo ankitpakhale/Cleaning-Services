@@ -178,7 +178,7 @@ def otpCheck(request):
                 del request.session['otp']
                 print("You Are Ready to Create New Password...")
 
-                # user = register.objects.get(email = request.POST['email'])
+                # user = signUp.objects.get(email = otp1)
                 # request.session['email'] = user.email
     
                 return redirect('NEWPASS')
@@ -211,6 +211,7 @@ def newPassword(request):
                 return HttpResponse("<h1>Password must be same</h1>")
         return render(request,'newPass.html')
     return redirect('LOGIN')
+
 
 def userLogOut(request):
     del request.session['email']

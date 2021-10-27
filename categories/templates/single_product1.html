@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Single -->
+{% if messages %}
+<div class="alert alert-primary" role="alert">
+	{% for i in messages %}
+	{{i}}
+	{% endfor %}
+</div>
+{% endif %}
+<div class="innerf-pages section">
+	<div class="container">
+		<div class="col-md-4 single-right-left ">
+			<div class="grid images_3_of_2">
+				<div class="flexslider1">
+					<ul class="slides">
+						<li data-thumb="images/s1.jpg">
+							
+							<div class="thumb-image">
+								<a href="{%url 'books:preview' p.id %}">
+									<img src="{{ p.cover.url }}" data-imagezoom="true" alt=" "
+										class="img-responsive"></a>
+							</div>
+							<h3><a href="{%url 'books:preview' p.id %}">Click Here for Preview</a></h3>
+
+						</li>
+						<!-- <li data-thumb="images/s2.jpg">
+									<div class="thumb-image">
+										<img src="images/s2.jpg" data-imagezoom="true" alt=" " class="img-responsive"> </div>
+								</li> -->
+						<!-- <li data-thumb="images/s3.png">
+									<div class="thumb-image">
+										<img src="images/s3.png" data-imagezoom="true" alt=" " class="img-responsive"> </div>
+								</li> -->
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-8 single-right-left simpleCart_shelfItem">
+			<h3>{{p.title}}
+				<span>({{p.printed_year}})</span>
+			</h3>
+			<p>by
+				{% for w in p.authors.all %}
+				<a href="#">{{w.name}}</a>
+				{% endfor %}
+			</p>
+			<div class="caption">
+				<div class="clearfix"> </div>
+				<h6>Rs.
+					{{p.price}}</h6>
+			</div>
+			<div class="desc_single">
+				<h5>Description</h5>
+				<p>{{p.description}}</p>
+				<p></p>
+				<!-- <a class="btn btn-primary" href="{%url 'books:speak' p.id %}">Audio Description</a> -->
+			</div>
+			<div class="occasional">
+				<h5>Specifications</h5>
+				<ul class="single_specific">
+					<li>
+						<span>Category :</span>{% for c in p.categories.all %}
+						<a href="{%url 'books:search' %}">{{c.cat_name}}</a>
+						{% endfor %}
+					</li>
+					<li>
+						<span>edition :</span> {{p.printed_year}}
+					</li>
+				</ul>
+
+			</div>
+			<div class="clearfix"></div>
+			<!-- <div class="description">
+				<h5>Check delivery, payment options and charges at your location</h5>
+				<form action="#" method="post">
+					<input type="text" value="Enter pincode" onfocus="this.value = '';"
+						onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">
+					<input type="submit" value="Check">
+				</form>
+			</div> -->
+			
+			<div class="occasion-cart">
+				<div class="chr single-item single_page_b">
+					<form action="{% url 'books:cart' %}" method="POST">
+						{% csrf_token %}
+						<input type="hidden" value="{{p.id}}" name='bid'>
+						<button type="submit" class="btn btn-success btn-block">
+							<i class="fa fa shopping-cart"></i>
+							Add To Cart
+						</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- /new_arrivals -->
+
+<!-- footer -->
+{% endblock %}

@@ -57,32 +57,38 @@
     <header>
 
         <!-- TOP HEADER START -->
+
+        {% if per %}
         <div class="top-header-wrapper">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="top-contact text-left">
                             <li>
-                                <!-- <a>{{key}}</a> -->
-                                <!-- <a>{{key.email}}</a>
-                                <h6>Welcome ank</h6> -->
+                                <h4>
+                                    <a>Welcome {{per.name}}</a>
+                                </h4>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
+
         <!-- TOP HEADER END -->
 
         <!-- NAV START -->
         <nav class="navbar navbar-expand-lg navbar-dark">
 
-            <div class="container" style="max-width: 1280px;">
+            <div class="container" style="max-width: 1350px;">
+
                 <a href="{% url 'HOME' %}" class="navbar-brand">
                     <img src="{% static 'images/logos/logo.png' %}" alt="">
                 </a>
 
                 <div id="main-nav" class="collapse navbar-collapse">
+                    
                     <ul class="navbar-nav ml-auto">
 
                         <li style="white-space:nowrap">
@@ -99,7 +105,7 @@
                         </li>
 
                         <li style="white-space:nowrap">
-                            <a href="{% url 'MAINPRODUCT' %}" class="nav-item nav-link">
+                            <a href="{% url 'PRODUCT' %}" class="nav-item nav-link">
                                 <i class="fa fa-shopping-basket" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Products
                             </a>
@@ -142,26 +148,49 @@
                             </a>
                         </li>
 
-                        <li style="white-space:nowrap">
+                        <!-- <li style="white-space:nowrap">
                             <a href="{% url 'LOGIN' %}" class="nav-item nav-link">
                                 <i class="fas fa-sign-in-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Login
                             </a>
-                        </li>
+                        </li> -->
 
+                        {% if per %}
                         <li style="white-space:nowrap">
                             <a href="{% url 'LOGOUT' %}" class="nav-item nav-link">
                                 <i class="fas fa-sign-out-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> LogOut
                             </a>
                         </li>
+                        
+                        
+                        {% else %}
+                        <li style="white-space:nowrap">
+                            <a href="{% url 'LOGIN' %}" class="nav-item nav-link">
+                                <i class="fas fa-sign-in-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
+                                </i> Login
+                            </a>
+                        </li> 
+                        
+                        {% endif %}
+                        
 
                         <li style="white-space:nowrap">
-                            <a href="#" class="nav-item nav-link">
+                            <a href="{% url 'CART' %}" class="nav-item nav-link">
                                 <i class="fa fa-cart-arrow-down" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i>
                             </a>
                         </li>
+
+                    <!-- {% if per %}
+                        <li style="white-space:nowrap">
+                            <a href="{% url 'LOGOUT' %}" class="nav-item nav-link">
+                                <i class="fas fa-sign-out-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
+                                </i> Logout
+                            </a>
+                        </li>
+                    {% endif %} -->
+
 
                     </ul>
                 </div>

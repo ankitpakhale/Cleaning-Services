@@ -22,7 +22,15 @@ def home1(request):
 
 def home(request):
     if 'email' in request.session:
-        return render(request, 'home.html')
+
+        user1 = request.session['email']
+        print(user1)
+        per = signUp.objects.get(email = user1)
+        print(per)
+        # print("This is name"+per.name)
+        log = 'LOGOUT'
+
+        return render(request, 'home.html', {'per' : per, 'log' : log})
     return redirect('LOGIN')
 
 def about(request):
@@ -105,13 +113,15 @@ def base(request):
 def mainProduct(request):
     if 'email' in request.session:
         obj1 = mainItem.objects.all()
-        # search module
+       
+        # search module start
         s = request.GET.get('search')
         if s:
             q = mainItem.objects.filter(Q(title__icontains = s) | Q(description__icontains = s))
         else:
             q = mainItem.objects.all()
             # q = f"{s} is not found"
+        # search module end
 
         a = ProductForm(request.POST)
         if a.is_valid():
@@ -155,10 +165,7 @@ def productUpdate(request, pk):
 def productDelete(request, pk):
     prod= get_object_or_404(item, pk=pk)   
     prod.delete() 
-    # if request.method=='POST':
-    #     book.delete()
     return redirect('PRODUCT')
-   # return render(request, 'book_confirm_delete.html', {'object':book})
 
 def calculator(request):
     form = inputForm(request.POST)
