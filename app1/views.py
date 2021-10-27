@@ -22,7 +22,6 @@ def home1(request):
 
 def home(request):
     if 'email' in request.session:
-
         user1 = request.session['email']
         print(user1)
         per = signUp.objects.get(email = user1)
@@ -34,9 +33,7 @@ def home(request):
     return redirect('LOGIN')
 
 def about(request):
-    if 'email' in request.session:
         return render(request,'about.html')
-    return redirect('LOGIN')
 
 def services(request):
     if 'email' in request.session:

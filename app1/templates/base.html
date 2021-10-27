@@ -11,24 +11,24 @@
     <title>Washla - Cleaning</title>
 
     <!--  FAVICON  -->
-    <link rel="shortcut icon" href="{% static 'images/icons/favicon.png' %}">
+    <link  style="padding: 23px 3px;"rel="shortcut icon" href="{% static 'images/icons/favicon.png' %}">
 
     <!-- FONT AWESOME ICONS LIBRARY -->
-    <link rel="stylesheet" href="{% static 'fonts/css/all.min.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'fonts/css/all.min.css' %}">
 
     <!-- CSS LIBRARY STYLES -->
-    <link rel="stylesheet" href="{% static 'css/lib/bootstrap.min.css' %}">
-    <link rel='stylesheet' href="{% static 'css/lib/flickity.min.css' %}">
-    <link rel='stylesheet' href="{% static 'css/lib/magnific-popup.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/lib/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/lib/slick.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/lib/aos.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'css/lib/bootstrap.min.css' %}">
+    <link  style="padding: 23px 3px;"rel='stylesheet' href="{% static 'css/lib/flickity.min.css' %}">
+    <link  style="padding: 23px 3px;"rel='stylesheet' href="{% static 'css/lib/magnific-popup.min.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'css/lib/owl.carousel.min.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'css/lib/slick.min.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'css/lib/aos.min.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'css/navbar.css' %}">
 
     <!-- CSS TEMPLATE STYLES -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    <link  style="padding: 23px 3px;"rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
     <!-- MODERNIZR LIBRARY -->
     <script src="{% static 'js/modernizr-custom.js' %}"></script>
@@ -56,9 +56,9 @@
 
     <header>
 
-        <!-- TOP HEADER START -->
+        <!-- NAME HEADER START -->
 
-        {% if per %}
+        <!-- {% if per %}
         <div class="top-header-wrapper">
             <div class="container">
                 <div class="row">
@@ -74,9 +74,8 @@
                 </div>
             </div>
         </div>
-        {% endif %}
-
-        <!-- TOP HEADER END -->
+        {% endif %} -->
+        <!-- NAME HEADER END -->
 
         <!-- NAV START -->
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -87,25 +86,36 @@
                     <img src="{% static 'images/logos/logo.png' %}" alt="">
                 </a>
 
+                <div class="newsletter mt-2">
+                    <form action="#" method="post" name="search-bar">
+                        <input type="text" class="input" name="search" placeholder="Search Anything">
+                        <input type="submit" class="button" value="Search">
+                    </form>
+                </div>
+
                 <div id="main-nav" class="collapse navbar-collapse">
                     
                     <ul class="navbar-nav ml-auto">
 
+                        {% if per %}
                         <li style="white-space:nowrap">
-                            <a href="{% url 'HOME' %}" class="nav-item nav-link">
+                            <a href="{% url 'HOME' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fa fa-home" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Home
                             </a>
                         </li>
+                        {% endif %}
+                        
                         <li style="white-space:nowrap">
-                            <a href="{% url 'ABOUT' %}" class="nav-item nav-link">
+                            <a href="{% url 'ABOUT' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fa fa-podcast" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> About
                             </a>
                         </li>
 
+                        {% if per %}
                         <li style="white-space:nowrap">
-                            <a href="{% url 'PRODUCT' %}" class="nav-item nav-link">
+                            <a href="{% url 'PRODUCT' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fa fa-shopping-basket" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Products
                             </a>
@@ -128,45 +138,55 @@
                         </li>
 
                         <li style="white-space:nowrap">
-                            <a href="{% url 'GALLERY' %}" class="nav-item nav-link">
+                            <a href="{% url 'GALLERY' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fab fa-envira" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Gallery
                             </a>
                         </li>
 
                         <li style="white-space:nowrap">
-                            <a href="{% url 'BLOG' %}" class="nav-item nav-link">
+                            <a href="{% url 'BLOG' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fas fa-blog" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Blog
                             </a>
                         </li>
+                        {% endif %}
 
                         <li style="white-space:nowrap">
-                            <a href="{% url 'CONTACT' %}" class="nav-item nav-link">
+                            <a href="{% url 'CONTACT' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fas fa-id-card-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Contact
                             </a>
                         </li>
 
-                        <!-- <li style="white-space:nowrap">
-                            <a href="{% url 'LOGIN' %}" class="nav-item nav-link">
-                                <i class="fas fa-sign-in-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
-                                </i> Login
-                            </a>
-                        </li> -->
-
                         {% if per %}
                         <li style="white-space:nowrap">
-                            <a href="{% url 'LOGOUT' %}" class="nav-item nav-link">
-                                <i class="fas fa-sign-out-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
-                                </i> LogOut
+                            <a href="{% url 'CART' %}" class="nav-item nav-link" style="padding: 23px 3px;">
+                                <i class="fa fa-cart-arrow-down" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
+                                </i>
                             </a>
                         </li>
-                        
-                        
+                        {% endif %}
+
+                        {% if per %}
+                        <ul>
+                            <li style="white-space:nowrap">
+                                <a class="nav-item nav-link" style="padding: 5px 3px;">
+                                    <h6 style="font-size: 14px;">Welcome {{per.name}}</h6>
+                                </a>
+                            </li>
+
+                            <li style="white-space:nowrap">
+                                <a href="{% url 'LOGOUT' %}" class="nav-item nav-link" style="padding: 5px 3px;">
+                                    <i class="fas fa-sign-out-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
+                                    </i> LogOut
+                                </a>
+                            </li>
+                        </ul>
+
                         {% else %}
                         <li style="white-space:nowrap">
-                            <a href="{% url 'LOGIN' %}" class="nav-item nav-link">
+                            <a href="{% url 'LOGIN' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fas fa-sign-in-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Login
                             </a>
@@ -175,16 +195,9 @@
                         {% endif %}
                         
 
-                        <li style="white-space:nowrap">
-                            <a href="{% url 'CART' %}" class="nav-item nav-link">
-                                <i class="fa fa-cart-arrow-down" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
-                                </i>
-                            </a>
-                        </li>
-
                     <!-- {% if per %}
                         <li style="white-space:nowrap">
-                            <a href="{% url 'LOGOUT' %}" class="nav-item nav-link">
+                            <a href="{% url 'LOGOUT' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fas fa-sign-out-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Logout
                             </a>
@@ -195,12 +208,13 @@
                     </ul>
                 </div>
 
-                <div class="newsletter mt-2">
+                <!-- <div class="newsletter mt-2">
                     <form action="#" method="post" name="search-bar">
                         <input type="text" class="input" name="search" placeholder="Search Anything">
                         <input type="submit" class="button" value="Search">
                     </form>
-                </div>
+                </div> -->
+                
 
                 <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
                     <span class="menu-icon-bar"></span>
@@ -241,8 +255,9 @@
 
                     <div class="col-lg-3 col-footer">
                         <h5>Quick Links</h5>
-                        <ul class="quick-links">
 
+                        {% if per %}
+                        <ul class="quick-links">
                             <li style="white-space:nowrap">
                                 <a href="{% url 'SERVICES' %}" class="nav-item nav-link">
                                     <i class="fab fa-servicestack" style="font-size:14px; float: left; display:inline; padding: 7px 5px;">
@@ -270,8 +285,37 @@
                                     </i> Pricing
                                 </a>
                             </li>
+                        </ul>
+                        {% else %}
+                        <ul class="quick-links">
+
+                            <li style="white-space:nowrap">
+                                <a href="{% url 'ABOUT' %}" class="nav-item nav-link">
+                                    <i class="fas fa-podcast" style="font-size:14px; float: left; display:inline; padding: 7px 5px;">
+                                    </i> About
+                                </a>
+                            </li>
+
+                           
+                            <li style="white-space:nowrap">
+                                <a href="{% url 'CONTACT' %}" class="nav-item nav-link">
+                                    <i class="fas fa-id-card-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
+                                    </i> Contact
+                                </a>
+                            </li>
+
+                            <li style="white-space:nowrap">
+                                <a href="{% url 'LOGIN' %}" class="nav-item nav-link">
+                                    <i class="fas fa-sign-in-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
+                                    </i> Login
+                                </a>
+                            </li> 
 
                         </ul>
+                        {% endif %}
+
+                        
+
                     </div>
                     <div class="col-lg-3 col-footer">
                         <h5>Our Newsletter</h5>
@@ -295,7 +339,7 @@
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin- style="padding: 23px 3px;"in"></i></a></li>
                             </ul>
                         </div>
                     </div>
