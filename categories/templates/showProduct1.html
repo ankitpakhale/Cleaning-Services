@@ -29,8 +29,14 @@
                             <!-- <blockquote class="ludwig">Rs {{object.title}}/-</blockquote> -->
                             <h3 class="post-title">{{object.title}}</h3>
                             <p>{{object.description}}</p>
-                            
+
                             <a class="btn btn-washla" style="padding: 4px; margin: 8px; color: #fff;" >Rs {{object.price}}/-</a>
+                            
+                            <a href="{% url "CART" object.id  %}">
+                                <h5  style="color: #01B3E4;">
+                                    Add to cart
+                                </h5>
+                            </a>
                             
                         </div>
                     </div>

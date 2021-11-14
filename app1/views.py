@@ -30,6 +30,7 @@ def home(request):
         log = 'LOGOUT'
 
         return render(request, 'home.html', {'per' : per, 'log' : log})
+        
     return redirect('LOGIN')
 
 def about(request):

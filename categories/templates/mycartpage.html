@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!--SLIDER START-->
+<div class="pages-hero">
+    <div class="container">
+        <div class="pages-title">
+            <h1>Checkout</h1>
+            <p>A new generation of cleaning and restoration concepts.</p>
+        </div>
+    </div>
+</div>
+<!--SLIDER END-->
+</header>
+
+<!-- CONTENT START -->
+<section>
+    <!-- ABOUT SECTION START -->
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-lg-6">
+
+                    <div>
+                        <h3>Your shopping cart contains:</h3>
+                        
+                        {% for i in al %}
+                        
+                        <div class="checkout-right">
+                            <h4>{{i.title}}</h4>
+                        <div>
+                            <img src="{{i.images.url}}" style="width: 180px;">
+                        </div>
+                        <div class="order">
+                            <h6>
+                                <tr>
+                                    <td>{{i.description}}</td>
+                                    <td>price = ₹{{i.price}}</td>
+                                </tr>
+                            </h6>
+                        </div>
+
+                        <div class="order">
+                            <div class="item">
+                                <a href="{% url "REMOVECART" i.id %}">
+                                    <H6 style="color: #FA1E0F;">
+                                        remove
+                                    </H6>
+                                </a>
+                            </div>  
+                        </div>
+
+                        <hr>
+
+                        {% endfor%}
+                        
+                        <div class="order">
+                            <h3>
+                                Total amount: <span style="color: #01B3E4;"> ₹{{p}} </span>
+                            </h3>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="col-md-8 address_form">
+                        <h4>Billing Address</h4>
+                        <form method="POST" class="creditly-card-form shopf-sear-headinfo_form">
+                            {% csrf_token %}
+                            <div class="creditly-wrapper wrapper">
+                                <div class="information-wrapper">
+                                    <div class="first-row form-group">
+                                        <div class="controls">
+                                            <label class="control-label">Full name: </label>
+                                            <input class="billing-address-name form-control" type="text"
+                                                name="name" placeholder="Full name">
+                                        </div>
+                                        <div class="card_number_grids">
+                                            <div class="card_number_grid_left">
+                                                <div class="controls">
+                                                    <label class="control-label">Email:</label>
+                                                    <input class="form-control" type="email"
+                                                        name="email" placeholder="Mobile number">
+                                                </div>
+                                            </div>
+                                            <div class="card_number_grid_right">
+                                                <div class="controls">
+                                                    <label class="control-label">Landmark: </label>
+                                                    <input class="form-control" type="text"
+                                                        name="landmark" placeholder="Landmark">
+                                                </div>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
+                                        <div class="controls">
+                                            <label class="control-label">Town/City: </label>
+                                            <input class="form-control" type="text" name="city"
+                                                placeholder="Town/City">
+                                        </div>
+                                        <div class="controls">
+                                            <label class="control-label">Address type: </label>
+                                            <select class="form-control option-fieldf">
+                                                <option value="office" name="atype">Office</option>
+                                                <option value="Home" name="atype">Home</option>
+                                                <option value="Commercial" name="atype">Commercial
+                                                </option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <a href="#"><button class="btn btn-washla">place order</button></a>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- footer -->
+{% endblock %}

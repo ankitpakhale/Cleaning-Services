@@ -56,6 +56,27 @@
 
     <header>
 
+        <!-- NAME HEADER START -->
+
+        <!-- {% if per %}
+        <div class="top-header-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="top-contact text-left">
+                            <li>
+                                <h4>
+                                    <a>Welcome {{per.name}}</a>
+                                </h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %} -->
+        <!-- NAME HEADER END -->
+
         <!-- NAV START -->
         <nav class="navbar navbar-expand-lg navbar-dark">
 
@@ -75,14 +96,16 @@
                 <div id="main-nav" class="collapse navbar-collapse">
                     
                     <ul class="navbar-nav ml-auto">
-           
+                <!-- ------------------------------------------------------ -->
+                        <!-- {% if per %} -->
                         <li style="white-space:nowrap">
                             <a href="{% url 'HOME' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fa fa-home" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i> Home
                             </a>
                         </li>
-
+                        <!-- {% endif %} -->
+                <!-- ------------------------------------------------------ -->
                         
                         <li style="white-space:nowrap">
                             <a href="{% url 'ABOUT' %}" class="nav-item nav-link" style="padding: 23px 3px;">
@@ -92,6 +115,8 @@
                         </li>
 
 
+                <!-- ------------------------------------------------------ -->
+                        <!-- {% if per %} -->
                         <li style="white-space:nowrap">
                             <a href="{% url 'PRODUCT' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fa fa-shopping-basket" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
@@ -128,7 +153,8 @@
                                 </i> Blog
                             </a>
                         </li>
-
+                        <!-- {% endif %} -->
+                <!-- ------------------------------------------------------ -->
 
                         <li style="white-space:nowrap">
                             <a href="{% url 'CONTACT' %}" class="nav-item nav-link" style="padding: 23px 3px;">
@@ -137,20 +163,22 @@
                             </a>
                         </li>
 
-               
+                <!-- -------------------------------- -->
+                        <!-- {% if per %} -->
                         <li style="white-space:nowrap">
-                            <a href="{% url 'MYCART' %}" class="nav-item nav-link" style="padding: 23px 3px;">
+                            <a href="{% url 'CART' %}" class="nav-item nav-link" style="padding: 23px 3px;">
                                 <i class="fa fa-cart-arrow-down" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
                                 </i>
                             </a>
                         </li>
-                  
+                        <!-- {% endif %} -->
+                <!-- --------------------------------- -->
 
                         {% if per %}
                         <ul>
                             <li style="white-space:nowrap">
                                 <a class="nav-item nav-link" style="padding: 5px 3px;">
-                                    <h6 style="font-size: 14px; color: #01B3E4;">Welcome {{per.name}}</h6>
+                                    <h6 style="font-size: 14px;">Welcome {{per.name}}</h6>
                                 </a>
                             </li>
 
@@ -217,7 +245,8 @@
                     <div class="col-lg-3 col-footer">
                         <h5>Quick Links</h5>
 
-              
+                <!-- -------------------------------------------------------------- -->
+                        <!-- {% if per %} -->
                         <ul class="quick-links">
                             <li style="white-space:nowrap">
                                 <a href="{% url 'SERVICES' %}" class="nav-item nav-link">
@@ -248,6 +277,36 @@
                             </li>
                         </ul>
 
+                        <!-- {% else %} -->
+                        
+                        <!-- <ul class="quick-links">
+
+                            <li style="white-space:nowrap">
+                                <a href="{% url 'ABOUT' %}" class="nav-item nav-link">
+                                    <i class="fas fa-podcast" style="font-size:14px; float: left; display:inline; padding: 7px 5px;">
+                                    </i> About
+                                </a>
+                            </li>
+
+                           
+                            <li style="white-space:nowrap">
+                                <a href="{% url 'CONTACT' %}" class="nav-item nav-link">
+                                    <i class="fas fa-id-card-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
+                                    </i> Contact
+                                </a>
+                            </li>
+
+                            <li style="white-space:nowrap">
+                                <a href="{% url 'LOGIN' %}" class="nav-item nav-link">
+                                    <i class="fas fa-sign-in-alt" style="font-size:14px; float: left; display:inline; padding: 5px 3px;">
+                                    </i> Login
+                                </a>
+                            </li> 
+
+                        </ul> -->
+                        <!-- {% endif %} -->
+                    <!-- -------------------------------------------------------------- -->
+                        
 
                     </div>
                     <div class="col-lg-3 col-footer">

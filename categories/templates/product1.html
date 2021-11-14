@@ -6,12 +6,13 @@
     <div class="pages-hero">
         <div class="container">
             <div class="pages-title">
-                <h1>Product1</h1>
+                <h1>Product</h1>
                 <p>A new generation of cleaning and restoration concepts.</p>
             </div>
         </div>  
     </div>
     <!--SLIDER END-->
+    
 </header>
     <!-- CONTENT START -->
     <section>            
@@ -29,16 +30,6 @@
                             <h5 class="card-title">{{i.title}}</h5>
 
                             <p class="card-text">{{i.description}}</p>
-
-                            <form action="{% url 'CART' %}" method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" value="{{ cat.id }}" name='bid'>
-                                <button type="submit" class="btn btn-washla">
-                                    <i class="fa fa shopping-cart"></i>
-                                    Add To Cart
-                                </button>
-                                <a href="#" data-toggle="modal" data-target="#myModal1"></a>
-                            </form>
 
                             <a class="btn btn-washla" style="padding: 4px; margin: 8px; color: #fff;" >Rs {{i.price}}/-</a>
 

@@ -3,6 +3,7 @@ from .models import *
 from .forms import ProForm1
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
+import datetime
 
 
 # Create your views here.
@@ -37,37 +38,37 @@ def productDelete(request, pk):
     prod.delete() 
     return redirect('PRODUCT')
 
-
-def add_to_cart(request):
-    if request.session.has_key('email'):
-        per = signUp.objects.get(email=request.session['email'])
-        item1 = MyCart.objects.filter(person__id=per.id, status=False)
-        num = MyCart.objects.filter(person__id=per.id, status=False).count()
-        total = 0
-        for q in item1:
-            total += q.book.price
-        print(total)
-        if request.method == 'POST':
-            bid = request.POST['bid']
-            print(bid)
-            p = item.objects.get(id=bid)
-            if MyCart.objects.filter(book__id=bid, person__id=per.id, status=False).exists():
-                messages.warning(request, 'Item already in the cart')
-                return render(request, 'single_product1.html', {'p': p, 'per': per})
-            else:
-                bk = get_object_or_404(item, id=bid)
-                c = MyCart.objects.create(person=per, book=bk)
-                c.save()
-                messages.warning(request, 'Item has been added to cart')
-                return render(request, 'single_product1.html', {'p': p, 'per': per})
+def add_to_cart(request, d):
+    if 'email' in request.session:
+        per=signUp.objects.get(email=request.session['email'])
+        i=item.objects.get(id=d)
+    
+        if MyCart.objects.filter(person_id=per.pk, book_id=i.id, status=False).exists():
+            return(HttpResponse('This Product is already in your CART, please choose another one'))
+    
         else:
-            return render(request, 'checkout1.html', {'item': item1, 'num': num, 'per': per, 'total': total})
-    else:
-        messages.info(request, 'please login first to access the cart ')
-        return redirect('LOGIN')
+            cart=MyCart()
+            cart.person=per
+            cart.book=i
+            cart.added_on=datetime.datetime.now()
+            cart.save()
+    return(redirect('PRODUCTVIEW',d))
 
-def remove_cart(request, id):
-    if request.session.has_key('email'):
-        y = get_object_or_404(MyCart, id=id)
+
+def show_mycart(request):
+    if 'email' in request.session:
+        obj=signUp.objects.get(email=request.session['email'])
+        all=MyCart.objects.filter(person=obj.pk)
+        l=[]
+        p=0
+        for i in all:
+            l.append(i.book)
+            p=p+i.book.price
+        return(render(request,'mycartpage.html',{'al':l,'n':obj,'p':p}))
+
+def removecart(self,d):
+    if 'email' in self.session:
+        o=signUp.objects.get(email=self.session['email'])
+        y=get_object_or_404(MyCart,book=d,person=o.pk)
         y.delete()
-        return redirect('CART')
+        return(redirect('MYCART'))  

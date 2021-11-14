@@ -24,7 +24,6 @@ class Orders(models.Model):
     items = models.CharField(max_length=100)
     order_amount = models.CharField(max_length=80)
     ordered_on = models.DateTimeField(auto_now_add=True,null=True)
-    qrimage = models.ImageField(upload_to='qrimage',blank=True,null=True)
     invoice = models.FileField(default='')
 
     def __str__(self):
