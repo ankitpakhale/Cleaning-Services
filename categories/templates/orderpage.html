@@ -31,15 +31,34 @@
             <div>
                 <img style="height: 246px; width: 254px; " src="{{i.images.url}}" width="350">
             </div>
-            <p>{{i.description}}</p>
-            <p>price = {{i.price}}₹</p>
+            <h4 style="color: #000; font-size:16px; font-weight: 400">
+                {{i.description}}
+            </h4>
             
-             <div style="margin-left: 5px;">
-                    Qunatity
+            <h4 style="color: #000; font-size:19px; font-weight: 600">
+                Price: 
+                <span style="color: #01B3E4; font-size:19px; font-weight: 600">
+                    {{i.price}}₹
+                </span>
+            </h4>
+            
+             <div>
+                    <span style="color: #000; font-size:16px; font-weight: 600">
+                        Quantity:
+                    </span> 
                     {% if j.quantity %}
-                    <input value={{j.quantity}}  readonly>
+                    <!-- <input value={{j.quantity}}  readonly> -->
+                    <span style="margin-top: 10px; color: #000">
+                        <span style="font-size:16px; font-weight: 600; color: #01B3E4">
+                            {{j.quantity}} 
+                            Qty
+                        </span> 
+                    </span>
                     {% else %}
-                    <input value={{j}}  readonly>
+                    <span style="margin-top: 10px; color: #000">
+                        {{j}} Qty
+                    </span>
+                    <!-- <input value={{j}}  readonly> -->
                     {% endif %}
              </div>           
             <hr>
@@ -84,7 +103,7 @@
                                 
                                 <div class="controls">
                                     <div class="controls">
-                                        <label class="control-label">City:</label>
+                                        <label class="control-label">Address:</label>
                                         <input class="form-control" type="text"
                                             name="address" placeholder="Enter your Address" required>
                                     </div>

@@ -52,6 +52,7 @@ def add_to_cart(request, d, s1):
         per=signUp.objects.get(email=request.session['email'])
         i=item.objects.get(id=d)
         if MyCart.objects.filter(person_id=per.pk, book_id=i.id, status=False).exists():
+            msg = 'This Product is already in your CART, please choose another '
             return(HttpResponse('This Product is already in your CART, please choose another one'))
         else:
             cart=MyCart()
@@ -60,6 +61,7 @@ def add_to_cart(request, d, s1):
             cart.quantity=str(s1)
             cart.added_on=datetime.datetime.now()
             cart.save()
+            
     return(redirect('PRODUCTVIEW',d))
 
 def show_mycart(request):
@@ -81,7 +83,7 @@ def removecart(request,d):
         o=signUp.objects.get(email=request.session['email'])
         y=get_object_or_404(MyCart,book=d,person=o.pk)
         y.delete()
-        return(redirect('MYCART'))  
+        return(redirect('MYCART'))
 
 def cartorder(request):
     o=signUp.objects.get(email=request.session['email'])
