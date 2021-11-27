@@ -12,19 +12,23 @@ class item(models.Model):
 class MyCart(models.Model):
     person = models.ForeignKey(signUp,on_delete=models.CASCADE)
     book = models.ForeignKey(item,on_delete=models.CASCADE)
+    quantity=models.PositiveIntegerField(default=1)
     status = models.BooleanField(default=False)
     added_on = models.DateTimeField(auto_now_add=True,null=True)
     update_on= models.DateTimeField(auto_now_add=True,null=True)
     def __str__(self):
         return self.person.name
 
-class Orders(models.Model):
-    order_id = models.AutoField(primary_key=True)
-    person = models.ForeignKey(signUp,on_delete=models.CASCADE)
-    items = models.CharField(max_length=100)
-    order_amount = models.CharField(max_length=80)
-    ordered_on = models.DateTimeField(auto_now_add=True,null=True)
-    invoice = models.FileField(default='')
+class Order(models.Model):
+    order_id=models.AutoField(primary_key=True)
+    oemail=models.EmailField(default='')
+    name=models.CharField(max_length=25,default='')
+    services=models.CharField(max_length=500,default='')
+    adddress=models.CharField(max_length=200,default='')
+    contact=models.CharField(max_length=11,default='')
+    service_date=models.DateField(auto_now_add=True)
+    amount=models.PositiveIntegerField(default=None)
 
-    def __str__(self):
-        return self.items
+    def __str__(self) -> str:
+        return self.services
+

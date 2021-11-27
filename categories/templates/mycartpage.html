@@ -24,7 +24,7 @@
                     <div>
                         <h3>Your shopping cart contains:</h3>
                         
-                        {% for i in al %}
+                        {% for i,j in k.items %}
                         
                         <div class="checkout-right">
                             <h4>{{i.title}}</h4>
@@ -34,8 +34,18 @@
                         <div class="order">
                             <h6>
                                 <tr>
-                                    <td>{{i.description}}</td>
-                                    <td>price = ₹{{i.price}}</td>
+                                    <div style="margin-top: 10px;">
+                                        <td>{{i.description}}</td>
+                                    </div>
+
+                                    <td>
+                                        <div style="margin-top: 10px;">
+                                            Qunatity
+                                            <input value={{j.quantity}}  readonly>
+                                        </div>
+                                    </td>
+                                    <p style="margin-top: 10px;">price = {{i.price }} x {{ j.quantity}}</p>
+                                
                                 </tr>
                             </h6>
                         </div>
@@ -58,13 +68,16 @@
                             <h3>
                                 Total amount: <span style="color: #01B3E4;"> ₹{{p}} </span>
                             </h3>
+                            <h3>
+                                <div class="item"><a style="color: #3489A8;" href='{% url "MYORDER" %}'>BOOK</a></div>
+                            </h3>
                         </div>
 
                     </div>
 
-                    <hr>
+                    <!-- <hr> -->
 
-                    <div class="col-md-8 address_form">
+                    <!-- <div class="col-md-8 address_form">
                         <h4>Billing Address</h4>
                         <form method="POST" class="creditly-card-form shopf-sear-headinfo_form">
                             {% csrf_token %}
@@ -114,7 +127,7 @@
                             </div>
                         </form>
 
-                    </div>
+                    </div> -->
 
             </div>
         </div>

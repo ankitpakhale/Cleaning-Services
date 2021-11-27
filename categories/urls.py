@@ -5,11 +5,15 @@ urlpatterns = [
     path('main/', main, name='MAIN'),    
     path('product', product, name='PRODUCT'),
     
-    path('addtocart/<int:d>', add_to_cart,name='CART'),
+    path('addtocart/<int:d>/<str:s1>',add_to_cart,name='CART'),
 
     path('mycart/', show_mycart,name='MYCART'),
 
     path('removecart/<int:d>',removecart,name='REMOVECART'),
+    
+    path('myorder/',cartorder,name='MYORDER'),
+    
+    path('pay/',payment,name='PAYMENT'),
 
     path('productView/<int:pk>', productView, name='PRODUCTVIEW'),
     path('productUpdate/<int:pk>', productUpdate, name='PRODUCTUPDATE'),

@@ -32,20 +32,26 @@
 
                             <a class="btn btn-washla" style="padding: 4px; margin: 8px; color: #fff;" >Rs {{object.price}}/-</a>
                             
-                            <a href="{% url "CART" object.id  %}">
-                                <h5  style="color: #01B3E4;">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <span style="color: #000; font-weight: 600; font-size: 16px;">
+                                    Qunatity
+                                </span>
+                               <input type="submit" value="-" name='psub' style="margin-left: 5px;margin-bottom: 15px;">
+                               <input value={{qty}} min="1" name="qty" readonly>
+                               <input type="submit" value="+" name='psub'>
+                            </form>
+
+                            <a href="{% url 'CART' object.id qty %}">
+                                <h5 style="color: #01B3E4;">
                                     Add to cart
                                 </h5>
                             </a>
-                            
+                        
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="row">
-                {{value}}
-            </div> -->
 
         </div>
     </section>
