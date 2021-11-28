@@ -75,7 +75,7 @@ def show_mycart(request):
             l.append(i.book)
             q.append(i)
             p=p+i.book.price*i.quantity
-        k=dict(zip(l,q))   
+        k=dict(zip(l,q))
         return(render(request,'mycartpage.html',{'k':k,'n':obj,'p':p}))
 
 def removecart(request,d):
@@ -93,13 +93,12 @@ def cartorder(request):
     p=0
     s=''
     for i in obj:
-        print('1')
         l.append(i.book)
         q.append(i)
-        s+=i.book.title+"  id="+str(i.book.id)+" Qunatity ="+str(i.quantity)+','
+        s+=i.book.title+" Id="+str(i.book.id)+" Quantity ="+str(i.quantity)+','
         p=p+i.book.price*i.quantity
+
     if request.POST:
-        
         n=request.POST['name']
         st=request.POST['state']
         ct=request.POST['city']
@@ -118,12 +117,8 @@ def cartorder(request):
         iv.adddress=str(ad)+str(ct)+str(st)+'\n'+str(pin)
         
         amount= p
-        print("Amount is", amount)
+        print("Amount is ", amount)
         print(type(amount),type(p))
-        # client = razorpay.Client(
-        #     auth=("rzp_test_ov7fBmU4EJwsAn","AvmwLmd018H6gOgQrdeJPntX"))
-
-        # payment = client.order.create({'amount':amount, 'currency': 'INR', 'payment_capture': '1'})
         
         client = razorpay.Client(auth=("rzp_test_ov7fBmU4EJwsAn", "AvmwLmd018H6gOgQrdeJPntX"))
 
@@ -140,4 +135,4 @@ def cartorder(request):
     return(render(request,'orderpage.html',{'k':k,'p':p}))
 
 def payment(request):
-    return(HttpResponse('success'))
+    return(HttpResponse('Payment Successfully Done'))

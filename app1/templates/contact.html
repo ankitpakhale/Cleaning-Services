@@ -20,6 +20,7 @@
         <div class="bg-wrapper contact-wrapper mb-5">
             <div class="container">
                 <div class="row">
+
                     <div class="col-lg-4">
                         <div class="cw-box">
                             <figure class="cw-icon">
@@ -47,6 +48,7 @@
                             <p>sales@washla.com</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -61,11 +63,13 @@
                         <p>World’s leading non-asset- based supply chain management companies, we design and implement industry-leading. We specialise in intelligent & effective search and believes business.</p>
                     </div>
                     <br/>
+                    
                     <form method="POST">
                         {% csrf_token %}
                         <div class="messages"></div>
                         <div class="controls">
                             <div class="row">
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <input id="form_name" type="text" name="name" class="form-control custom-form" placeholder="*Name" required="required" data-error="Name is required.">

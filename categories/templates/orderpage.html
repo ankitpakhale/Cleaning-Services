@@ -6,7 +6,7 @@
 <div class="pages-hero">
     <div class="container">
         <div class="pages-title">
-            <h1>Checkout</h1>
+            <h1>My Order</h1>
             <p>A new generation of cleaning and restoration concepts.</p>
         </div>
     </div>
@@ -16,239 +16,178 @@
 
 <!-- CONTENT START -->
 <section>
-    <!-- ABOUT SECTION START -->
-    <div class="container mt-5 mb-5">
-        <div class="row">
-            <div class="col-lg-6">
+    <!-- ORDER SECTION START -->
+    <div class="bg-wrapper contact-wrapper mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
 
-                <!-- -----------Main Section------------------ -->
 
-        <h2>Order-Details</h2>
-        <br>
-        <div class="or">
-            {% for i,j in k.items %}
-            <h3>{{i.title}}</h3>
-            <div>
-                <img style="height: 246px; width: 254px; " src="{{i.images.url}}" width="350">
-            </div>
-            <h4 style="color: #000; font-size:16px; font-weight: 400">
-                {{i.description}}
-            </h4>
-            
-            <h4 style="color: #000; font-size:19px; font-weight: 600">
-                Price: 
-                <span style="color: #01B3E4; font-size:19px; font-weight: 600">
-                    {{i.price}}₹
-                </span>
-            </h4>
-            
-             <div>
-                    <span style="color: #000; font-size:16px; font-weight: 600">
-                        Quantity:
-                    </span> 
-                    {% if j.quantity %}
-                    <!-- <input value={{j.quantity}}  readonly> -->
-                    <span style="margin-top: 10px; color: #000">
-                        <span style="font-size:16px; font-weight: 600; color: #01B3E4">
-                            {{j.quantity}} 
-                            Qty
-                        </span> 
-                    </span>
-                    {% else %}
-                    <span style="margin-top: 10px; color: #000">
-                        {{j}} Qty
-                    </span>
-                    <!-- <input value={{j}}  readonly> -->
-                    {% endif %}
-             </div>           
-            <hr>
-            {% endfor%}
-            
-            
-            <div class="col-md-8 address_form">
-                
-                <h4>Billing Address</h4>
-                
-                <form method="POST">
-                    {% csrf_token %}
+                    <div class="col-md-8 mx-auto">
 
-                    <div class="creditly-wrapper wrapper">
-                        
-                        <div class="information-wrapper">
-                            <div class="first-row form-group">
+                        <div class="contact-title">
+                            <h3 style="color: #01B3E4">Order Details</h3>
+                        </div>
+                        <br />
 
-                                <div style="display: none;"><input value={{qty}}  name="Qunatity">
-                                    <input value={{p}}  name="price" >
+                        <!-- -----------Main Section------------------ -->
+
+                        {% for i,j in k.items %}
+                        <div style="display: flex; flex-direction: row; justify-content: center;">
+                            <img src="{{i.images.url}}" style="width: 270px; height: 180px;">
+
+                            <div class="order" style="margin: 15px 30px;">
+                                <div style="color: #01B3E4; font-weight: bold; font-size:21px">
+                                    {{i.title}}
                                 </div>
-                    
-                                <div class="controls">
-                                    <label class="control-label">Full name: </label>
-                                    <input class="billing-address-name form-control" type="text"
-                                        name="name" placeholder="Full name" required>
-                                </div>
-                    
-                                <div class="controls">
-                                    <label class="control-label">State: </label>
-                                    <input class="billing-address-name form-control" type="text"
-                                        name="state" placeholder="Enter your state" required>
-                                </div>
-                    
-                                <div class="controls">
-                                    <div class="controls">
-                                        <label class="control-label">City:</label>
-                                        <input class="form-control" type="text"
-                                            name="city" placeholder="Enter your City" required>
+                                <div>
+                                    <div style="margin: 5px 0px; font-size: 15px">
+                                        {{i.description}}
                                     </div>
-                                </div>
-                                
-                                <div class="controls">
-                                    <div class="controls">
-                                        <label class="control-label">Address:</label>
-                                        <input class="form-control" type="text"
-                                            name="address" placeholder="Enter your Address" required>
+                                    <hr>
+                                    <div style="margin: 15px 0px; color: #000; font-size: 18px; font-weight:bold">
+                                        Price is {{i.price}}₹
                                     </div>
-                                </div>
-                                
-                                <div class="controls">
-                                    <div class="controls">
-                                        <label class="control-label">pin-code :</label>
-                                        <input class="form-control" type="number"
-                                            name="pincode" placeholder="Enter your pincode" required>
+                                    {% if j.quantity %}
+                                    <div style="margin: 15px 0px; color: #000; font-size: 18px; font-weight:bold">
+                                        Quantity is {{j.quantity}}
                                     </div>
-                                </div>
-                                
-                                <div class="controls">
-                                    <div class="controls">
-                                        <label class="control-label">Service-date: </label>
-                                        <input class="form-control" type="text"
-                                            name="date" placeholder="enter service date" required>
+                                    {% else %}
+                                    <div style="margin: 15px 0px; color: #000; font-size: 18px; font-weight:bold">
+                                        Quantity is {{j}} Qty
                                     </div>
-                                </div>                                
-                                
-                                <div class="controls">
-                                    <label class="control-label">Contact.no: </label>
-                                    <input class="form-control" type="text" name="phone"
-                                        placeholder="enter your contact number" required>
+                                    {% endif %}
+
                                 </div>
-                                
-                                <!-- <div class="controls">
-                                    <label class="control-label">Address type: </label>
-                                    <select class="form-control option-fieldf">
-                                        <option value="office" name="atype">Office</option>
-                                        <option value="Home" name="atype">Home</option>
-                                        <option value="Commercial" name="atype">Commercial
-                                        </option>
-                                    </select>
-                                </div> -->
-
-                            </div>
-
-                            <form action="https://www.example.com/payment/success/" method="POST">
-                                <script    src="https://checkout.razorpay.com/v1/checkout.js"    
-                                    data-key="YOUR_KEY_ID" 
-                                    // Enter the Test API Key ID generated from Dashboard → Settings → API Keys    
-                                    data-amount= {{p}} // Amount is in currency subunits. Hence, 29935 refers to 29935 paise or ₹299.35.    
-                                    data-currency="INR"// You can accept international payments by changing the currency code. Contact our Support Team to enable International for your account    
-                                    data-order_id="order_CgmcjRh9ti2lP7"// Replace with the order_id generated by you in the backend.    
-                                    data-buttontext="Pay with Razorpay"    
-                                    data-name="Acme Corp"    
-                                    data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"    
-                                    data-image="https://example.com/your_logo.jpg"    
-                                    data-prefill.name="Gaurav Kumar"    
-                                    data-prefill.email="gaurav.kumar@example.com"    
-                                    data-theme.color="#F37254">
-                                </script>
-                                <input type="hidden" custom="Hidden Element" name="hidden">
-                            </form>
-                            
-
-                        
-                            <div style="margin-top: 10px;margin-bottom: 10px;">
-
-                                <a href="{% url 'HOME' %}"><button>cancel</button></a>
-                                
-                                <a><input type="submit" value="confirm and pay" name='osub'></a>
-                            
                             </div>
                         </div>
-                    
+                        <hr>
+                        {% endfor%}
+
+                        <!-- -------------------Main Section End---------------------- -->
+
                     </div>
-                
-                </form>
+
+
+
+                    <div class="col-md-8 mx-auto">
+                        <div class="contact-title">
+                            <h3 style="color: #01B3E4">Billing Address</h3>
+                        </div>
+                        <br />
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="messages"></div>
+                            <div class="controls">
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input id="name" class="form-control custom-form" placeholder="*Full Name: "
+                                                required="required" data-error="Valid email is required." name="name"
+                                                type="text">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input id="email" class="form-control custom-form" required="required"
+                                                data-error="Valid email is required." name="date" type="text"
+                                                placeholder="*Service-Date: ">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input id="email" class="form-control custom-form" required="required"
+                                                data-error="Valid email is required." name="city" type="text"
+                                                placeholder="*City: ">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input class="form-control custom-form" required="required"
+                                                data-error="Valid email is required." name="state" type="text"
+                                                placeholder="*State: ">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input id="email" class="form-control custom-form" required="required"
+                                                data-error="Valid email is required." name="address" type="text"
+                                                placeholder="*Address: ">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input id="email" class="form-control custom-form" required="required"
+                                                data-error="Valid email is required." name="pincode" type="number"
+                                                placeholder="*Pin-Code: ">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                   
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input id="email" class="form-control custom-form" required="required"
+                                                data-error="Valid email is required." name="phone" type="text"
+                                                placeholder="*Contact.No: ">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <p class="required">
+                                            * These fields are required.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <form action="https://www.example.com/payment/success/" method="POST">
+                                            <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="YOUR_KEY_ID" //
+                                                Enter the Test API Key ID generated from Dashboard → Settings → API Keys
+                                                data-amount={{p}} // Amount is in currency subunits. Hence, 29935 refers to
+                                                29935 paise or ₹299.35. data-currency="INR" // You can accept international
+                                                payments by changing the currency code. Contact our Support Team to enable
+                                                International for your account data-order_id="order_CgmcjRh9ti2lP7" // Replace
+                                                with the order_id generated by you in the backend.
+                                                data-buttontext="Pay with Razorpay" data-name="Acme Corp"
+                                                data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"
+                                                data-image="https://example.com/your_logo.jpg" data-prefill.name="Gaurav Kumar"
+                                                data-prefill.email="gaurav.kumar@example.com" data-theme.color="#F37254">
+                                                </script>
+                                            <input type="hidden" custom="Hidden Element" name="hidden">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group" style="margin: 20px 0">
+                                            <a href="{% url 'HOME' %}">
+                                                <button class="btn btn-washla">Cancel</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
 
             </div>
-           
-            <!-- <form method="POST">
-                {% csrf_token %}
-                
-                <div class='or'>
-                    <div class="oritem">
-                        <div style="display: none;"><input value={{qty}}  name="Qunatity">
-                        <input value={{p}}  name="price" ></div>
-                        
-                        <label>Name : </label>
-                        <input type="text" name='name'  placeholder=" enter your name " required>
-                    </div>
-                    <div class="oritem">
-                        <label>State : </label>
-                        <input type="text" name='state'  placeholder=" enter your state " required>
-                    </div>
-                    <div class="oritem">
-                        <label>city : </label>
-                        <input type="text" name='city'  placeholder=" enter your city " required>
-                    </div>
-                    <div class="oritem">
-                        <label>Address: </label>
-                        <input type="text" name='address' placeholder="enter your address"  aria-setsize="200px" required>
-                    </div>
-                    <div class="oritem">
-                        <label>pin-code : </label>
-                        <input type="number" name='pincode'  placeholder=" enter your state " required>
-                    </div>
-                    <div class="oritem">
-                        <label>service-date</label>
-                        <input type="date" name='date'  placeholder=" enter service date " required >
-                    </div class="oritem">
-
-                    <div class="oritem">
-                        <label>Contact.no: </label>
-                        <input type="number" name='phone'  placeholder=" enter your contact number " required maxlength="11" minlength="11">
-                    </div>
-                    
-                </div>
-
-                <div class="order">
-                <div>
-                    <hr> 
-                    <br>
-                    <div>TOTAL = {{p}}₹</div>
-                    
-                <p> RAZORPAY INTEGRATION HERE </p>
-        <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_ov7fBmU4EJwsAn"
-        data-amount="{{p}}" data-currency="INR" data-order_id="{{dfghfg23456}}" 
-        data-buttontext="Pay with Razorpay"
-        data-name="Professional Cipher" data-description="Django and Data Science"
-        data-image="https://example.com/your_logo.jpg" data-prefill.name="PC" data-prefill.email="pc@studygyaan.com"
-        data-theme.color="#F37254"></script>
-                    
-                </div>
-                <div style="margin-top: 10px;margin-bottom: 10px;">
-                    <a href="{% url 'HOME' %}"><button>cancel</button></a>
-                    <a><input type="submit" value="confirm and pay" name='osub'></a>
-                </div>
-            </form> -->
-            
-            </div>
-            
         </div>
-
-
-        <!-- -------------------Main Section End---------------------- -->
-
-
     </div>
-</div>
-</div>
 
-<!-- footer -->
-{% endblock %}
+    <!-- footer -->
+    {% endblock %}
