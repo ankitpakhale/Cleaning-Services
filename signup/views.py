@@ -120,12 +120,13 @@ def userLogin(request):
         pass1 = request.POST.get('password')
         try:
             check = signUp.objects.get(email = em)
-            print(check)
+            print("Email is ",em)
             if check.password == pass1:
 
                 request.session['email'] = check.email
                 
                 nameMsg = signUp.objects.all()
+                print('User logged in')
                 # return redirect('HOME')
                 return render(request,'home.html', {'key':nameMsg})
             else:
@@ -215,4 +216,5 @@ def newPassword(request):
 
 def userLogOut(request):
     del request.session['email']
+    print('User logged out')
     return redirect('LOGIN')

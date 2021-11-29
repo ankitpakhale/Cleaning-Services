@@ -14,6 +14,8 @@ urlpatterns = [
     path('myorder/',cartorder,name='MYORDER'),
     
     path('pay/',payment,name='PAYMENT'),
+    
+    path('donateMoney/',donateMoney,name='DONATEMONEY'),
 
     path('productView/<int:pk>', productView, name='PRODUCTVIEW'),
     path('productUpdate/<int:pk>', productUpdate, name='PRODUCTUPDATE'),
