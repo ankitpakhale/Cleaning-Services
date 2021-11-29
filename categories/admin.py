@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(item)
 admin.site.register(MyCart)
 admin.site.register(Order)
+admin.site.register(DonateMoney)

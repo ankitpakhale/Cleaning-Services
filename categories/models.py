@@ -32,3 +32,11 @@ class Order(models.Model):
     def __str__(self) -> str:
         return self.services
 
+class DonateMoney(models.Model):
+    person = models.ForeignKey(signUp,on_delete=models.CASCADE, null=True)
+    amount=models.PositiveIntegerField(null=True)
+    added_on= models.DateTimeField(auto_now_add=True, null=True)
+    
+    def __unicode__(self):
+        return self.person
+
