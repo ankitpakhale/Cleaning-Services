@@ -31,7 +31,6 @@
                         <br />
 
                         <!-- -----------Main Section------------------ -->
-
                         {% for i,j in k.items %}
                         <div style="display: flex; flex-direction: row; justify-content: center;">
                             <img src="{{i.images.url}}" style="width: 270px; height: 180px;">
@@ -46,15 +45,15 @@
                                     </div>
                                     <hr>
                                     <div style="margin: 15px 0px; color: #000; font-size: 18px; font-weight:bold">
-                                        Price is {{i.price}}₹
+                                        Price: ₹{{i.price}}/-
                                     </div>
                                     {% if j.quantity %}
                                     <div style="margin: 15px 0px; color: #000; font-size: 18px; font-weight:bold">
-                                        Quantity is {{j.quantity}}
+                                        Quantity: {{j.quantity}} Qty
                                     </div>
                                     {% else %}
                                     <div style="margin: 15px 0px; color: #000; font-size: 18px; font-weight:bold">
-                                        Quantity is {{j}} Qty
+                                        Quantity: {{j}} Qty
                                     </div>
                                     {% endif %}
 
@@ -63,12 +62,25 @@
                         </div>
                         <hr>
                         {% endfor%}
-
                         <!-- -------------------Main Section End---------------------- -->
 
                     </div>
 
+                    <!-- -------------------Total Pricing Section Start---------------------- -->
+                    <div class="col-md-8 mx-auto">
+                        <div class="contact-title">
+                            <div style="font-weight: 700; font-size:25px; color: #000; margin: 20px 0">
+                                Total Amount: <span style="color: #01B3E4;"> ₹{{p}}/- </span>
+                            </div>
+                        </div>
+                    </div>
 
+                    <hr>
+                    <!-- -------------------Total Pricing Section End---------------------- -->
+
+
+
+                    <!-- -------------------Billing Section Start---------------------- -->
 
                     <div class="col-md-8 mx-auto">
                         <div class="contact-title">
@@ -90,7 +102,7 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                     <div class="col-sm-6">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <input id="email" class="form-control custom-form" required="required"
                                                 data-error="Valid email is required." name="date" type="text"
@@ -114,7 +126,7 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <input id="email" class="form-control custom-form" required="required"
@@ -131,7 +143,7 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                   
+
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -154,17 +166,20 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <form action="https://www.example.com/payment/success/" method="POST">
-                                            <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="YOUR_KEY_ID" //
-                                                Enter the Test API Key ID generated from Dashboard → Settings → API Keys
-                                                data-amount={{p}} // Amount is in currency subunits. Hence, 29935 refers to
-                                                29935 paise or ₹299.35. data-currency="INR" // You can accept international
-                                                payments by changing the currency code. Contact our Support Team to enable
-                                                International for your account data-order_id="order_CgmcjRh9ti2lP7" // Replace
-                                                with the order_id generated by you in the backend.
+                                            <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                                data-key="YOUR_KEY_ID" // Enter the Test API Key ID generated from
+                                                Dashboard → Settings → API Keys data-amount={{p}} // Amount is in
+                                                currency subunits. Hence, 29935 refers to 29935 paise or ₹299.35.
+                                                data-currency="INR" // You can accept international payments by changing
+                                                the currency code. Contact our Support Team to enable International for
+                                                your account data-order_id="order_CgmcjRh9ti2lP7" // Replace with the
+                                                order_id generated by you in the backend.
                                                 data-buttontext="Pay with Razorpay" data-name="Acme Corp"
                                                 data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"
-                                                data-image="https://example.com/your_logo.jpg" data-prefill.name="Gaurav Kumar"
-                                                data-prefill.email="gaurav.kumar@example.com" data-theme.color="#F37254">
+                                                data-image="https://example.com/your_logo.jpg"
+                                                data-prefill.name="Gaurav Kumar"
+                                                data-prefill.email="gaurav.kumar@example.com"
+                                                data-theme.color="#F37254">
                                                 </script>
                                             <input type="hidden" custom="Hidden Element" name="hidden">
                                         </form>
@@ -182,6 +197,9 @@
                             </div>
                         </form>
                     </div>
+
+                    <!-- -------------------Billing Section End---------------------- -->
+
                 </div>
 
 
