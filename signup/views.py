@@ -4,6 +4,9 @@ from .models import signUp
 from django.contrib import messages
 import random
 
+import smtplib
+from email.message import EmailMessage
+
 # Create your views here.
 
 def userSignUp1(request):
@@ -89,30 +92,30 @@ def userSignUp(request):
     return render(request,'signup.html')
 
 # def userLogin1(request):
-    if request.POST:
-        em = request.POST.get('email')
-        pass1 = request.POST.get('password')
-        try:
-            check = signUp.objects.get(email = em)
-            if check.password == pass1:
-                return redirect('HOME')
-            else:
-                msg = "Invalid Password"
-            return render(request, 'login.html', {'msg' : msg})
+#     if request.POST:
+#         em = request.POST.get('email')
+#         pass1 = request.POST.get('password')
+#         try:
+#             check = signUp.objects.get(email = em)
+#             if check.password == pass1:
+#                 return redirect('HOME')
+#             else:
+#                 msg = "Invalid Password"
+#             return render(request, 'login.html', {'msg' : msg})
             
-        # except(NoReverseMatch):
-            # return redirect('ERROR')
-            # return redirect(request, 'WRONG', {'msg' : msg})
+#         except(NoReverseMatch):
+#             return redirect('ERROR')
+#             return redirect(request, 'WRONG', {'msg' : msg})
 
-        except(NameError):
-            return render(request, '404-error-page.html')
-        except(TemplateDoesNotExist):
-            return render(request, '404-error-page.html')
+#         except(NameError):
+#             return render(request, '404-error-page.html')
+#         except(TemplateDoesNotExist):
+#             return render(request, '404-error-page.html')
         
-        except:
-            msg = "Invalid Email ID"
-            return render(request, 'login.html', {'msg' : msg})
-    return render(request, 'login.html')
+#         except:
+#             msg = "Invalid Email ID"
+#             return render(request, 'login.html', {'msg' : msg})
+#     return render(request, 'login.html')
 
 def userLogin(request):
     if request.POST:
@@ -122,9 +125,7 @@ def userLogin(request):
             check = signUp.objects.get(email = em)
             print("Email is ",em)
             if check.password == pass1:
-
                 request.session['email'] = check.email
-                
                 nameMsg = signUp.objects.all()
                 print('User logged in')
                 # return redirect('HOME')
@@ -132,12 +133,10 @@ def userLogin(request):
             else:
                 msg = 'Invalid Password'
                 return render(request , 'wrongPassword.html',{'msg':msg}) 
-
         # except(NameError):
         #     return render(request, '404-error-page.html')
         # except(TemplateDoesNotExist):
         #     return render(request, '404-error-page.html')
-
         except:
             msg = 'Invalid Email ID'
             return render(request,'wrongPassword.html', {'msg':msg})
@@ -160,6 +159,21 @@ def forgot(request):
             otp = rand + rand1 + rand2 + rand3
             print(f"Your OTP is {otp}")
             
+            msg = EmailMessage()
+            msg.set_content(f'''     
+            Thank you for contacting with us.
+            Your OTP is {otp}
+            ''')
+            
+            msg['Subject'] = 'Washla Cleaning Services'
+            msg['From'] = 'akp3067@gmail.com'
+            msg['To'] = 'ankitpakhale786@gmail.com'
+            # msg['To'] = '{valid}'
+            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+            server.login("akp3067@gmail.com", "Nailson@0745")
+            server.send_message(msg)
+            server.quit()
+
             request.session['otp'] = otp
 
             return redirect('OTPCHECK')
@@ -176,7 +190,7 @@ def otpCheck(request):
             otp = request.session['otp']
             print("OTP is "+otp)
             if otp1 == otp:
-                del request.session['otp']
+                # del request.session['otp']
                 print("You Are Ready to Create New Password...")
 
                 # user = signUp.objects.get(email = otp1)
@@ -192,7 +206,8 @@ def otpCheck(request):
 
 def newPassword(request):
     print("Inside New Pass FUNCTION")
-    if 'email' in request.session:
+    if 'otp' in request.session.keys():
+    # if 'email' in request.session:
         print("Inside New Pass if CONDITION")
         if request.POST:
             pass1 = request.POST['pass1']
@@ -202,17 +217,18 @@ def newPassword(request):
 
             if pass1 == pass2:
                 print("Both password is correct")
-                obj = signUp.objects.get(email=request.session['email'])
+                obj = signUp.objects.get(email = request.session['email'])
+                # obj = signUp.objects.all()
                 obj.password = pass1
                 obj.confirmPassword = pass2
                 obj.save()
-                # del request.session['email']
-                return redirect('HOME')
+                del request.session['otp']
+                # return redirect('HOME')
+                return redirect('LOGIN')
             else:
                 return HttpResponse("<h1>Password must be same</h1>")
         return render(request,'newPass.html')
     return redirect('LOGIN')
-
 
 def userLogOut(request):
     del request.session['email']

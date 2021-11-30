@@ -19,6 +19,17 @@
         <!-- CONTACT BOX START -->
         <div class="bg-wrapper contact-wrapper mb-5">
             <div class="container">
+                
+                {% if value %}
+                <div class="row">
+                    <div class="col-lg-12 spacing-m-center">
+                        <div class="cw-box">
+                            <h2 style="color: #01B3E4; margin:-30px 0 70px 0;">{{value}}</h2>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
                 <div class="row">
 
                     <div class="col-lg-4">
@@ -72,25 +83,25 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input id="form_name" type="text" name="name" class="form-control custom-form" placeholder="*Name" required="required" data-error="Name is required.">
+                                        <input name="name" id="form_name" type="text" class="form-control custom-form" placeholder="*Name" required="required" data-error="Name is required.">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input id="form_email" type="email" name="email" class="form-control custom-form" placeholder="*Email address" required="required" data-error="Email is required.">
+                                        <input name="email"  id="form_email" type="email" class="form-control custom-form" placeholder="*Email address" required="required" data-error="Email is required.">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input id="form_phone" type="tel" name="phone" class="form-control custom-form" placeholder="*Please enter your phone" required="required" data-error="Phone is required.">
+                                        <input name="phone"  id="form_phone" type="tel" class="form-control custom-form" placeholder="*Please enter your phone" required="required" data-error="Phone is required.">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <textarea id="form_message" name="message" class="form-control message-form custom-form" placeholder="*Your message" rows="6" required="required" data-error="Please,leave us a message."></textarea>
+                                        <textarea name="message" id="form_message" class="form-control message-form custom-form" placeholder="*Your message" rows="6" required="required" data-error="Please,leave us a message."></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -103,13 +114,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-12 btn-send">
-                                    <p><input type="submit" class="btn btn-washla" value="Send message"></p>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h2 style="color: #01B3E4;">{{value}}</h2>
+                                    <p><input type="submit" class="btn btn-washla" value="Send Message"></p>
                                 </div>
                             </div>
                             

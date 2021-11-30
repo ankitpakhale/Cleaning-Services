@@ -8,6 +8,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from app1.forms import ProForm, inputForm, ProForm1, ProductForm
 
+import smtplib
+from email.message import EmailMessage
+
 # Create your views here.
 
 def home1(request):
@@ -41,19 +44,13 @@ def services(request):
         return render(request,'services.html')
     return redirect('LOGIN')
 
-def contact(request):
+def contact1(request):
     if request.POST:
         Name = request.POST['name']
-        print(Name)
         Email = request.POST['email']
-        print(Email)
         Phone = request.POST['phone']
-        print(Phone)
         Message = request.POST['message']
-        print(Message)
-
         con = contactForm()
-        
         con.name = Name
         con.email = Email
         con.phone = Phone
@@ -65,6 +62,39 @@ def contact(request):
         value = "Your response has been saved"
         return render(request, 'contact.html', {'value' : value})
     return render(request, 'contact.html')        
+
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        message = request.POST['message']
+        print(message)
+        
+        msg = EmailMessage()
+        msg.set_content(f'''     
+        Thank you for contacting with us.
+        
+        Name : {name}
+        email: {email}
+        phone: {phone}
+        message: {message}
+        ''')
+        msg['Subject'] = 'Washla Cleaning Services'
+        msg['From'] = 'akp3067@gmail.com'
+        msg['To'] = 'ankitpakhale786@gmail.com'
+        # Send the message via our own SMTP server.
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server.login("akp3067@gmail.com", "Nailson@0745")
+        server.send_message(msg)
+        server.quit()
+        messages.info(request, 'Message had been sent. Thank you for your notes')
+        # return redirect('CONTACT')    
+        value = "Your message has been sent successfully"
+        return render(request, 'contact.html', {'value' : value})
+    return render(request, 'contact.html')    
+    
 
 def faq(request):
     if 'email' in request.session:

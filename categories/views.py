@@ -10,7 +10,7 @@ import datetime
 # Create your views here.
 
 def main(request):
-    return HttpResponse("This is a Home Page")
+    return HttpResponse("This is a Main Page")
 
 def product(request):
     if 'email' in request.session:
@@ -58,7 +58,12 @@ def add_to_cart(request, d, s1):
         per=signUp.objects.get(email=request.session['email'])
         i=item.objects.get(id=d)
         if MyCart.objects.filter(person_id=per.pk, book_id=i.id, status=False).exists():
-            msg = 'This Product is already in your CART, please choose another '
+            
+            # value = 'This Product is already in your CART, please choose another '
+            # return(redirect('PRODUCTVIEW', d, {'value' : value}))
+            
+            # return render(request, 'showProduct1.html', {'value' : value})
+    
             return(HttpResponse('This Product is already in your CART, please choose another one'))
         else:
             cart=MyCart()
@@ -129,7 +134,10 @@ def cartorder(request):
             print("Amount is ", amount)
             print(type(amount),type(p))
 
-            client = razorpay.Client(auth=("rzp_test_ov7fBmU4EJwsAn", "AvmwLmd018H6gOgQrdeJPntX"))
+            client = razorpay.Client(auth=(
+                "rzp_test_ov7fBmU4EJwsAn", 
+                "AvmwLmd018H6gOgQrdeJPntX"
+            ))
 
             payment = client.order.create({
                 'amount': amount*100,
@@ -150,32 +158,27 @@ def payment(request):
         return(HttpResponse('Payment Successfully Done'))
     return redirect('LOGIN')
 
-def donateMoney10(request):
-    return render(request,'donatemoney.html')
-        
 def donateMoney(request):
     if 'email' in request.session:
-
         user=signUp.objects.get(email=request.session['email'])
         model=DonateMoney.objects.create(
             person=user,
         )
         model.amount = request.POST.get('amount', 0)
-        model.save()
-        return render(request,'donatemoney.html',{'model':model})
         
-    return redirect('LOGIN')
-    
-def donateMoney12(request):
-    if 'email' in request.session:
+        # amount= request.POST['amount']
+        # print("Amount is ", amount)
+        # client = razorpay.Client(auth=(
+        #         "rzp_test_ov7fBmU4EJwsAn", 
+        #         "AvmwLmd018H6gOgQrdeJPntX"
+        # ))
 
-        if request.method == "POST":
-            name = request.POST.get('amount')
-            amount = 50000
-
-            client = razorpay.Client(auth=("rzp_test_ov7fBmU4EJwsAn", "AvmwLmd018H6gOgQrdeJPntX"))
-
-            payment = client.order.create({'amount': amount, 'currency': 'INR', 'payment_capture': '1'})
-        return render(request, 'donatemoney.html')
+        # payment = client.order.create({
+        #     'amount': amount*100,
+        #     'currency': 'INR',
+        #     'payment_capture': '1'
+        # })
         
+        model.save() 
+        return render(request,'donateMoney.html',{'model':model})        
     return redirect('LOGIN')
