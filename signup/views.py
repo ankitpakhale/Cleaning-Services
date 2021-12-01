@@ -206,19 +206,21 @@ def otpCheck(request):
 
 def newPassword(request):
     print("Inside New Pass FUNCTION")
-    if 'otp' in request.session.keys():
-    # if 'email' in request.session:
+    # if 'otp' in request.session.keys():
+    if 'email' in request.session:
         print("Inside New Pass if CONDITION")
         if request.POST:
             pass1 = request.POST['pass1']
             pass2 = request.POST['pass2']
-            
-            print(pass1+" : "+pass2)
 
+            print(pass1+" : "+pass2)
             if pass1 == pass2:
                 print("Both password is correct")
+
+                # obj = signUp.objects.get(email =  request.POST.get('email'))
+
                 obj = signUp.objects.get(email = request.session['email'])
-                # obj = signUp.objects.all()
+
                 obj.password = pass1
                 obj.confirmPassword = pass2
                 obj.save()

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block home %}
+
+<br>
+<div class="container">
+   <h1><u>Order Bills</u></h1><br>
+   {% for i in oids %}
+        <div class="card">
+         <div class="card-body">
+            <h2><a href="{% url 'View_specific' i %}">{{ i }}</a></h2>
+         </div>
+       </div>
+       <br>
+       <br>
+   {% endfor %}
+</div>
+<br>
+
+{% endblock home %}

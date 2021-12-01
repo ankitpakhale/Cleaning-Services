@@ -5,7 +5,10 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 import razorpay
 import datetime
+import random
 
+import smtplib
+from email.message import EmailMessage
 
 # Create your views here.
 
@@ -100,6 +103,17 @@ def removecart(request,d):
 
 def cartorder(request):
     if 'email' in request.session:
+        
+        o_id = ''
+        r2 = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        r3 = random.choice('abcdefghijklmnopqrstuvwxyz')
+        r4 = random.choice('1234567890')
+        r6 = random.choice('1234567890')
+        r7 = random.choice('1234567890')
+        r8 = random.choice('1234567890')
+        o_id = r2+r3+r4+r6+r7+r8
+        print(f"Your Order Id is {o_id}")
+        
         o=signUp.objects.get(email=request.session['email'])
         obj=MyCart.objects.filter(person=o.pk)
         l=[]
@@ -111,6 +125,8 @@ def cartorder(request):
             q.append(i)
             s+=i.book.title+" Id="+str(i.book.id)+" Quantity ="+str(i.quantity)+','
             p=p+i.book.price*i.quantity
+        
+        print(l," ",q," ",p," ",s)
 
         if request.POST:
             n=request.POST['name']
@@ -121,14 +137,17 @@ def cartorder(request):
             ph=request.POST['phone']
             dat=request.POST['date']
 
-            iv=Order()
-            iv.oemail=request.session['email']
-            iv.services=s
-            iv.name=n
-            iv.service_date=dat
-            iv.contact=ph
-            iv.amount=p
-            iv.adddress=str(ad)+str(ct)+str(st)+'\n'+str(pin)
+            odr=Order()
+            odr.oemail=request.session['email']
+            odr.order_id= o_id
+            odr.services=s
+            odr.name=n
+            odr.service_date=dat
+            odr.contact=ph
+            odr.amount=p
+            odr.adddress=str(ad)+str(ct)+str(st)+'\n'+str(pin)
+            
+            odr.save()   
 
             amount= p
             print("Amount is ", amount)
@@ -138,25 +157,93 @@ def cartorder(request):
                 "rzp_test_ov7fBmU4EJwsAn", 
                 "AvmwLmd018H6gOgQrdeJPntX"
             ))
+            
+            sender_email = 'akp3067@gmail.com'
+            reciv_email = o
+            print(f"Customer's email address is {reciv_email}")
 
             payment = client.order.create({
                 'amount': amount*100,
                 'currency': 'INR',
                 'payment_capture': '1'
-            })
+            })         
+            
+            # ------------Bill Email Start----------------------
+            msg = EmailMessage()
+            msg.set_content(f'''     
+                            
+            Thank you for taking our services.
+            
+            
+            Your Order Details are:   {"<br></br>"}
 
-            iv.save()
+            Full Name       :  {n}  {"<br></br>"}
+            Order-Id        :  {o_id} {"<br></br>"}
+            Amount          :  {amount} {"<br></br>"}
+            Total Services  :  {s}  {"<br></br>"}
+            
+            ''')
+
+            msg['Subject'] = 'Washla Cleaning Services'
+            msg['From'] = sender_email
+            msg['To'] = reciv_email
+            # msg['To'] = 'ankitpakhale786@gmail.com'
+            
+            # Send the message via our own SMTP server.
+            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+            server.login(
+                "akp3067@gmail.com", 
+                ""
+            )
+
+            server.send_message(msg)
+            server.quit()
+            messages.info(request, 'Message had been sent. Thank you for your notes')
+            # ------------Bill Email End----------------------
+
             return(redirect('PAYMENT'))
-
+            
         k=dict(zip(l,q))
         return(render(request,'orderpage.html',{'k':k,'p':p}))
-    
     return redirect('LOGIN')
 
 def payment(request):
     if 'email' in request.session:
         return(HttpResponse('Payment Successfully Done'))
     return redirect('LOGIN')
+
+# def customerOrder(request):
+#     if 'email' in request.session:
+        
+#         o_id = ''
+#         r2 = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+#         r3 = random.choice('abcdefghijklmnopqrstuvwxyz')
+#         r4 = random.choice('1234567890')
+#         r6 = random.choice('1234567890')
+#         r7 = random.choice('1234567890')
+#         r8 = random.choice('1234567890')
+#         o_id = r2+r3+r4+r6+r7+r8
+#         print(o_id)
+        
+#         odr = Order()
+#         odr.order_id = o_id
+
+#         return render(request,'custAllOrders.html',{'allOrder':odr})
+#     return redirect('LOGIN')
+
+
+# def customerOrder1(request):
+#     if 'email' in request.session:
+#         Users = signUp.objects.get(email=request.session['email'])
+#         otdata = MyCart.objects.filter(person=Users)
+#         rec = set()
+#         for i in otdata:
+#             rec.add(i.order_id)
+#         rec = list(rec)
+#         rec.sort()
+#         return render(request,'custAllOrders1.html',{'oids':rec})
+#     return redirect('LOGIN') 
+
 
 def donateMoney(request):
     if 'email' in request.session:

@@ -31,10 +31,9 @@ def home(request):
         print(per)
         # print("This is name"+per.name)
         log = 'LOGOUT'
-
-        return render(request, 'home.html', {'per' : per, 'log' : log})
-        
+        return render(request, 'home.html', {'per' : per, 'log' : log})        
     return redirect('LOGIN')
+
 
 def about(request):
         return render(request,'about.html')
@@ -86,7 +85,11 @@ def contact(request):
         msg['To'] = 'ankitpakhale786@gmail.com'
         # Send the message via our own SMTP server.
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-        server.login("akp3067@gmail.com", "Nailson@0745")
+        server.login(
+            "akp3067@gmail.com", 
+            ""
+        )
+        
         server.send_message(msg)
         server.quit()
         messages.info(request, 'Message had been sent. Thank you for your notes')

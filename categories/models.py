@@ -28,9 +28,9 @@ class Order(models.Model):
     contact=models.CharField(max_length=11,default='')
     service_date=models.DateField(auto_now_add=True)
     amount=models.PositiveIntegerField(default=None)
-
     def __str__(self) -> str:
         return self.services
+
 
 class DonateMoney(models.Model):
     person = models.ForeignKey(signUp,on_delete=models.CASCADE, null=True)
