@@ -15,7 +15,7 @@ urlpatterns = [
     
     path('pay/',payment,name='PAYMENT'),
     
-    # path('custOrders/', customerOrder,name='cusorders'),
+    path('custOrders/', customerOrder,name='CUSTOMERORDER'),
     
     path('donateMoney/',donateMoney,name='DONATEMONEY'),
 

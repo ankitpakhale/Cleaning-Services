@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--SLIDER START-->
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                
+                <h1>Payment Page</h1>
+                <p>A new generation of cleaning and restoration concepts.</p>
+
+               
+            </div>
+        </div>  
+    </div>
+    <!--SLIDER END-->
+</header>
+    <!-- CONTENT START -->
+    <section>            
+        <!-- PRODUCT START -->
+        <div class="container mt-5 mb-5"> 
+            <div class="section-heading">                
+                    
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div  style="font-size: 115px; font-weight: 700; 
+                            font-family:'Open Sans', sans-serif; 
+                            color: #01B3E4; text-align: center">
+
+                                {% if mainHeading %}
+                                
+                                <h2>{{mainHeading}}</h2>
+                                
+                                <div style="margin: 90px;">{{ paymentKey1}}</div>
+                                <div style="margin: 90px;">{{ paymentKey2}}</div>
+                                <div style="margin: 90px;">{{ paymentKey3}}</div>
+                                
+                                <h2>
+                                    <a href="{% url 'CUSTOMERORDER' %}" class="nav-item nav-link" style="padding: 23px 3px; font-size: 60px;">
+                                        {{odrMsg}}
+                                    </a>
+                                </h2>
+
+                                {% else %}
+                                <h2>Payment Failed</h2>
+
+                                {% endif %}
+                            
+                            </div>
+
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div> 
+<!-- PRODUCT END -->
+</section>
+<!-- CONTENT END -->
+
+{% endblock %}

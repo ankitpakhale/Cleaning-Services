@@ -105,14 +105,16 @@ def cartorder(request):
     if 'email' in request.session:
         
         o_id = ''
-        r2 = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-        r3 = random.choice('abcdefghijklmnopqrstuvwxyz')
+        # r2 = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        # r3 = random.choice('abcdefghijklmnopqrstuvwxyz')
+        r2 = random.choice('1234567890')
+        r3 = random.choice('1234567890')
         r4 = random.choice('1234567890')
         r6 = random.choice('1234567890')
         r7 = random.choice('1234567890')
         r8 = random.choice('1234567890')
         o_id = r2+r3+r4+r6+r7+r8
-        print(f"Your Order Id is {o_id}")
+        print(f"Your Order ID is {o_id}")
         
         o=signUp.objects.get(email=request.session['email'])
         obj=MyCart.objects.filter(person=o.pk)
@@ -157,10 +159,6 @@ def cartorder(request):
                 "rzp_test_ov7fBmU4EJwsAn", 
                 "AvmwLmd018H6gOgQrdeJPntX"
             ))
-            
-            sender_email = 'akp3067@gmail.com'
-            reciv_email = o
-            print(f"Customer's email address is {reciv_email}")
 
             payment = client.order.create({
                 'amount': amount*100,
@@ -169,25 +167,32 @@ def cartorder(request):
             })         
             
             # ------------Bill Email Start----------------------
+            sender_email = 'akp3067@gmail.com'
+            reciv_email = o
+            print(f"Customer's email address is {reciv_email}")
+            
             msg = EmailMessage()
             msg.set_content(f'''     
-                            
             Thank you for taking our services.
             
             
-            Your Order Details are:   {"<br></br>"}
+            Your Order Details are:   
 
-            Full Name       :  {n}  {"<br></br>"}
-            Order-Id        :  {o_id} {"<br></br>"}
-            Amount          :  {amount} {"<br></br>"}
-            Total Services  :  {s}  {"<br></br>"}
+            Full Name       :  {n}  
+            Order-Id        :  {o_id} 
+            Amount          :  ₹{amount}/-
+            Total Services  :  {s}  
             
+            
+            Thanks and Regards 
+            Ankit Pakhale
+            Chairman, Director and CEO of Washla Cleaning Services            
             ''')
 
             msg['Subject'] = 'Washla Cleaning Services'
             msg['From'] = sender_email
-            msg['To'] = reciv_email
-            # msg['To'] = 'ankitpakhale786@gmail.com'
+            # msg['To'] = reciv_email
+            msg['To'] = 'ankitpakhale786@gmail.com'
             
             # Send the message via our own SMTP server.
             server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
@@ -209,10 +214,22 @@ def cartorder(request):
 
 def payment(request):
     if 'email' in request.session:
-        return(HttpResponse('Payment Successfully Done'))
+        mainMsg = "Thanks for choosing our services"
+        msg1 = "Payment"
+        msg2 = "Successfully"
+        msg3 = "Done"
+        odrMsg = "My Order"
+        return(render(request,'paymentSuccessPage.html',{'mainHeading':mainMsg,'paymentKey1':msg1, 'paymentKey2':msg2, 'paymentKey3':msg3, 'odrMsg':odrMsg}))
+        # return(HttpResponse('Payment Successfully Done'))
     return redirect('LOGIN')
 
-# def customerOrder(request):
+def customerOrder(request):
+    if 'email' in request.session:
+        return render(request,'tempOrder.html')
+    return redirect('LOGIN')
+
+
+# def customerOrder0(request):
 #     if 'email' in request.session:
         
 #         o_id = ''
