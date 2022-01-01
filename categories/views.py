@@ -10,6 +10,21 @@ import random
 import smtplib
 from email.message import EmailMessage
 
+# Html To Pdf -------------------
+
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+
+from xhtml2pdf import pisa
+
+from django.http import HttpResponse
+from django.views.generic import View
+
+import pdfkit
+
+# Html To Pdf -------------------
+
 # Create your views here.
 
 def main(request):
@@ -198,7 +213,7 @@ def cartorder(request):
             server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
             server.login(
                 "akp3067@gmail.com", 
-                ""
+                "Nailson1@0745"
             )
 
             server.send_message(msg)
@@ -225,8 +240,39 @@ def payment(request):
 
 def customerOrder(request):
     if 'email' in request.session:
-        return render(request,'tempOrder.html')
+        Users = signUp.objects.get(email=request.session['email'])
+        otdata = Order.objects.filter(name=Users)
+        rec = set()
+        for i in otdata:
+            rec.add(i.order_id)
+        rec = list(rec)
+        rec.sort()
+        return render(request,'custOrder.html',{'oids':rec})
+    
+        # return render(request,'custOrder.html')
     return redirect('LOGIN')
+
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html  = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+def viewSpecific(request,Orids):
+    if 'email' in request.session:
+        Users = signUp.objects.get(email=request.session['email'])
+        otdata = Order.objects.filter(name=Users,order_id=Orids)
+        tots = 0
+        for i in otdata:
+            tots += float(i.total)
+        data = {'bilam':tots,'orders':otdata,'oids':Orids,'users':Users}
+        pdf = render_to_pdf('GeneratePdf.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+    else:
+        return redirect('login')
 
 
 # def customerOrder0(request):

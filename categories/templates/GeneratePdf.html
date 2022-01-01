@@ -1,0 +1,282 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Invoice</title>
+  <style>
+      /* reset */
+
+* {
+    border: 0;
+    box-sizing: content-box;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: top;
+  }
+  
+  /* content editable */
+  
+  *[contenteditable] {
+    border-radius: 0.25em;
+    min-width: 1em;
+    outline: 0;
+  }
+  
+  *[contenteditable] {
+    cursor: pointer;
+  }
+  
+  *[contenteditable]:hover,
+  *[contenteditable]:focus,
+  td:hover *[contenteditable],
+  td:focus *[contenteditable],
+  img.hover {
+    background: #def;
+    box-shadow: 0 0 1em 0.5em #def;
+  }
+  
+  span[contenteditable] {
+    display: inline-block;
+  }
+  
+  
+  /* table */
+  
+  table {
+    font-size: 75%;
+    table-layout: fixed;
+    width: 100%;
+  }
+  table {
+    border-collapse: separate;
+    border-spacing: 2px;
+  }
+  th,
+  td {
+    border-width: 1px;
+    padding: 0.5em;
+    position: relative;
+    text-align: left;
+  }
+  th,
+  td {
+    border-radius: 0.25em;
+    border-style: solid;
+  }
+  th {
+    background: #eee;
+    border-color: #bbb;
+  }
+  td {
+    border-color: #ddd;
+  }
+  
+  /* page */
+  
+  html {
+    font: 16px/1 "Open Sans", sans-serif;
+    overflow: auto;
+    padding: 0.5in;
+  }
+  html {
+    background: #999;
+    cursor: default;
+  }
+  
+  
+  
+  /* header */
+  
+  header {
+    margin: 0 0 3em;
+  }
+  header:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  
+  header h1 {
+    background: #000;
+    border-radius: 0.25em;
+    color: #fff;
+    margin: 0 0 1em;
+    padding: 0.5em 0;
+  }
+  header address {
+    float: left;
+    font-size: 75%;
+    font-style: normal;
+    line-height: 1.25;
+    margin: 0 1em 1em 0;
+  }
+  header address p {
+    margin: 0 0 0.25em;
+  }
+  header span,
+  header img {
+    display: block;
+    float: right;
+  }
+  header span {
+    margin: 0 0 1em 1em;
+    max-height: 25%;
+    max-width: 60%;
+    position: relative;
+  }
+  header img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+  header input {
+    cursor: pointer;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  
+  /* article */
+  
+  article,
+  article address,
+  table.meta,
+  table.inventory {
+    margin: 0 0 3em;
+  }
+  article:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  article h1 {
+    clip: rect(0 0 0 0);
+    position: absolute;
+  }
+  
+  article address {
+    float: left;
+    font-size: 125%;
+    font-weight: bold;
+  }
+  
+  /* table meta & balance */
+  
+  table.meta,
+  table.balance {
+    float: right;
+    width: 36%;
+  }
+  table.meta:after,
+  table.balance:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  
+  /* table meta */
+  
+  table.meta th {
+    width: 40%;
+  }
+  table.meta td {
+    width: 60%;
+  }
+  
+  /* table items */
+  
+  table.inventory {
+    clear: both;
+    width: 100%;
+  }
+  table.inventory th {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  table.inventory td:nth-child(1) {
+    width: 26%;
+  }
+  table.inventory td:nth-child(2) {
+    width: 38%;
+  }
+  table.inventory td:nth-child(3) {
+    text-align: right;
+    width: 12%;
+  }
+  table.inventory td:nth-child(4) {
+    text-align: right;
+    width: 12%;
+  }
+  table.inventory td:nth-child(5) {
+    text-align: right;
+    width: 12%;
+  }
+  
+  /* table balance */
+  
+  table.balance th,
+  table.balance td {
+    width: 50%;
+  }
+  table.balance td {
+    text-align: right;
+  }
+
+  </style>
+</head>
+
+<body style="box-sizing: border-box;  margin: 0 auto; overflow: hidden; padding: 0.5in; width: 8.5in; box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5); background: #fff; border-radius: 1px;">
+  <header>
+    <h1 style="text-align: center; background-color: #000;">Invoice</h1>
+   
+    <span><img alt="" src="http://www.jonathantneal.com/examples/invoice/logo.png"><input type="file" accept="image/*"></span>
+  </header>
+  <article>
+    <h1>Recipient</h1>
+    <address contenteditable>
+      <p>Order ID : {{ oids }} </p>
+      <p>User Name : {{ users.name }}</p>
+      <p>User Contact No : {{ users.number }}</p>
+    </address>
+    <table class="inventory">
+      <thead>
+        <tr>
+          <th colspan="3"><span contenteditable>Service Name</span></th>
+          <th><span contenteditable>Price</span></th>
+          <th><span contenteditable>Total</span></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for i in orders %}
+      <tr>
+          <td colspan="3">{{ i.services }}</td>
+          <td>{{ i.amount }}</td>
+          <td>{{ bilam }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <table class="balance">
+      <tr>
+        <th><span contenteditable>Final Total</span></th>
+        <td><h2>{{ bilam }}</h2></td>
+      </tr>
+    </table>
+  
+</body>
+
+</html>
+
+\
