@@ -27,5 +27,7 @@ urlpatterns = [
     path('calculator/', include("calculator.urls")),
     path('fbv/', include("FBV.urls")),
     path('categories/', include("categories.urls")),
+    
+    path('qapp/', include("qapp.urls")),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

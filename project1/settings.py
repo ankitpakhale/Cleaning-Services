@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     
     'FBV',
     
-    'categories'
+    'categories',
+    
+    'qapp',
 ]
 
 MIDDLEWARE = [
