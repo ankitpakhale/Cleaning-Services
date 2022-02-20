@@ -18,7 +18,6 @@ def query(request):
     entry.blog = cheese_blog
     entry.save()
     
-    
     # joe = Author.objects.create(name = "Joe")
     # entry.authors.add(joe)
     
