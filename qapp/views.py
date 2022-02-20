@@ -11,5 +11,6 @@ def query(request):
     # b = Blog(name = "ank", tagline = "this is just a demo tagline")
     # b.save()
     
-    
+    joe = Author.objects.create(name = "Joe")
+    joe.save()
     return HttpResponse("working properly")
