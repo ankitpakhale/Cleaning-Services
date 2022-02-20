@@ -49,6 +49,12 @@ def query(request):
     # print("Author Name is ", authorName)
     # on the basis of year we have filtered out all the entries of year 2022
     
+    # 8th query
+    # auth = Author(name="demo8", email = "demo8th@gmail.com").save()
+    # print("This is 8th numbered query ",auth)
+    
+    
+    
     
     
     
