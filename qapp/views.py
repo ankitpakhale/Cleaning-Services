@@ -35,6 +35,19 @@ def query(request):
     # Entry --> Author --> above line
     
     # 5th query
+    # all_entries = Entry.objects.all()
+    # print(all_entries)
+    
+    # 6th query
+    year = Entry.objects.filter(pub_date__year = 2010)
+    print("Year is ", year)
+    # on the basis of year we have filtered out all the entries of year 2022
+    
+    # doubted query
+    # 7th query
+    # authorName = Entry.objects.filter(authors = 'ank')
+    # print("Author Name is ", authorName)
+    # on the basis of year we have filtered out all the entries of year 2022
     
     
     
