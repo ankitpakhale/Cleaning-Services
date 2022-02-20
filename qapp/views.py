@@ -43,16 +43,21 @@ def query(request):
     print("Year is ", year)
     # on the basis of year we have filtered out all the entries of year 2022
     
-    # doubted query
     # 7th query
-    # authorName = Entry.objects.filter(authors = 'ank')
-    # print("Author Name is ", authorName)
-    # on the basis of year we have filtered out all the entries of year 2022
+    authorName = Entry.objects.filter(blog__name = 'ank')
+    print("Author Name is ", authorName)
+    # on the basis of year we have filtered out all the entries of blog that contains name = 'ank'
+    
+    # doubted query
+    data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum turpis lorem, et ullamcorper nisi ultricies sed. Integer id odio suscipit, tempor lectus vel, sollicitudin nunc. Vivamus non vulputate lorem, nec egestas lectus. Sed volutpat magna sit amet nunc pulvinar dignissim. Nulla malesuada tortor vitae tellus blandit, id tincidunt velit finibus. Donec mattis, nunc in scelerisque dictum, est mi pulvinar lorem, nec feugiat felis justo in sem. Duis aliquam, erat eu eleifend lacinia, augue ante rhoncus diam, laoreet commodo risus ante a ante. Ut vitae mauris sodales, ullamcorper nulla sed, auctor lectus. Sed rhoncus nunc odio. Integer vel dapibus risus."
+    print(data)
+    authorName.body_text = data
+    authorName.save()
+    
     
     # 8th query
     # auth = Author(name="demo8", email = "demo8th@gmail.com").save()
     # print("This is 8th numbered query ",auth)
-    
     
     
     
