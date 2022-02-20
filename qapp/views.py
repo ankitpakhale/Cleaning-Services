@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Blog, Entry
+from .models import Blog, Entry, Author
 
 # Create your views here.
 
@@ -23,5 +23,11 @@ def query(request):
     entry.save()
     
     # john = Author.objects.create(name = "John")
+    # lucky = Author.objects.create(name="Lucky")
+    # harry = Author.objects.create(name="harry")
+    # ank = Author.objects.create(name="ank")
+    # entry.authors.add(john, lucky, harry, ank) 
+    # above line will add multiple Author in Author field in Entry model
+    # Entry --> Author --> above line
     
     return HttpResponse("working properly")
