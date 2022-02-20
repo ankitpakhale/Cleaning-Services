@@ -10,11 +10,14 @@ def index(request):
 def query(request):
     # b = Blog(name = "ank", tagline = "this is just a demo tagline")
     # b.save()
-    
+
+  
+    # doubted query
     entry = Entry.objects.get(pk=1)
     cheese_blog = Blog.objects.get(name="ank")
     entry.blog = cheese_blog
     entry.save()
+    
     
     # joe = Author.objects.create(name = "Joe")
     # entry.authors.add(joe)
