@@ -54,7 +54,6 @@ def query(request):
     authorName.body_text = data
     authorName.save()
     
-    
     # 8th query
     # auth = Author(name="demo8", email = "demo8th@gmail.com").save()
     # print("This is 8th numbered query ",auth)
