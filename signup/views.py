@@ -55,7 +55,6 @@ def userLogin(request):
                 msg = "Please fill all the given fields" 
                 return render(request , 'login.html',{'msg':msg}) 
             
-            
             # nav bar HEADER NAME PENDING
             elif check.password == pass1:
                 request.session['email'] = check.email
