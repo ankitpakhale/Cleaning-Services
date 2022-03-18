@@ -21,7 +21,11 @@ def userSignUp(request):
         ConfirmPassword = request.POST['confirmPassword']
         print(ConfirmPassword)
         try:
-            if ConfirmPassword == Password:
+            if (len(Password) < 8):
+                msg = "Password should be greater than 8 characters" 
+                return render(request , 'signup.html',{'msg':msg}) 
+            
+            elif ConfirmPassword == Password:
                 v = signUp()
                 v.name = Name
                 v.email = Email
