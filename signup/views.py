@@ -67,7 +67,7 @@ def userLogin(request):
             msg = 'Invalid Email ID'
             # return render(request,'wrongPassword.html', {'msg':msg})
             return render(request,'login.html', {'msg':msg})
-        
+
     return render(request,'login.html')
 
 def forgot(request):
