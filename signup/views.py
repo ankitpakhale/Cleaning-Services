@@ -33,8 +33,11 @@ def userSignUp(request):
             else:
                 msg = 'Please Enter Same Password'
                 return render(request , 'signup.html',{'msg':msg}) 
-        except(NameError, TemplateDoesNotExist):
+        except(NameError):
             return render(request, '404-error-page.html')
+        
+        # except(TemplateDoesNotExist):
+        #     return render(request, '404-error-page.html')
         
         finally:
             messages.success(request, 'Signup Successfully Done...')
