@@ -31,7 +31,7 @@ def userSignUp(request):
                 v.save()
                 return redirect('LOGIN')
             else:
-                msg = 'Enter Same Password'
+                msg = 'Please Enter Same Password'
                 return render(request , 'signup.html',{'msg':msg}) 
         except(NameError, TemplateDoesNotExist):
             return render(request, '404-error-page.html')
