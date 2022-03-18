@@ -51,6 +51,7 @@ def productView(request, pk):
                 qty=int(request.POST['qty'])
                 if qty>1:
                     qty=qty-1
+                    
         return(render(request,'showProduct1.html', {'object':obj,'qty':qty}))
     return redirect('LOGIN')
 
@@ -201,7 +202,7 @@ def cartorder(request):
             
             Thanks and Regards 
             Ankit Pakhale
-            Chairman, Director and CEO of Washla Cleaning Services            
+            Chairman, MD and CEO of Washla Cleaning Services            
             ''')
 
             msg['Subject'] = 'Washla Cleaning Services'

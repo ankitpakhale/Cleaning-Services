@@ -35,6 +35,8 @@
                                 Rs {{object.price}}/-
                             </a> -->
 
+
+                        <!-- Qty module start -->
                         <form method="POST">
                             {% csrf_token %}
                             <span style="color: #000; font-weight: 600; font-size: 16px;">
@@ -44,6 +46,8 @@
                             <input value={{qty}} min="1" name="qty" readonly>
                             <input type="submit" value="+" name='psub'>
                         </form>
+                        
+                        <!-- Qty module end -->
 
                         <a href="{% url 'CART' object.id qty %}">
                             <span
