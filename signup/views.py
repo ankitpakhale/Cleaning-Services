@@ -47,20 +47,27 @@ def userLogin(request):
         try:
             check = signUp.objects.get(email = em)
             print("Email is ",em)
+            
             if check.password == pass1:
                 request.session['email'] = check.email
                 nameMsg = signUp.objects.all()
                 print('User logged in')
                 # return redirect('HOME')
                 return render(request,'home.html', {'key':nameMsg})
+            
             else:
                 msg = 'Invalid Password'
-                return render(request , 'wrongPassword.html',{'msg':msg}) 
+                # return render(request , 'wrongPassword.html',{'msg':msg}) 
+                return render(request , 'login.html',{'msg':msg}) 
+            
         except(NameError, TemplateDoesNotExist):
             return render(request, '404-error-page.html')
+        
         except:
             msg = 'Invalid Email ID'
-            return render(request,'wrongPassword.html', {'msg':msg})
+            # return render(request,'wrongPassword.html', {'msg':msg})
+            return render(request,'login.html', {'msg':msg})
+        
     return render(request,'login.html')
 
 def forgot(request):
