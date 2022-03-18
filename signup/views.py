@@ -51,6 +51,10 @@ def userLogin(request):
             check = signUp.objects.get(email = em)
             print("Email is ",em)
             
+            if (em == "" or pass1 == ""):
+                msg = "Please fill all the given fields" 
+                return render(request , 'login.html',{'msg':msg}) 
+            
             if check.password == pass1:
                 request.session['email'] = check.email
                 nameMsg = signUp.objects.all()
