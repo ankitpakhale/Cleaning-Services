@@ -21,6 +21,7 @@ def userSignUp(request):
         ConfirmPassword = request.POST['confirmPassword']
         print(ConfirmPassword)
         try:
+            
             if (len(Password) < 8):
                 msg = "Password should be greater than 8 characters" 
                 return render(request , 'signup.html',{'msg':msg}) 
@@ -68,6 +69,9 @@ def userLogin(request):
                 print('User logged in')
                 # return redirect('HOME')
                 return render(request,'home.html', {'key':nameMsg})
+            
+            
+            
             
             else:
                 msg = 'Invalid Password'
