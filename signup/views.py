@@ -11,22 +11,26 @@ from email.message import EmailMessage
 def userSignUp(request):
     if request.POST:
         Name = request.POST['name']
-        print(Name)
+        print(Name) 
         Email = request.POST['email']
         print(Email)
         Number = request.POST['number']
         print(Number)
+        print(len(Number))
         Password = request.POST['password']
         print(Password)
         ConfirmPassword = request.POST['confirmPassword']
         print(ConfirmPassword)
         try:
+            if (len(Number) > 10) or (len(Number) < 10) :
+                msg = "Phone number should be equal to 10 characters" 
+                return render(request , 'signup.html',{'msg':msg}) 
             
-            if (len(Password) < 8):
+            elif (len(Password) < 8):
                 msg = "Password should be greater than 8 characters" 
                 return render(request , 'signup.html',{'msg':msg}) 
             
-            elif ConfirmPassword == Password:
+            elif (ConfirmPassword == Password) & (Number == 10):
                 v = signUp()
                 v.name = Name
                 v.email = Email

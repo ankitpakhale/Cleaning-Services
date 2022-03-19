@@ -40,7 +40,8 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <input id="num" type="number" name="number" class="form-control custom-form"
+                                <!-- pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" -->
+                                <input minlength="10" maxlength="10" id="num" type="number" name="number" class="form-control custom-form"
                                     placeholder="*Phone" required="required" data-error="Valid number is required.">
                                 <div class="help-block with-errors"></div>
                             </div>
