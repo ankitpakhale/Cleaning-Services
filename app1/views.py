@@ -29,7 +29,9 @@ def home(request):
         print(user1)
         per = signUp.objects.get(email = user1)
         print(per)
+        
         # print("This is name"+per.name)
+        
         log = 'LOGOUT'
         return render(request, 'home.html', {'per' : per, 'log' : log})        
     return redirect('LOGIN')
