@@ -8,6 +8,7 @@ from email.message import EmailMessage
 
 # Create your views here.
 
+
 def userSignUp(request):
     if request.POST:
         Name = request.POST['name']
