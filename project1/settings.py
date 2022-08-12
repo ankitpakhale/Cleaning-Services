@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'jazzmin',
     'report_builder',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,11 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app1',
     'signup',
-    'calculator',
-    'FBV',
     'categories',
-    
-    'qapp',
 ]
 
 MIDDLEWARE = [

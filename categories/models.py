@@ -2,7 +2,7 @@ from django.db import models
 from signup.models import signUp
 
 class item(models.Model):
-    images = models.ImageField(upload_to='pro_img',blank=True)
+    images = models.ImageField(upload_to='pro_img', blank=True)
     title = models.CharField(default='', max_length=20)
     price = models.PositiveIntegerField(default='')
     description = models.CharField(default='', max_length=90)
@@ -20,7 +20,7 @@ class MyCart(models.Model):
         return self.person.name
 
 class Order(models.Model):
-    order_id=models.AutoField(primary_key=True)
+    order_id=models.CharField(max_length=10, default='', null=False, blank=True)
     oemail=models.EmailField(default='')
     name=models.CharField(max_length=25,default='')
     services=models.CharField(max_length=500,default='')
@@ -29,14 +29,11 @@ class Order(models.Model):
     service_date=models.DateField(auto_now_add=True)
     amount=models.PositiveIntegerField(default=None)
     def __str__(self) -> str:
-        return self.services
-
+        return self.name
 
 class DonateMoney(models.Model):
     person = models.ForeignKey(signUp,on_delete=models.CASCADE, null=True)
     amount=models.PositiveIntegerField(null=True)
     added_on= models.DateTimeField(auto_now_add=True, null=True)
-    
     def __unicode__(self):
         return self.person
-

@@ -16,19 +16,14 @@ urlpatterns = [
     path('blog/', blog, name='BLOG'),
     path('blogsingle/', blogSingle, name='BLOGSINGLE'),
 
-    # path('mainproduct/', mainProduct, name='MAINPRODUCT'),
-    # path('product/<int:pk>', product, name='PRODUCT'),
-    # path('productView/<int:pk>', productList, name='PRODUCTLIST'),
-    # path('productUpdate/<int:pk>', productUpdate, name='PRODUCTUPDATE'),
-    # path('productDelete/<int:pk>', productDelete, name='PRODUCTDELETE'),
-
-    path('calculator/', calculator, name='CALCULATOR'),
-    path('<int:id1>/', show, name='SHOW'),
-
+    path('mainproduct/', mainProduct, name='MAINPRODUCT'),
+    path('product/<int:pk>', product, name='PRODUCT'),
+    path('productView/<int:pk>', productList, name='PRODUCTLIST'),
+    path('productUpdate/<int:pk>', productUpdate, name='PRODUCTUPDATE'),
+    path('productDelete/<int:pk>', productDelete, name='PRODUCTDELETE'),
+    
     path('login/', userLogin, name='LOGIN'),
     path('signup/', userSignUp, name='SIGNUP'),
-
-    path('index/', index),
     path('list/', list),
     path('datasubmit/', datasubmit),
 ]

@@ -19,15 +19,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('report_builder/', include("report_builder.urls")),
-    
     path('admin/', admin.site.urls),
     path('', include("app1.urls")),
-    path('signup/', include("signup.urls")),
-    path('calculator/', include("calculator.urls")),
-    path('fbv/', include("FBV.urls")),
+    path('auth/', include("signup.urls")),
     path('categories/', include("categories.urls")),
-    
-    path('qapp/', include("qapp.urls")),
-
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

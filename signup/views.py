@@ -12,26 +12,21 @@ from email.message import EmailMessage
 def userSignUp(request):
     if request.POST:
         Name = request.POST['name']
-        print(Name) 
         Email = request.POST['email']
-        print(Email)
         Number = request.POST['number']
-        print(Number)
-        print(len(Number))
         Password = request.POST['password']
-        print(Password)
         ConfirmPassword = request.POST['confirmPassword']
-        print(ConfirmPassword)
         try:
-            if (len(Number) > 10) or (len(Number) < 10) :
-                msg = "Phone number should be equal to 10 characters" 
-                return render(request , 'signup.html',{'msg':msg}) 
+            # if (len(Number) > 10) or (len(Number) < 10) :
+            #     msg = "Phone number should be equal to 10 characters" 
+            #     return render(request , 'signup.html',{'msg':msg}) 
             
-            elif (len(Password) < 8):
-                msg = "Password should be greater than 8 characters" 
-                return render(request , 'signup.html',{'msg':msg}) 
+            # elif (len(Password) < 8):
+            #     msg = "Password should be greater than 8 characters" 
+            #     return render(request , 'signup.html',{'msg':msg}) 
             
-            elif (ConfirmPassword == Password) & (Number == 10):
+            # if (ConfirmPassword == Password) & (Number == 10):
+            if ConfirmPassword == Password:
                 v = signUp()
                 v.name = Name
                 v.email = Email
@@ -65,18 +60,13 @@ def userLogin(request):
                 msg = "Please fill all the given fields" 
                 return render(request , 'login.html',{'msg':msg}) 
             
-                        
-            
             # nav bar HEADER NAME PENDING
             elif check.password == pass1:
                 request.session['email'] = check.email
                 nameMsg = signUp.objects.all()
                 print('User logged in')
-                # return redirect('HOME')
-                return render(request,'home.html', {'key':nameMsg})
-            
-            
-            
+                return redirect('HOME')
+                # return render(request,'home.html', {'key':nameMsg})
             
             else:
                 msg = 'Invalid Password'
@@ -120,7 +110,7 @@ def forgot(request):
             msg['To'] = 'ankitpakhale786@gmail.com'
             # msg['To'] = '{valid}'
             server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-            server.login("akp3067@gmail.com", "Nailson@0745")
+            server.login("manage.py.flush@gmail.com", "Nikhil@404")
             server.send_message(msg)
             server.quit()
             request.session['otp'] = otp
@@ -139,10 +129,8 @@ def otpCheck(request):
             if otp1 == otp:
                 # del request.session['otp']
                 print("You Are Ready to Create New Password...")
-
                 # user = signUp.objects.get(email = otp1)
-                # request.session['email'] = user.email
-    
+                # request.session['email'] = user.email    
                 return redirect('NEWPASS')
             else:
                 del request.session['otp']
@@ -150,7 +138,6 @@ def otpCheck(request):
         return render(request,'otpCheck.html')
     else:
         return redirect('LOGIN')
-
 def newPassword(request):
     print("Inside New Pass FUNCTION")
     # if 'otp' in request.session.keys():
@@ -159,13 +146,9 @@ def newPassword(request):
         if request.POST:
             pass1 = request.POST['pass1']
             pass2 = request.POST['pass2']
-
-            print(pass1+" : "+pass2)
             if pass1 == pass2:
                 print("Both password is correct")
-
                 # obj = signUp.objects.get(email =  request.POST.get('email'))
-
                 obj = signUp.objects.get(email = request.session['email'])
 
                 obj.password = pass1

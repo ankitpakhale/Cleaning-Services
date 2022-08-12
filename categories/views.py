@@ -6,25 +6,14 @@ from django.contrib import messages
 import razorpay
 import datetime
 import random
-
 import smtplib
 from email.message import EmailMessage
-
-# Html To Pdf -------------------
-
 from io import BytesIO
 from django.http import HttpResponse
 from django.template.loader import get_template
-
 from xhtml2pdf import pisa
-
 from django.http import HttpResponse
 from django.views.generic import View
-
-import pdfkit
-
-# Html To Pdf -------------------
-
 # Create your views here.
 
 def main(request):
@@ -51,7 +40,6 @@ def productView(request, pk):
                 qty=int(request.POST['qty'])
                 if qty>1:
                     qty=qty-1
-                    
         return(render(request,'showProduct1.html', {'object':obj,'qty':qty}))
     return redirect('LOGIN')
 
@@ -78,9 +66,7 @@ def add_to_cart(request, d, s1):
         i=item.objects.get(id=d)
         if MyCart.objects.filter(person_id=per.pk, book_id=i.id, status=False).exists():
             
-            # value = 'This Product is already in your CART, please choose another '
-            # return(redirect('PRODUCTVIEW', d, {'value' : value}))
-            
+            # value = 'This Product is already in your CART, please choose another '     
             # return render(request, 'showProduct1.html', {'value' : value})
     
             return(HttpResponse('This Product is already in your CART, please choose another one'))
@@ -119,19 +105,8 @@ def removecart(request,d):
 
 def cartorder(request):
     if 'email' in request.session:
-        
-        o_id = ''
-        # r2 = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-        # r3 = random.choice('abcdefghijklmnopqrstuvwxyz')
-        r2 = random.choice('1234567890')
-        r3 = random.choice('1234567890')
-        r4 = random.choice('1234567890')
-        r6 = random.choice('1234567890')
-        r7 = random.choice('1234567890')
-        r8 = random.choice('1234567890')
-        o_id = r2+r3+r4+r6+r7+r8
+        o_id = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890') for i in range(8))
         print(f"Your Order ID is {o_id}")
-        
         o=signUp.objects.get(email=request.session['email'])
         obj=MyCart.objects.filter(person=o.pk)
         l=[]
@@ -145,7 +120,6 @@ def cartorder(request):
             p=p+i.book.price*i.quantity
         
         print(l," ",q," ",p," ",s)
-
         if request.POST:
             n=request.POST['name']
             st=request.POST['state']
@@ -154,7 +128,6 @@ def cartorder(request):
             pin=request.POST['pincode']
             ph=request.POST['phone']
             dat=request.POST['date']
-
             odr=Order()
             odr.oemail=request.session['email']
             odr.order_id= o_id
@@ -164,27 +137,26 @@ def cartorder(request):
             odr.contact=ph
             odr.amount=p
             odr.adddress=str(ad)+str(ct)+str(st)+'\n'+str(pin)
-            
-            odr.save()   
-
+            odr.save()
             amount= p
             print("Amount is ", amount)
             print(type(amount),type(p))
 
             client = razorpay.Client(auth=(
-                "rzp_test_ov7fBmU4EJwsAn", 
-                "AvmwLmd018H6gOgQrdeJPntX"
+                "rzp_test_qDwTmKnksUVsaC", 
+                "QOr66ZQbsLdNZOmrV4YGX50V"
             ))
-
             payment = client.order.create({
                 'amount': amount*100,
                 'currency': 'INR',
                 'payment_capture': '1'
             })         
-            
             # ------------Bill Email Start----------------------
-            sender_email = 'akp3067@gmail.com'
-            reciv_email = o
+            
+            sender_email = 'manage.py.flush@gmail.com'
+            sender_pw = 'Nikhil@404'
+            
+            reciv_email = 'ankitpakhale786@gmail.com'
             print(f"Customer's email address is {reciv_email}")
             
             msg = EmailMessage()
@@ -207,26 +179,20 @@ def cartorder(request):
 
             msg['Subject'] = 'Washla Cleaning Services'
             msg['From'] = sender_email
-            # msg['To'] = reciv_email
-            msg['To'] = 'ankitpakhale786@gmail.com'
+            msg['To'] = reciv_email
             
             # Send the message via our own SMTP server.
             server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-            server.login(
-                "akp3067@gmail.com", 
-                "Nailson1@0745"
-            )
-
+            server.login(sender_email,sender_pw)
             server.send_message(msg)
             server.quit()
             messages.info(request, 'Message had been sent. Thank you for your notes')
             # ------------Bill Email End----------------------
-
             return(redirect('PAYMENT'))
-            
         k=dict(zip(l,q))
         return(render(request,'orderpage.html',{'k':k,'p':p}))
     return redirect('LOGIN')
+
 
 def payment(request):
     if 'email' in request.session:
