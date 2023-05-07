@@ -81,12 +81,12 @@ def contact(request):
         message: {message}
         ''')
         msg['Subject'] = 'Washla Cleaning Services'
-        msg['From'] = 'akp3067@gmail.com'
-        msg['To'] = 'ankitpakhale786@gmail.com'
+        msg['From'] = 'manage.py.flush@gmail.com'
+        msg['To'] = 'manage.py.flush@gmail.com'
         # Send the message via our own SMTP server.
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.login(
-            "akp3067@gmail.com", 
+            "manage.py.flush@gmail.com", 
             "0"
         )
         

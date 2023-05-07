@@ -183,7 +183,7 @@ def cartorder(request):
             })         
             
             # ------------Bill Email Start----------------------
-            sender_email = 'akp3067@gmail.com'
+            sender_email = 'manage.py.flush@gmail.com'
             reciv_email = o
             print(f"Customer's email address is {reciv_email}")
             
@@ -200,7 +200,7 @@ def cartorder(request):
             Total Services  :  {s}  
             
             
-            Thanks and Regards 
+            Best Regards 
             Ankit Pakhale
             Chairman, MD and CEO of Washla Cleaning Services            
             ''')
@@ -208,12 +208,12 @@ def cartorder(request):
             msg['Subject'] = 'Washla Cleaning Services'
             msg['From'] = sender_email
             # msg['To'] = reciv_email
-            msg['To'] = 'ankitpakhale786@gmail.com'
+            msg['To'] = 'manage.py.flush@gmail.com'
             
             # Send the message via our own SMTP server.
             server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
             server.login(
-                "akp3067@gmail.com", 
+                "manage.py.flush@gmail.com", 
                 "0"
             )
 
