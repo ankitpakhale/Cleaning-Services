@@ -9,13 +9,22 @@ Project Washla is an e-commerce website built on Django that offers cleaning ser
 ## Installation
 
 1. Clone the repository from GitHub:
+
+   ```
    git clone https://github.com/ankitpakhale/Cleaning-Services
+   ```
 
 2. Change into the project directory:
+
+   ```
    cd Cleaning-Services
+   ```
 
 3. Create a virtual environment:
+
+   ```
    python -m venv venv
+   ```
 
 4. Activate the virtual environment:
 
@@ -29,13 +38,22 @@ Project Washla is an e-commerce website built on Django that offers cleaning ser
   ```
 
 5. Install the required dependencies:
+
+   ```
    pip install -r requirements.txt
+   ```
 
 6. Perform database migrations:
+
+   ```
    python manage.py migrate
+   ```
 
 7. Run the development server:
+
+   ```
    python manage.py runserver
+   ```
 
 8. Open your web browser and visit `http://localhost:8000` to access the website.
 
@@ -53,7 +71,7 @@ The project follows a modular structure with separate apps for individual functi
 
 - **app1**: This app is a general-purpose app for managing other pages of the website. It can handle creating, updating, and deleting pages such as About Us, Blogs, Testimonials, Contact, FAQs, Not Found 404, etc.
 
-- *Other apps*: You can create additional apps as needed for other functionalities, such as shopping cart, payment gateway integration, and donation management.
+- _Other apps_: You can create additional apps as needed for other functionalities, such as shopping cart, payment gateway integration, and donation management.
 
 ## Features
 
@@ -98,6 +116,7 @@ The project follows a modular structure with separate apps for individual functi
 - Ankit Pakhale (akp3067@gmail.com)
 
 ## License
+
 This project is licensed under the [MIT License](LICENSE). Feel free to modify and use the code as per your requirements.
 
 For more information, please refer to the [license file](LICENSE).
