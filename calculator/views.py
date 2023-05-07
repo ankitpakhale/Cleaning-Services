@@ -29,7 +29,6 @@ def index(request):
 #         res = "Only digits are allowed for Subtraction operation"
 #     return render(request, "input.html", {"result" : res})
 
-
 # def multiplication(request):
 #     num1 = request.POST['num1']
 #     num2 = request.POST['num2']
