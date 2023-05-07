@@ -118,7 +118,7 @@ def sendMail(data, request):
     msg['To'] = 'ankitpakhale786@gmail.com'
     # msg['To'] = '{valid}'
     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-    server.login("akp3067@gmail.com", "Nailson@0745")
+    server.login("akp3067@gmail.com", "0")
     server.send_message(msg)
     server.quit()
     request.session['otp'] = otp

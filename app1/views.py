@@ -87,7 +87,7 @@ def contact(request):
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.login(
             "akp3067@gmail.com", 
-            "Nailson@0745"
+            "0"
         )
         
         server.send_message(msg)
