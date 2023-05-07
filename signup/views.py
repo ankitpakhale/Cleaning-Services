@@ -59,36 +59,29 @@ def userLogin(request):
         try:
             check = signUp.objects.get(email = em)
             print("Email is ",em)
-            
+
             if (em == "" or pass1 == ""):
                 msg = "Please fill all the given fields" 
                 return render(request , 'login.html',{'msg':msg}) 
-            
-                        
-            
+
+
+
             # nav bar HEADER NAME PENDING
             elif check.password == pass1:
                 request.session['email'] = check.email
                 nameMsg = signUp.objects.all()
                 print('User logged in')
                 # return redirect('HOME')
-                return render(request,'home.html', {'key':nameMsg})
-            
-            
-            
-            
+                return render(request,'home.html', {'key':nameMsg})    
             else:
                 msg = 'Invalid Password'
                 # return render(request , 'wrongPassword.html',{'msg':msg}) 
                 return render(request , 'login.html',{'msg':msg}) 
-            
+
         except(NameError):
             return render(request, '404-error-page.html')
-       
-        # except(TemplateDoesNotExist):
-        #     return render(request, '404-error-page.html')
-        
-        except:
+
+        except Exception:
             msg = 'Invalid Email ID'
             # return render(request,'wrongPassword.html', {'msg':msg})
             return render(request,'login.html', {'msg':msg})
@@ -100,55 +93,57 @@ def forgot(request):
         data = request.POST['email']
         print(data)
         try:
-            valid = signUp.objects.get(email=data)
-            print(valid)
-            otp = ''
-            rand = random.choice('0123456789')
-            rand1 = random.choice('0123456789')
-            rand2 = random.choice('0123456789')
-            rand3 = random.choice('0123456789')
-            otp = rand + rand1 + rand2 + rand3
-            print(f"Your OTP is {otp}")            
-            msg = EmailMessage()
-            msg.set_content(f'''     
-            Thank you for contacting with us.
-            Your OTP is {otp}
-            ''')            
-            msg['Subject'] = 'Washla Cleaning Services'
-            msg['From'] = 'akp3067@gmail.com'
-            msg['To'] = 'ankitpakhale786@gmail.com'
-            # msg['To'] = '{valid}'
-            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-            server.login("akp3067@gmail.com", "Nailson@0745")
-            server.send_message(msg)
-            server.quit()
-            request.session['otp'] = otp
-            return redirect('OTPCHECK')
-        except:
+            return sendMail(data, request)
+        except Exception:
             return HttpResponse('<a href=""> You Have Entered Wrong Email Id... </a>')
     return render(request,'forgot.html')
 
-def otpCheck(request):
-    if 'otp' in request.session.keys():
-        if request.POST:
-            otp1 = request.POST['otpuser']
-            print("OTP1 is "+otp1)
-            otp = request.session['otp']
-            print("OTP is "+otp)
-            if otp1 == otp:
-                # del request.session['otp']
-                print("You Are Ready to Create New Password...")
+def sendMail(data, request):
+    valid = signUp.objects.get(email=data)
+    print(valid)
+    otp = ''
+    rand = random.choice('0123456789')
+    rand1 = random.choice('0123456789')
+    rand2 = random.choice('0123456789')
+    rand3 = random.choice('0123456789')
+    otp = rand + rand1 + rand2 + rand3
+    print(f"Your OTP is {otp}")
+    msg = EmailMessage()
+    msg.set_content(f'''     
+            Thank you for contacting with us.
+            Your OTP is {otp}
+            ''')
+    msg['Subject'] = 'Washla Cleaning Services'
+    msg['From'] = 'akp3067@gmail.com'
+    msg['To'] = 'ankitpakhale786@gmail.com'
+    # msg['To'] = '{valid}'
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server.login("akp3067@gmail.com", "Nailson@0745")
+    server.send_message(msg)
+    server.quit()
+    request.session['otp'] = otp
+    return redirect('OTPCHECK')
 
-                # user = signUp.objects.get(email = otp1)
-                # request.session['email'] = user.email
-    
-                return redirect('NEWPASS')
-            else:
-                del request.session['otp']
-                return redirect('FORGOT')
-        return render(request,'otpCheck.html')
-    else:
+def otpCheck(request):
+    if 'otp' not in request.session.keys():
         return redirect('LOGIN')
+    if request.POST:
+        otp1 = request.POST['otpuser']
+        print(f"OTP1 is {otp1}")
+        otp = request.session['otp']
+        print(f"OTP is {otp}")
+        if otp1 == otp:
+            # del request.session['otp']
+            print("You Are Ready to Create New Password...")
+
+            # user = signUp.objects.get(email = otp1)
+            # request.session['email'] = user.email
+
+            return redirect('NEWPASS')
+        else:
+            del request.session['otp']
+            return redirect('FORGOT')
+    return render(request,'otpCheck.html')
 
 def newPassword(request):
     print("Inside New Pass FUNCTION")
@@ -159,26 +154,31 @@ def newPassword(request):
             pass1 = request.POST['pass1']
             pass2 = request.POST['pass2']
 
-            print(pass1+" : "+pass2)
+            print(f"{pass1} : {pass2}")
             if pass1 == pass2:
-                print("Both password is correct")
-
-                # obj = signUp.objects.get(email =  request.POST.get('email'))
-
-                obj = signUp.objects.get(email = request.session['email'])
-
-                obj.password = pass1
-                obj.confirmPassword = pass2
-                obj.save()
-                del request.session['otp']
-                # return redirect('HOME')
-                return redirect('LOGIN')
+                return createNewPassword(request, pass1, pass2)
             else:
                 return HttpResponse("<h1>Password must be same</h1>")
         return render(request,'newPass.html')
     return redirect('LOGIN')
 
+
+def createNewPassword(request, pass1, pass2):
+    print("Both password is correct")
+    # obj = signUp.objects.get(email =  request.POST.get('email'))
+    obj = signUp.objects.get(email = request.session['email'])
+
+    obj.password = pass1
+    obj.confirmPassword = pass2
+    obj.save()
+    del request.session['otp']
+    # return redirect('HOME')
+    return redirect('LOGIN')
+
 def userLogOut(request):
-    del request.session['email']
-    print('User logged out')
+    if 'email' in request.session:
+        del request.session['email']
+        print('User logged out')
+    else:
+        print('session is not present')
     return redirect('LOGIN')

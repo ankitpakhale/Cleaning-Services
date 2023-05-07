@@ -218,38 +218,38 @@ def show(request,id1):
 
 
 # def login1(request):
-    if request.POST:
-        Name = request.POST['name']
-        print(Name)
-        Email = request.POST['email']
-        print(Email)
-        Number = request.POST['number']
-        print(Number)
+    # if request.POST:
+    #     Name = request.POST['name']
+    #     print(Name)
+    #     Email = request.POST['email']
+    #     print(Email)
+    #     Number = request.POST['number']
+    #     print(Number)
 
-        log = xyz()
-        log.name = Name
-        log.email = Email
-        log.number = Number
-        log.save()
-        return redirect('HOME')
-    return render(request, 'LOGIN1')
+    #     log = xyz()
+    #     log.name = Name
+    #     log.email = Email
+    #     log.number = Number
+    #     log.save()
+    #     return redirect('HOME')
+    # return render(request, 'LOGIN1')
 
 # def login(request):
-    if request.POST:
-        Name = request.POST['name']
-        print(Name)
-        Email = request.POST['email']
-        print(Email)
-        Number = request.POST['number']
-        print(Number)
+    # if request.POST:
+    #     Name = request.POST['name']
+    #     print(Name)
+    #     Email = request.POST['email']
+    #     print(Email)
+    #     Number = request.POST['number']
+    #     print(Number)
 
-        log = xyz()
-        log.name = Name
-        log.email = Email
-        log.number = Number
-        log.save()
-        return redirect('HOME')
-    return render(request, 'LOGIN')
+    #     log = xyz()
+    #     log.name = Name
+    #     log.email = Email
+    #     log.number = Number
+    #     log.save()
+    #     return redirect('HOME')
+    # return render(request, 'LOGIN')
 
 def index(request):
     return render(request,'index.html')

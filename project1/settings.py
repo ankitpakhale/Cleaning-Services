@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
-    'report_builder',
+    # 'report_builder',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,6 +77,9 @@ TEMPLATES = [
         },
     },
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 WSGI_APPLICATION = 'project1.wsgi.application'
 
